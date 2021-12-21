@@ -1,0 +1,127 @@
+h1 {
+  color: var(--very-dark-cyan);
+  text-align: center;
+  letter-spacing: var(--space-sm);
+  margin: var(--space-lg);
+  font-size: var(--text-lg);
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: var(--space-md);
+  padding: var(--space-md-plus);
+}
+
+.input__field {
+  position: relative;
+}
+
+.input {
+  border: none;
+  background-color: var(--light-grayish-cyan-2);
+  border-radius: var(--space-xs);
+  width: 100%;
+  height: var(--space-lg);
+  font-family: inherit;
+  padding: var(--space-sm);
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--very-dark-cyan);
+  text-align: right;
+}
+
+.input__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: var(--space-sm);
+}
+
+.subcard {
+  margin-bottom: var(--space-lg);
+}
+
+.general-h2 {
+  color: var(--very-dark-cyan);
+  font-size: var(--text-xxs);
+  opacity: 0.8;
+  margin-bottom: var(--space-xs);
+}
+
+.tip-buttons {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.button {
+  border: 0;
+  border-radius: var(--space-xs);
+  font-family: inherit;
+  padding: var(--space-sm);
+  text-align: center;
+  font-weight: 700;
+}
+
+.button--tip-percentage {
+  flex-basis: 130px;
+  flex-grow: 1;
+  background-color: var(--very-dark-cyan);
+  color: var(--white);
+  font-size: var(--text-md);
+  transition: all 200ms;
+}
+
+.button--tip-percentage--enabled {
+  background-color: var(--strong-cyan);
+  color: var(--very-dark-cyan);
+}
+
+.button--reset {
+  background-color: var(--white);
+  opacity: 0.2;
+  color: var(--very-dark-cyan);
+  width: 100%;
+  font-size: var(--text-sm);
+  transition: all 200ms;
+}
+
+.button--reset--enabled {
+  background-color: var(--strong-cyan);
+  opacity: 1;
+}
+
+.summary {
+  background-color: var(--very-dark-cyan);
+  border-radius: var(--space-sm);
+  padding: var(--space-md);
+}
+
+.summary__card-set {
+  margin: var(--space-sm) 0;
+}
+
+.summary__card {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.summary__h2 {
+  color: var(--white);
+  opacity: 1;
+  margin-bottom: 0;
+}
+
+.summary__p {
+  color:  var(--white);
+  font-size: var(--text-xxs);
+  font-weight: 700;
+  opacity: 0.5;
+}
+
+.summary__result {
+  color: var(--strong-cyan);
+  display: block;
+  font-size: var(--text-lg);
+}

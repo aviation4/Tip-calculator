@@ -1,0 +1,74 @@
+:root {
+
+  /*** Typography **/
+  --font-primary: "Space Mono";
+  --font-secondary: sans-serif;
+
+  /*** Colors ***/
+  --strong-cyan: hsl(172, 67%, 45%);
+  --very-dark-cyan: hsl(183, 100%, 15%);
+  --dark-grayish-cyan-1: hsl(186, 14%, 43%);
+  --dark-grayish-cyan-2: hsl(184, 14%, 56%);
+  --light-grayish-cyan-1: hsl(185, 41%, 84%);
+  --light-grayish-cyan-2: hsl(189, 41%, 97%);
+  --white: hsl(0, 0%, 100%);
+
+
+  /*** Font sizings ***/
+  font-size: 24px;
+  --text-base-size: 1em;
+  --text-scale-ratio: 1.2;
+
+  --text-xxs:   calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio)));
+  --text-xs:   calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio)));
+  --text-sm:   calc(1em / var(--text-scale-ratio));
+  --text-md:   var(--text-base-size);
+  --text-lg:   calc(1em * var(--text-scale-ratio));
+  --text-xl:   calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio));
+  --text-xxl:  calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+  --text-xxxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+
+
+  /*** Sizings ***/
+  --baseline: 24px;
+  --space-xxs:   calc(var(--baseline)/4);
+  --space-xs:   calc(var(--baseline)/3);
+  --space-sm:   calc(var(--baseline)/2);
+  --space-md:   var(--baseline);
+  --space-md-plus:  calc(var(--baseline)*1.5);
+  --space-lg:   calc(var(--baseline)*2);
+  --space-xl:   calc(var(--baseline)*3);
+  --space-xxl:  calc(var(--baseline)*4);
+  --space-xxxl: calc(var(--baseline)*5);
+
+
+  /*** Sizing limits ***/
+  --min-width: 375px;
+  --max-width: 1400px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a:hover, button:hover {
+  cursor: pointer;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  text-align: left;
+  font-family: var(--font-primary), var(--font-secondary);
+  background-color: var(--light-grayish-cyan-1);
+  min-width: var(--min-width);
+}
+
+img {
+  max-width: 100%;
+}
