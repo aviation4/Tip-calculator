@@ -83,6 +83,7 @@ h1 {
   color: var(--very-dark-cyan);
 }
 
+
 .button--reset {
   background-color: var(--white);
   opacity: 0.2;
@@ -93,9 +94,18 @@ h1 {
   transition: all 200ms;
 }
 
+.button--reset:hover {
+  cursor: not-allowed;
+}
+
+
 .button--reset--enabled {
   background-color: var(--strong-cyan);
   opacity: 1;
+}
+
+.button--reset--enabled:hover {
+  cursor: pointer;
 }
 
 .summary {
