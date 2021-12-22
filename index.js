@@ -15,13 +15,24 @@ for (let i = 0; i < buttonTipElement.length; i++){
 
   buttonTipElement[i].addEventListener("click", function (){
 
+    var alreadyHas = 0;
+    if (this.classList.contains("button--tip-percentage--enabled")){
+      alreadyHas = 1;
+    }
+
     for (let i = 0; i < buttonTipElement.length; i++){
       if (buttonTipElement[i].classList.contains("button--tip-percentage--enabled")){
         buttonTipElement[i].classList.remove("button--tip-percentage--enabled");
       }
     }
 
-    this.classList.add("button--tip-percentage--enabled");
+    if (alreadyHas == 0){
+        this.classList.add("button--tip-percentage--enabled");
+    } else {
+      this.classList.remove("button--tip-percentage--enabled");
+    }
+
+
     resetButton.classList.add("button--reset--enabled");
   });
 }
