@@ -12,6 +12,7 @@ h1 {
   padding: var(--space-md-plus);
   max-width: 768px;
   margin: auto;
+  box-shadow: 0 10px 10px  hsla(172, 67%, 45%, 0.3);
 }
 
 .input__field {
@@ -30,6 +31,16 @@ h1 {
   font-weight: 700;
   color: var(--very-dark-cyan);
   text-align: right;
+}
+
+.input:focus {
+  outline: 2px solid var(--orange-warning) !important;
+}
+
+.input:focus:before {
+  position: absolute;
+  content: "Must be a number";
+  top: 20px;
 }
 
 .input::placeholder {
