@@ -1,8 +1,8 @@
-/*
+
 var inputBill = document.getElementById("input-bill").value;
 var inputPeople = document.getElementById("input-people").value;
 var calculateButton = document.getElementById("button__calculate");
-*/
+
 
 
 /**** Changes <<tip button>> states (and enabling reset button) ****/
