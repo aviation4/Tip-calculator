@@ -1,38 +1,42 @@
 
-var inputBill = document.getElementById("input-bill").value;
-var inputPeople = document.getElementById("input-people").value;
+var inputBill = document.getElementById("input-bill");
+var inputPeople = document.getElementById("input-people");
+
+var buttonTipArray = document.querySelectorAll(".button--tip-percentage");
+var resetButton = document.getElementById("button__reset");
 var calculateButton = document.getElementById("button__calculate");
 
 
+/**** Change << tip button >> states (and enable << reset button >>) ****/
 
-/**** Changes <<tip button>> states (and enabling reset button) ****/
 
-var buttonTipElement = document.querySelectorAll(".button--tip-percentage");
-var resetButton = document.getElementById("button__reset");
+/* For every << tip button >> */
+for (let i = 0; i < buttonTipArray.length; i++){
 
-/* Assign Event Listener */
-for (let i = 0; i < buttonTipElement.length; i++){
+  /* Assign Event Listener */
+  buttonTipArray[i].addEventListener("click", function (){
 
-  buttonTipElement[i].addEventListener("click", function (){
+    /* Disable all enabled < <tip buttons >> */
+    for (let i = 0; i < buttonTipArray.length; i++){
+      if (buttonTipArray[i].classList.contains("button--tip-percentage--enabled")){
+        buttonTipArray[i].classList.remove("button--tip-percentage--enabled");
+      }
+    }
 
+    /* Check if clicked << tip button >> was already enabled */
     var alreadyHas = 0;
     if (this.classList.contains("button--tip-percentage--enabled")){
       alreadyHas = 1;
     }
 
-    for (let i = 0; i < buttonTipElement.length; i++){
-      if (buttonTipElement[i].classList.contains("button--tip-percentage--enabled")){
-        buttonTipElement[i].classList.remove("button--tip-percentage--enabled");
-      }
-    }
-
+    /* Enable (is disabled) or diasble (if enabled) */
     if (alreadyHas == 0){
         this.classList.add("button--tip-percentage--enabled");
     } else {
       this.classList.remove("button--tip-percentage--enabled");
     }
 
-
+    /* Enable << reset button >> */
     resetButton.classList.add("button--reset--enabled");
   });
 }
@@ -40,34 +44,32 @@ for (let i = 0; i < buttonTipElement.length; i++){
 
 
 
+/*** Enable << reset button >> (by pressing a key) ***/
 
-/*** Activating <<Reset button>> (by pressing a key) ***/
-
-var resetButton = document.getElementById("button__reset");
-document.addEventListener("keydown", function(){
-
-  /* Actualise input values */
-  inputBill = document.getElementById("input-bill").value;
-  inputPeople = document.getElementById("input-people").value;
+document.addEventListener("keypress", function(event){
 
   var isButtonEnabled = 0;
 
-  /* Check if any button tip is enabled */
-  for (let i = 0; i < buttonTipElement.length; i++){
-    if (buttonTipElement[i].classList.contains("button--tip-percentage--enabled")){
+  /* Checks if any button tip is enabled */
+  for (let i = 0; i < buttonTipArray.length; i++){
+    if (buttonTipArray[i].classList.contains("button--tip-percentage--enabled")){
       isButtonEnabled = 1;
     }
   }
 
   /* If any input has been modified, enable reset button */
-  if (inputBill != "undefined" || inputPeople != "undefined" || isButtonEnabled == 1){
+  if (inputBill.value != "" || inputPeople.value != "" || isButtonEnabled == 1){
     resetButton.classList.add("button--reset--enabled");
   }
 
   /* Activating <<Calculate>> button */
-  if (inputBill != "undefined" && inputPeople != "undefined" && isButtonEnabled === 1){
+  if (inputBill.value != "" && inputPeople.value != "" && isButtonEnabled === 1){
     calculateButton.classList.add("button--reset--enabled");
   }
+  console.log(event);
+  console.log(inputBill.value);
+  console.log(inputPeople.value);
+
 });
 
 
@@ -91,9 +93,9 @@ function calculateData (){
 
     /* Check if any button tip is enabled and save its value */
     var tipFactor = 1;
-    for (let i = 0; i < buttonTipElement.length; i++){
-      if (buttonTipElement[i].classList.contains("button--tip-percentage--enabled")){
-        tipFactor = 1 + (buttonTipElement[i].value)/100;
+    for (let i = 0; i < buttonTipArray.length; i++){
+      if (buttonTipArray[i].classList.contains("button--tip-percentage--enabled")){
+        tipFactor = 1 + (buttonTipArray[i].value)/100;
       }
     }
 
@@ -118,9 +120,9 @@ resetButton.addEventListener("click", function(){
   document.getElementById("result-tip").innerHTML = "$" + 0;
   document.getElementById("result-total").innerHTML = "$" + 0;
 
-  for (let i = 0; i < buttonTipElement.length; i++){
-    if (buttonTipElement[i].classList.contains("button--tip-percentage--enabled")){
-        buttonTipElement[i].classList.remove("button--tip-percentage--enabled");
+  for (let i = 0; i < buttonTipArray.length; i++){
+    if (buttonTipArray[i].classList.contains("button--tip-percentage--enabled")){
+        buttonTipArray[i].classList.remove("button--tip-percentage--enabled");
     }
   }
 
