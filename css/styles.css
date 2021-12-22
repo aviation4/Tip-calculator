@@ -2,7 +2,7 @@ h1 {
   color: var(--very-dark-cyan);
   text-align: center;
   letter-spacing: var(--space-sm);
-  margin: var(--space-lg);
+  padding: var(--space-lg);
   font-size: var(--text-lg);
 }
 
@@ -10,6 +10,8 @@ h1 {
   background-color: var(--white);
   border-radius: var(--space-md);
   padding: var(--space-md-plus);
+  max-width: 768px;
+  margin: auto;
 }
 
 .input__field {
@@ -28,6 +30,10 @@ h1 {
   font-weight: 700;
   color: var(--very-dark-cyan);
   text-align: right;
+}
+
+.input::placeholder {
+  opacity: 0.2;
 }
 
 .input__icon {
@@ -83,6 +89,7 @@ h1 {
   color: var(--very-dark-cyan);
   width: 100%;
   font-size: var(--text-sm);
+  margin-top: var(--space-md);
   transition: all 200ms;
 }
 
@@ -95,6 +102,8 @@ h1 {
   background-color: var(--very-dark-cyan);
   border-radius: var(--space-sm);
   padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
 }
 
 .summary__card-set {
@@ -114,7 +123,7 @@ h1 {
 }
 
 .summary__p {
-  color:  var(--white);
+  color: var(--white);
   font-size: var(--text-xxs);
   font-weight: 700;
   opacity: 0.5;
@@ -123,5 +132,41 @@ h1 {
 .summary__result {
   color: var(--strong-cyan);
   display: block;
-  font-size: var(--text-lg);
+  font-size: var(--text-xxl);
+}
+
+@media (min-width: 1400px) {
+  .card {
+    max-width: 1200px;
+    display: flex;
+    gap: var(--space-md-plus);
+  }
+
+  .card__inputs {
+    flex-basis: 50%;
+  }
+
+  .subcard:last-child {
+    margin-bottom: 0;
+  }
+
+  .general-h2 {
+      font-size: var(--text-xs);
+  }
+
+  h1 {
+    padding-top: var(--space-xxxl);
+    padding-bottom:  var(--space-xxl);
+  }
+
+  .summary {
+    flex-basis: 50%;
+    padding: var(--space-lg);
+    justify-content: space-between;
+  }
+
+  .summary__card {
+    margin-bottom: var(--space-md);
+  }
+
 }
