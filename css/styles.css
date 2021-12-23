@@ -40,6 +40,12 @@ h1 {
   text-align: right;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .input-bill__must-be-a-number {
   display: none;
   position: absolute;
