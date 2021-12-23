@@ -15,6 +15,13 @@ h1 {
   box-shadow: 0 10px 10px  hsla(172, 67%, 45%, 0.3);
 }
 
+.general-h2 {
+  color: var(--very-dark-cyan);
+  font-size: var(--text-xs);
+  opacity: 0.8;
+  margin-bottom: var(--space-xs);
+}
+
 .input__field {
   position: relative;
 }
@@ -33,15 +40,19 @@ h1 {
   text-align: right;
 }
 
+.input-bill__must-be-a-number {
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: -30px;
+  text-align: right;
+  color: var(--orange-warning);
+}
+
 .input:focus {
   outline: 2px solid var(--orange-warning) !important;
 }
 
-.input:focus:before {
-  position: absolute;
-  content: "Must be a number";
-  top: 20px;
-}
 
 .input::placeholder {
   opacity: 0.2;
@@ -58,12 +69,7 @@ h1 {
   margin-bottom: var(--space-lg);
 }
 
-.general-h2 {
-  color: var(--very-dark-cyan);
-  font-size: var(--text-xxs);
-  opacity: 0.8;
-  margin-bottom: var(--space-xs);
-}
+
 
 .tip-buttons {
   display: flex;
@@ -172,7 +178,7 @@ h1 {
   }
 
   .general-h2 {
-      font-size: var(--text-xs);
+    font-size: var(--text-xs);
   }
 
   h1 {
