@@ -8,6 +8,7 @@ var resetButton = document.getElementById("button__reset");
 
 var resultTip = document.getElementById("result-tip");
 var resultTotal = document.getElementById("result-total");
+var wasInputModified = [0, 0];
 
 var tipFactor;
 
@@ -24,27 +25,29 @@ for (let i = 0; i < buttonTipArray.length; i++){
   /* Assign Event Listener */
   buttonTipArray[i].addEventListener("click", function (){
 
+    /* Check if clicked tip button was already enabled */
+    var alreadyIsEnabled = 0;
+    if (this.classList.contains("button--tip-percentage--enabled")){
+      alreadyIsEnabled = 1;
+    }
+
+
     /* Disable all enabled tip buttons */
     for (let i = 0; i < buttonTipArray.length; i++){
       if (buttonTipArray[i].classList.contains("button--tip-percentage--enabled")){
         buttonTipArray[i].classList.remove("button--tip-percentage--enabled");
+        isTipButtonEnabled = 0;
+        break;
       }
     }
 
-    /* Check if clicked tip button was already enabled */
-    var alreadyHas = 0;
-    if (this.classList.contains("button--tip-percentage--enabled")){
-      alreadyHas = 1;
-    }
 
-    /* Enable (is disabled) or diasble (if enabled) */
-    if (alreadyHas == 0){
+    /* Enable (if was already disabled) */
+    if (alreadyIsEnabled == 0){
         this.classList.add("button--tip-percentage--enabled");
         isTipButtonEnabled = 1;
-    } else {
-      this.classList.remove("button--tip-percentage--enabled");
-      isTipButtonEnabled = 0;
     }
+
 
     /* Enable reset button */
     resetButton.classList.add("button--reset--enabled");
@@ -58,6 +61,7 @@ for (let i = 0; i < buttonTipArray.length; i++){
       for (let i = 0; i < buttonTipArray.length; i++){
         if (buttonTipArray[i].classList.contains("button--tip-percentage--enabled")){
           tipFactor = 1 + (buttonTipArray[i].value)/100;
+          break;
         }
       }
 
@@ -65,6 +69,17 @@ for (let i = 0; i < buttonTipArray.length; i++){
       var resultTipNotRounded = ((inputBill.value*tipFactor) - inputBill.value)/inputPeople.value;
       resultTip.innerHTML = "$" + Math.round(resultTipNotRounded*100)/100;
       resultTotal.innerHTML = "$" + Math.round(inputBill.value*tipFactor/inputPeople.value*100)/100;
+
+
+
+    } else if (wasInputModified.every(el => el == 0) && isTipButtonEnabled == 0) {
+      /* Disable reset button if all inputs inactive */
+      resetButton.classList.remove("button--reset--enabled");
+
+    } else if (wasInputModified.some(el => el == 0) || isTipButtonEnabled == 0) {
+      /* Set results to $0, if any input is incomplete */
+      resultTip.innerHTML = "$" + "0";
+      resultTotal.innerHTML = "$" + "0";
 
     }
 
@@ -75,7 +90,6 @@ for (let i = 0; i < buttonTipArray.length; i++){
 
 
 /*** Enable reset button when input is modified ***/
-var wasInputModified = [0, 0];
 for (let i = 0; i < inputArray.length; i++){
 
   inputArray[i].addEventListener("input", function(event){
