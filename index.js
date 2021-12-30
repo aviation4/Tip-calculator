@@ -57,6 +57,7 @@ for (let i = 0; i < buttonTipArray.length; i++){
     /* If inputs are modified and tip button is enabled */
     if (wasInputModified.every(el => el == 1) && isTipButtonEnabled == 1){
 
+
       /* Calculate tip factor based on enabled tip button */
       for (let i = 0; i < buttonTipArray.length; i++){
         if (buttonTipArray[i].classList.contains("button--tip-percentage--enabled")){
@@ -89,37 +90,30 @@ for (let i = 0; i < buttonTipArray.length; i++){
 
 
 
-/*** Enable reset button when input is modified ***/
-for (let i = 0; i < inputArray.length; i++){
-
-  inputArray[i].addEventListener("input", function(event){
-
-    wasInputModified[i] = 1;
-
-    /* Check if any input has been modified */
-    if (wasInputModified.some(el => el == 1)){
-      resetButton.classList.add("button--reset--enabled");
-    }
-
-  });
-
-}
-
-
 
 /**** Calculate when input modifies ****/
 for (let i = 0; i < inputArray.length; i++){
 
   inputArray[i].addEventListener("input", function(event){
 
-    console.log(inputArray[i].value);
+    wasInputModified[i] = 1;
+    /* Enable reset buton */
+    resetButton.classList.add("button--reset--enabled");
 
-    var text = inputArray[i].value;
-    var regex = /^[0-9]*\.?[0-9]*$/;
+    var insertedSign = event.data;
+    var hyphen = "-";
+    var previousSigns = inputArray[i].value;
+    console.log(insertedSign);
+    console.log(event.key);
+    console.log(event.data);
 
-    if(regex.test(text)){
+    if (insertedSign == hyphen || previousSigns.includes(hyphen)){
 
-      document.getElementById("must-be-a-number").style.display="none";
+
+
+    } else {
+
+
 
       /* If inputs are modified and tip button is enabled */
       if (wasInputModified.every(el => el == 1) && isTipButtonEnabled == 1){
@@ -138,9 +132,6 @@ for (let i = 0; i < inputArray.length; i++){
 
       }
 
-    } else {
-
-      document.getElementById("must-be-a-number").style.display="inline-block";
 
     }
 
@@ -149,6 +140,31 @@ for (let i = 0; i < inputArray.length; i++){
 
 }
 
+inputArray[0].addEventListener("keydown", function(event){
+  console.log(event.key);
+  if (event.key == ","){
+    document.getElementById("warning-info-bill").style.display = "inline-block";
+    document.getElementById("warning-info-bill").innerHTML = "Use period (.) instead of comma (,)"
+  } else if (event.key == "-") {
+    document.getElementById("warning-info-bill").style.display = "inline-block";
+    document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero"
+  } else {
+    document.getElementById("warning-info-bill").style.display = "none";
+  }
+});
+
+inputArray[1].addEventListener("keydown", function(event){
+  console.log(event.key);
+  if (event.key == "," || event.key == "."){
+    document.getElementById("warning-info-people").style.display = "inline-block";
+    document.getElementById("warning-info-people").innerHTML = "Must be an integer"
+  } else if (event.key == "-") {
+    document.getElementById("warning-info-people").style.display = "inline-block";
+    document.getElementById("warning-info-people").innerHTML = "Must be greater than zero"
+  } else {
+    document.getElementById("warning-info-people").style.display = "none";
+  }
+});
 
 
 /*** Resetting ***/
