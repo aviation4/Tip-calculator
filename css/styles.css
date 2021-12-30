@@ -46,13 +46,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.input-bill__must-be-a-number {
+.input-bill__warning-info {
   display: none;
   position: absolute;
   width: 100%;
   top: -30px;
   text-align: right;
   color: var(--orange-warning);
+  transition: all 200ms;
 }
 
 .input:focus {
