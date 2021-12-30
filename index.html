@@ -24,8 +24,17 @@
           <h2 class="general-h2">Bill</h2>
           <div class="input__field">
             <img class="input__icon" src="images/icon-dollar.svg" alt="">
-            <h2 id="must-be-a-number" class="general-h2 input-bill__must-be-a-number">Must be a number</h2>
-            <input id="input-bill" class="input" type="number" placeholder="18.50"/>
+            <h2 id="warning-info-bill" class="general-h2 input-bill__warning-info">Must be greater than zero</h2>
+            <input id="input-bill"
+                   class="input"
+                   type="number"
+                   placeholder="18.50"
+                   onkeydown="return event.keyCode === 8 ||
+                                     event.keyCode === 46 ||
+                                     event.keyCode === 37 ||
+                                     event.keyCode === 39 ||
+                                     event.keyCode === 190 ?
+                                     true : !isNaN(Number(event.key))"/>
           </div>
         </div>
 
@@ -46,8 +55,16 @@
           <h2 class="general-h2">Number of People</h2>
           <div class="input__field">
             <img class="input__icon" src="images/icon-person.svg" alt="">
-            <h2 id="must-be-a-number" class="general-h2 input-bill__must-be-a-number">Must be a number</h2>
-            <input id="input-people" class="input" type="number" placeholder="4">
+            <h2 id="warning-info-people" class="general-h2 input-bill__warning-info">Must be greater than zero</h2>
+            <input id="input-people"
+                   class="input"
+                   type="number"
+                   placeholder="4"
+                   onkeydown="return event.keyCode === 8 ||
+                                     event.keyCode === 46 ||
+                                     event.keyCode === 37 ||
+                                     event.keyCode === 39 ?
+                                     true : !isNaN(Number(event.key))"/>
           </div>
 
         </div>
