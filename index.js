@@ -140,18 +140,44 @@ for (let i = 0; i < inputArray.length; i++){
 
 }
 
-inputArray[0].addEventListener("keydown", function(event){
+
+
+inputArray[0].addEventListener("keydown", function(){
   console.log(event.key);
   if (event.key == ","){
     document.getElementById("warning-info-bill").style.display = "inline-block";
-    document.getElementById("warning-info-bill").innerHTML = "Use period (.) instead of comma (,)"
+    document.getElementById("warning-info-bill").innerHTML = "Use period (.) operator";
   } else if (event.key == "-") {
     document.getElementById("warning-info-bill").style.display = "inline-block";
-    document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero"
+    document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero";
   } else {
     document.getElementById("warning-info-bill").style.display = "none";
   }
 });
+
+
+inputArray[0].onkeydown = function () {
+  console.log(event.key);
+  if (event.key == ","){
+    document.getElementById("warning-info-bill").style.display = "inline-block";
+    document.getElementById("warning-info-bill").innerHTML = "Use period (.) operator";
+  } else if (event.key == "-") {
+    document.getElementById("warning-info-bill").style.display = "inline-block";
+    document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero";
+  } else {
+    document.getElementById("warning-info-bill").style.display = "none";
+  }
+}
+
+
+inputArray[0].onkeydown = function () {
+  return event.keyCode === 8 ||
+        event.keyCode === 46 ||
+        event.keyCode === 37 ||
+        event.keyCode === 39 ||
+        event.keyCode === 190
+        ? true : !isNaN(Number(event.key))
+}
 
 inputArray[1].addEventListener("keydown", function(event){
   console.log(event.key);
@@ -165,6 +191,14 @@ inputArray[1].addEventListener("keydown", function(event){
     document.getElementById("warning-info-people").style.display = "none";
   }
 });
+
+inputArray[1].onkeydown = function () {
+  return event.keyCode === 8 ||
+        event.keyCode === 46 ||
+        event.keyCode === 37 ||
+        event.keyCode === 39
+        ? true : !isNaN(Number(event.key))
+}
 
 
 /*** Resetting ***/
