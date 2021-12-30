@@ -46,11 +46,11 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.input-bill__warning-info {
+.input__warning-info {
   display: none;
   position: absolute;
   width: 100%;
-  top: -30px;
+  top: 55px;
   text-align: right;
   color: var(--orange-warning);
   transition: all 200ms;
@@ -73,7 +73,7 @@ input::-webkit-inner-spin-button {
 }
 
 .subcard {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 
