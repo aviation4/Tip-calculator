@@ -176,6 +176,7 @@ inputArray[0].addEventListener("keydown", function() {
 
 
 inputArray[0].onkeydown = function() {
+  alert(event.key);
   var regex = /[a-z]/i;
   if (event.key == ",") {
     document.getElementById("warning-info-bill").style.opacity = "1";
@@ -204,7 +205,7 @@ inputArray[1].addEventListener("blur", function () {
       document.getElementById("warning-info-people").style.opacity = "0";
 })
 
- alert("yo");
+
 
 
 inputArray[0].onkeydown = function() {
