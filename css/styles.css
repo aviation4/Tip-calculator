@@ -181,6 +181,10 @@ input::-webkit-inner-spin-button {
     flex-basis: 50%;
   }
 
+  .input__warning-info {
+    top: -33px;
+  }
+
   .subcard:last-child {
     margin-bottom: 0;
   }
