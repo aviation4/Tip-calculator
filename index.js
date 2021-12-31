@@ -196,6 +196,17 @@ inputArray[0].onkeydown = function() {
 }
 
 
+inputArray[0].addEventListener("blur", function () {
+      document.getElementById("warning-info-bill").style.opacity = "0";
+})
+
+inputArray[1].addEventListener("blur", function () {
+      document.getElementById("warning-info-people").style.opacity = "0";
+})
+
+ alert("yo");
+
+
 inputArray[0].onkeydown = function() {
   return event.code === "Backspace" ||
     event.code === "Delete" ||
