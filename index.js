@@ -155,6 +155,8 @@ if (breakpoint.matches) {
 inputArray[0].addEventListener("keydown", function() {
   var regex = /[a-z]/i;
   console.log(event.key);
+  alert(event.key);
+  alert(event.code);
   if (event.key == ",") {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Use period (.) operator";
