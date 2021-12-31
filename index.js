@@ -153,25 +153,43 @@ if (breakpoint.matches) {
 
 
 inputArray[0].addEventListener("keydown", function() {
+  var regex = /[a-z]/i;
+  console.log(event.key);
   if (event.key == ",") {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Use period (.) operator";
   } else if (event.key == "-") {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero";
-  } else {
+  } else if (regex.test(event.key) &&
+      event.key !== "Backspace" &&
+      event.key !== "Delete" &&
+      event.key !== "ArrowLeft" &&
+      event.key !== "ArrowRight" ) {
+    document.getElementById("warning-info-bill").style.opacity = "1";
+    document.getElementById("warning-info-bill").innerHTML = "Must be a number";
+  }
+  else {
     document.getElementById("warning-info-bill").style.opacity = "0";
   }
 });
 
 
 inputArray[0].onkeydown = function() {
+  var regex = /[a-z]/i;
   if (event.key == ",") {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Use period (.) operator";
   } else if (event.key == "-") {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero";
+  } else if (regex.test(event.key) &&
+      event.key !== "Backspace" &&
+      event.key !== "Delete" &&
+      event.key !== "ArrowLeft" &&
+      event.key !== "ArrowRight" ) {
+    document.getElementById("warning-info-bill").style.opacity = "1";
+    document.getElementById("warning-info-bill").innerHTML = "Must be a number";
   } else {
     document.getElementById("warning-info-bill").style.opacity = "0";
   }
@@ -188,12 +206,20 @@ inputArray[0].onkeydown = function() {
 }
 
 inputArray[1].addEventListener("keydown", function() {
+  var regex = /[a-z]/i;
   if (event.key == "," || event.key == ".") {
     document.getElementById("warning-info-people").style.opacity = "1";
     document.getElementById("warning-info-people").innerHTML = "Must be an integer"
   } else if (event.key == "-") {
     document.getElementById("warning-info-people").style.opacity = "1";
     document.getElementById("warning-info-people").innerHTML = "Must be greater than zero"
+  } else if (regex.test(event.key) &&
+      event.key !== "Backspace" &&
+      event.key !== "Delete" &&
+      event.key !== "ArrowLeft" &&
+      event.key !== "ArrowRight" ) {
+    document.getElementById("warning-info-people").style.opacity = "1";
+    document.getElementById("warning-info-people").innerHTML = "Must be a number";
   } else {
     document.getElementById("warning-info-people").style.opacity = "0";
   }
