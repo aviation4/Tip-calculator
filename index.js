@@ -184,7 +184,7 @@ inputArray[0].onkeydown = function() {
     event.code === "ArrowLeft" ||
     event.code === "ArrowRight" ||
     event.code === "Period" ?
-    true : false;
+    true : !isNaN(Number(event.key));
 }
 
 inputArray[1].addEventListener("keydown", function() {
@@ -204,7 +204,7 @@ inputArray[1].onkeydown = function() {
     event.code === "Delete" ||
     event.code === "ArrowLeft" ||
     event.code === "ArrowRight" ?
-    true : false;
+    true : !isNaN(Number(event.key));
 }
 
 
