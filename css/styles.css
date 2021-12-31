@@ -47,8 +47,9 @@ input::-webkit-inner-spin-button {
 }
 
 .input__warning-info {
-  display: none;
+  display: inline-block;
   position: absolute;
+  opacity: 0;
   width: 100%;
   top: 55px;
   text-align: right;
