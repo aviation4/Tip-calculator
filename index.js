@@ -151,7 +151,7 @@ if (breakpoint.matches) {
   document.getElementById("warning-info-people").style.top = "55px";
 }
 
-
+/*
 inputArray[0].addEventListener("keydown", function() {
   var regex = /[a-z]/i;
   console.log(event.key);
@@ -174,29 +174,20 @@ inputArray[0].addEventListener("keydown", function() {
   else {
     document.getElementById("warning-info-bill").style.opacity = "0";
   }
+
+  return event.code === "Backspace" ||
+    event.code === "Delete" ||
+    event.code === "ArrowLeft" ||
+    event.code === "ArrowRight" ||
+    event.code === "Period" ?
+    true : false;
 });
+*/
 
-
-inputArray[0].onkeydown = function() {
+inputArray[0].addEventListener("keyup", function() {
   alert(event.key);
-  var regex = /[a-z]/i;
-  if (event.key == ",") {
-    document.getElementById("warning-info-bill").style.opacity = "1";
-    document.getElementById("warning-info-bill").innerHTML = "Use period (.) operator";
-  } else if (event.key == "-") {
-    document.getElementById("warning-info-bill").style.opacity = "1";
-    document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero";
-  } else if (regex.test(event.key) &&
-      event.key !== "Backspace" &&
-      event.key !== "Delete" &&
-      event.key !== "ArrowLeft" &&
-      event.key !== "ArrowRight" ) {
-    document.getElementById("warning-info-bill").style.opacity = "1";
-    document.getElementById("warning-info-bill").innerHTML = "Must be a number";
-  } else {
-    document.getElementById("warning-info-bill").style.opacity = "0";
-  }
-}
+  alert(event.code);
+});
 
 
 inputArray[0].addEventListener("blur", function () {
@@ -210,14 +201,7 @@ inputArray[1].addEventListener("blur", function () {
 
 
 
-inputArray[0].onkeydown = function() {
-  return event.code === "Backspace" ||
-    event.code === "Delete" ||
-    event.code === "ArrowLeft" ||
-    event.code === "ArrowRight" ||
-    event.code === "Period" ?
-    true : !isNaN(Number(event.key));
-}
+
 
 inputArray[1].addEventListener("keydown", function() {
   var regex = /[a-z]/i;
