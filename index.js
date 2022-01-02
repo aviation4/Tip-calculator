@@ -133,7 +133,7 @@ function keydownValidation (el, i) {
 
   currentInput.style.opacity = "1";
 
-
+  alert(event.key);
   if (event.key == "," && i == 0) {
     currentInput.innerHTML = periodText;
 
