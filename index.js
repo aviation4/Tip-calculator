@@ -55,22 +55,27 @@ buttonTipArray.forEach(function(el, i) {
 inputArray.forEach(function(el, i) {
 
 
-  /**** Validate after every keydown ****/
+  /**** Validate  every keydown ****/
   el.addEventListener("keydown", function() {
+    wasInputModified[i] = 1;
     keydownValidation(el, i);
   });
 
 
 
-  /**** Validate after losing focus ****/
+  /**** Validate when losing focus ****/
   el.addEventListener("blur", function() {
-    blurValidation(el, i);
+    inputValidation(el, i);
   });
 
 
 
   /**** Calculate when input modifies ****/
   el.addEventListener("input", function(event) {
+
+
+    /* Validate inserted data */
+    inputValidation(el, i);
 
 
     /* Enable reset buton */
@@ -123,7 +128,7 @@ function keydownValidation (el, i) {
   }
 
   currentInput.style.opacity = "1";
-  wasInputModified[i] = 0;
+
 
   if (event.key == "," && i == 0) {
     currentInput.innerHTML = "Use period (.) operator";
@@ -144,13 +149,12 @@ function keydownValidation (el, i) {
   } else {
     currentInput.style.opacity = "0";
     currentInput.innerHTML = "";
-    wasInputModified[i] = 1;
   }
 
 }
 
 
-function blurValidation (el, i) {
+function inputValidation (el, i){
 
   let currentInput;
 
@@ -165,12 +169,19 @@ function blurValidation (el, i) {
   console.log(el.value)
 
   if (el.value.includes("-") == 0 && el.value == "") {
+
     currentInput.innerHTML = "Must be a number";
+
   } else if (el.value.includes(".") && i == 1) {
+
     currentInput.innerHTML = "Must be an integer";
+
   } else if (el.value < 0) {
+
     currentInput.innerHTML = "Must be greater than zero";
+
   } else {
+
     currentInput.style.opacity = "0";
     currentInput.innerHTML = "";
   }
@@ -218,10 +229,14 @@ function calculateResults() {
   resultTip.innerHTML = "$" + Math.round(resultTipNotRounded * 100) / 100;
   resultTotal.innerHTML = "$" + Math.round(inputBill.value * tipFactor / inputPeople.value * 100) / 100;
 
-  if (resultTip.innerHTML == "$Infinity" || resultTotal.innerHTML == "$Infinity") {
+  if (resultTip.innerHTML == "$Infinity" ||
+      resultTotal.innerHTML == "$Infinity" ||
+      resultTip.innerHTML == "$NaN" ||
+      resultTotal.innerHTML == "$NaN"
+    ) {
     resultTip.innerHTML = "$0";
     resultTotal.innerHTML = "$0";
-  }
+   }
 
 }
 
