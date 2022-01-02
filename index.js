@@ -12,9 +12,13 @@ let wasInputModified = [0, 0];
 
 let tipFactor;
 
+let periodText = "Use period (.) operator";
+let mustBeNumberText = "Must be a number";
+let mustBeIntegerText = "Must be an integer";
+let mustBePositiveText = "Must be greater than zero";
+
+
 let breakpoint = window.matchMedia("(min-width: 1400px)");
-
-
 if (breakpoint.matches) {
   document.getElementById("warning-info-bill").style.top = "-33px";
   document.getElementById("warning-info-people").style.top = "-33px";
@@ -131,20 +135,21 @@ function keydownValidation (el, i) {
 
 
   if (event.key == "," && i == 0) {
-    currentInput.innerHTML = "Use period (.) operator";
+    currentInput.innerHTML = periodText;
 
   } else if ((event.key == "," || event.key == ".") && i == 1) {
-    currentInput.innerHTML = "Must be an integer";
+    currentInput.innerHTML = mustBeIntegerText;
 
   } else if (event.key == "-") {
-    currentInput.innerHTML = "Must be greater than zero";
+    currentInput.innerHTML = mustBePositiveText;
 
   } else if (regex.test(event.key) &&
     event.key !== "Backspace" &&
     event.key !== "Delete" &&
     event.key !== "ArrowLeft" &&
-    event.key !== "ArrowRight") {
-    currentInput.innerHTML = "Must be a number";
+    event.key !== "ArrowRight" ||
+    event.key == " ") {
+    currentInput.innerHTML = mustBeNumberText;
 
   } else {
     currentInput.style.opacity = "0";
@@ -170,15 +175,15 @@ function inputValidation (el, i){
 
   if (el.value.includes("-") == 0 && el.value == "") {
 
-    currentInput.innerHTML = "Must be a number";
+    currentInput.innerHTML = mustBeNumberText;
 
   } else if (el.value.includes(".") && i == 1) {
 
-    currentInput.innerHTML = "Must be an integer";
+    currentInput.innerHTML = mustBeIntegerText;
 
   } else if (el.value < 0) {
 
-    currentInput.innerHTML = "Must be greater than zero";
+    currentInput.innerHTML = mustBePositiveText;
 
   } else {
 
