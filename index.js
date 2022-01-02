@@ -105,9 +105,10 @@ for (let i = 0; i < inputArray.length; i++) {
     var insertedSign = event.data;
     var hyphen = "-";
     var previousSigns = inputArray[i].value;
+    /*
     console.log(insertedSign);
     console.log(event.key);
-    console.log(event.data);
+    console.log(event.data);*/
 
     if (insertedSign == hyphen || previousSigns.includes(hyphen)) {
 
@@ -151,18 +152,23 @@ if (breakpoint.matches) {
   document.getElementById("warning-info-people").style.top = "55px";
 }
 
-/*
+
 inputArray[0].addEventListener("keydown", function() {
   var regex = /[a-z]/i;
-  console.log(event.key);
+
   alert(event.key);
   alert(event.code);
+  alert(event.keyCode);
+  alert(inputArray[0].value);
+
   if (event.key == ",") {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Use period (.) operator";
+    event.preventDefault();
   } else if (event.key == "-") {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Must be greater than zero";
+    event.preventDefault();
   } else if (regex.test(event.key) &&
       event.key !== "Backspace" &&
       event.key !== "Delete" &&
@@ -170,24 +176,17 @@ inputArray[0].addEventListener("keydown", function() {
       event.key !== "ArrowRight" ) {
     document.getElementById("warning-info-bill").style.opacity = "1";
     document.getElementById("warning-info-bill").innerHTML = "Must be a number";
+    event.preventDefault();
   }
   else {
     document.getElementById("warning-info-bill").style.opacity = "0";
   }
 
-  return event.code === "Backspace" ||
-    event.code === "Delete" ||
-    event.code === "ArrowLeft" ||
-    event.code === "ArrowRight" ||
-    event.code === "Period" ?
-    true : false;
-});
-*/
 
-inputArray[0].addEventListener("keyup", function() {
-  alert(event.key);
-  alert(event.code);
 });
+
+
+
 
 
 inputArray[0].addEventListener("blur", function () {
@@ -201,16 +200,20 @@ inputArray[1].addEventListener("blur", function () {
 
 
 
-
-
 inputArray[1].addEventListener("keydown", function() {
   var regex = /[a-z]/i;
+  alert(event.key);
+  alert(event.code);
+  alert(event.keyCode);
+  alert(inputArray[0].value);
   if (event.key == "," || event.key == ".") {
     document.getElementById("warning-info-people").style.opacity = "1";
-    document.getElementById("warning-info-people").innerHTML = "Must be an integer"
+    document.getElementById("warning-info-people").innerHTML = "Must be an integer";
+    event.preventDefault();
   } else if (event.key == "-") {
     document.getElementById("warning-info-people").style.opacity = "1";
-    document.getElementById("warning-info-people").innerHTML = "Must be greater than zero"
+    document.getElementById("warning-info-people").innerHTML = "Must be greater than zero";
+    event.preventDefault();
   } else if (regex.test(event.key) &&
       event.key !== "Backspace" &&
       event.key !== "Delete" &&
@@ -218,19 +221,11 @@ inputArray[1].addEventListener("keydown", function() {
       event.key !== "ArrowRight" ) {
     document.getElementById("warning-info-people").style.opacity = "1";
     document.getElementById("warning-info-people").innerHTML = "Must be a number";
+    event.preventDefault();
   } else {
     document.getElementById("warning-info-people").style.opacity = "0";
   }
 });
-
-inputArray[1].onkeydown = function() {
-  return event.code === "Backspace" ||
-    event.code === "Delete" ||
-    event.code === "ArrowLeft" ||
-    event.code === "ArrowRight" ?
-    true : !isNaN(Number(event.key));
-}
-
 
 
 
