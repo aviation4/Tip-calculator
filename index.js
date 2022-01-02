@@ -55,14 +55,14 @@ buttonTipArray.forEach(function(el, i) {
 inputArray.forEach(function(el, i) {
 
 
-  /**** Key-by-key validation ****/
+  /**** Validate after every keydown ****/
   el.addEventListener("keydown", function() {
     keydownValidation(el, i);
   });
 
 
 
-  /**** Post-focus validation ****/
+  /**** Validate after losing focus ****/
   el.addEventListener("blur", function() {
     blurValidation(el, i);
   });
@@ -178,7 +178,7 @@ function blurValidation (el, i) {
 }
 
 
-function calculate(el) {
+function updateResults(el) {
 
   if (wasInputModified.every(el => el == 1) && isTipButtonEnabled == 1) {
 
