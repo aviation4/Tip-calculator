@@ -172,6 +172,7 @@ function inputValidation (el, i){
   currentInput.style.opacity = "1";
   console.log(Number(el.value));
   console.log(el.value)
+  alert(el.value);
 
   if (el.value.includes("-") == 0 && el.value == "") {
 
