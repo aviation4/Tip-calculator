@@ -23,7 +23,7 @@ function tipButtonToggler(el) {
     document.getElementById("input-tip").value = "";
     inputArray[1].classList.remove("input__warning-outline");
     document.getElementById("warning-info-tip").innerHTML = "";
-    wasInputModified[1] == 0;
+    wasInputModified[1] = 0;
   }
 
 
