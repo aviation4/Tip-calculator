@@ -3,19 +3,16 @@ function tipButtonToggler(el) {
 
   /* If that element is alredy enabled, disable it */
   if (el.classList.contains("button--tip-percentage--enabled")) {
-    console.log("firsty");
     el.classList.remove("button--tip-percentage--enabled");
     isTipButtonEnabled = 0;
   }
   /* If any other button is enabled, disable all of them and enable the new one */
   else if (isTipButtonEnabled == 1) {
-    console.log("second");
     buttonTipArray.forEach(el => el.classList.remove("button--tip-percentage--enabled"));
     el.classList.add("button--tip-percentage--enabled");
   }
   /* If all buttons are disabled, enable the new one */
   else {
-    console.log("fourth");
     el.classList.add("button--tip-percentage--enabled");
     isTipButtonEnabled = 1;
   }
@@ -152,6 +149,19 @@ function inputValidation (el, i){
   }
 
 
+  /* Only for mobiles */
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+
+    if (event.data == "-") {
+      currentInputWarning.innerHTML = mustBePositiveText;
+      currentInputWarning.style.opacity = "1";
+      currentInputField.classList.add("input__warning-outline");
+      wasInputModified[i] = 0;
+    }
+
+  }
+
+
   /* If data is empty or is equal to zero, display text and outline */
   if (el.value == "" || el.value == 0) {
 
@@ -167,6 +177,8 @@ function inputValidation (el, i){
     currentInputField.classList.remove("input__warning-outline");
     wasInputModified[i] = 1;
   }
+
+
 
 
 }
