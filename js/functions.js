@@ -169,6 +169,7 @@ function inputValidation (el, i){
         (inputArray[i].value > 99 && i == 2)) {
           currentInputWarning.style.opacity = "1";
           currentInputWarning.innerHTML = cantBeHigher;
+          wasInputModified[i] = 0;
     }
 
   }
