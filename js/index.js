@@ -65,7 +65,7 @@ buttonTipArray.forEach(function(el, i) {
 inputArray.forEach(function(el, i) {
 
 
-  if((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
     alert("mobile");
 
