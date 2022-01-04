@@ -157,6 +157,8 @@ function inputValidation (el, i){
   /* Only for mobiles */
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
+
+    /* When hyphen was typed */
     if (event.data == "-") {
       currentInputWarning.innerHTML = mustBePositiveText;
       currentInputWarning.style.opacity = "1";
@@ -164,6 +166,16 @@ function inputValidation (el, i){
       wasInputModified[i] = 0;
     }
 
+    /* When hyphen was typed before */
+    else if (event.data == "-" && inputArray[i].contains("-")) {
+      currentInputWarning.innerHTML = mustBeNumberText;
+      currentInputWarning.style.opacity = "1";
+      currentInputField.classList.add("input__warning-outline");
+      wasInputModified[i] = 0;
+    }
+
+
+    /* Display text about high numbers */
     if ((inputArray[i].value > 99999 && i == 0) ||
         (inputArray[i].value > 999 && i == 1) ||
         (inputArray[i].value > 99 && i == 2)) {
@@ -172,24 +184,28 @@ function inputValidation (el, i){
           wasInputModified[i] = 0;
     }
 
-  }
-
-
-  /* If data is empty or is equal to zero, display text and outline */
-  if (el.value == "" || el.value == 0) {
-
-    currentInputWarning.innerHTML = mustBePositiveText;
-    currentInputWarning.style.opacity = "1";
-    currentInputField.classList.add("input__warning-outline");
-    wasInputModified[i] = 0;
-
   } else {
 
-    currentInputWarning.style.opacity = "0";
-    currentInputWarning.innerHTML = "";
-    currentInputField.classList.remove("input__warning-outline");
-    wasInputModified[i] = 1;
+    /* If data is empty or is equal to zero, display text and outline */
+    if (el.value == "" || el.value == 0) {
+
+      currentInputWarning.innerHTML = mustBePositiveText;
+      currentInputWarning.style.opacity = "1";
+      currentInputField.classList.add("input__warning-outline");
+      wasInputModified[i] = 0;
+
+    } else {
+
+      currentInputWarning.style.opacity = "0";
+      currentInputWarning.innerHTML = "";
+      currentInputField.classList.remove("input__warning-outline");
+      wasInputModified[i] = 1;
+    }
+
   }
+
+
+
 
 
 
