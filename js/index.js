@@ -65,11 +65,8 @@ buttonTipArray.forEach(function(el, i) {
 inputArray.forEach(function(el, i) {
 
 
-  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-
-    alert("mobile");
-
-  } else {
+  /* Validate for desktops */
+  if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
 
     /**** Validate every keydown ****/
     el.addEventListener("keydown", function() {
@@ -77,7 +74,6 @@ inputArray.forEach(function(el, i) {
     });
 
   }
-
 
 
 
