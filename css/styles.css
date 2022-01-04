@@ -157,6 +157,8 @@ input::placeholder {
 
 
 .button--reset:hover {
+  background-color: var(--light-grayish-cyan-1);
+  color: var(--very-dark-cyan);
   cursor: not-allowed;
 }
 
@@ -187,6 +189,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-md);
+  gap: var(--space-md);
 }
 
 .summary__h2 {
