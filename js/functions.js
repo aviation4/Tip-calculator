@@ -140,6 +140,11 @@ function inputValidation (el, i){
     case 1:
       currentInputWarning = document.getElementById("warning-info-tip");
       currentInputField = inputTip;
+      /* If any tip was already enabled, diasble all of them (for mobiles) */
+      if (isTipButtonEnabled == 1){
+        buttonTipArray.forEach(el => el.classList.remove("button--tip-percentage--enabled"));
+        isTipButtonEnabled = 0;
+      }
       break;
 
     case 2:
