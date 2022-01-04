@@ -159,6 +159,13 @@ function inputValidation (el, i){
       wasInputModified[i] = 0;
     }
 
+    if ((inputArray[i].value > 99999 && i == 0) ||
+        (inputArray[i].value > 999 && i == 1) ||
+        (inputArray[i].value > 99 && i == 2)) {
+          currentInputWarning.style.opacity = "1";
+          currentInputWarning.innerHTML = cantBeHigher;
+    }
+
   }
 
 
