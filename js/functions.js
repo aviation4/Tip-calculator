@@ -175,6 +175,26 @@ function inputValidation (el, i){
       wasInputModified[i] = 0;
     }
 
+    /* When dot (period) or comma was typed */
+    else if ((event.data == "." || event.data == ",") && (i == 1 || i ==2)) {
+      currentInputWarning.innerHTML = mustBePositiveText;
+      currentInputWarning.style.opacity = "1";
+      currentInputField.classList.add("input__warning-outline");
+      wasInputModified[i] = 0;
+    }
+
+    /* When hyphen was typed before */
+    else if ((event.data == "." ||
+              inputArray[i].contains(".") ||
+              event.data == "," ||
+              inputArray[i].contains(",")) &&
+              (i == 1 || i ==2)) {
+      currentInputWarning.innerHTML = mustBeNumberText;
+      currentInputWarning.style.opacity = "1";
+      currentInputField.classList.add("input__warning-outline");
+      wasInputModified[i] = 0;
+    }
+
 
     /* Display text about high numbers */
     if ((inputArray[i].value > 99999 && i == 0) ||
