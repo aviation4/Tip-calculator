@@ -217,7 +217,7 @@ function updateResults() {
 
 
    /* If any data are incomplete, set results to $0 */
-  if (wasInputModified.some(el => el == 0) && isTipButtonEnabled == 0) {
+  if (wasInputModified[0] == 0 || wasInputModified[2] == 0 || (wasInputModified[1] == 0 && isTipButtonEnabled == 0)) {
 
     resetResults();
 
