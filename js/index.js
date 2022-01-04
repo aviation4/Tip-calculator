@@ -66,7 +66,7 @@ inputArray.forEach(function(el, i) {
 
 
   /**** Validate every keydown ****/
-  el.addEventListener("keydown", function() {
+  el.addEventListener("keypress", function() {
     keydownValidation(el, i);
   });
 
