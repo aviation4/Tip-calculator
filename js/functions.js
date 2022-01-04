@@ -19,10 +19,11 @@ function tipButtonToggler(el) {
 
 
   /* If user already entered custom value, reset it */
-  if (inputArray[1].classList.contains("input__warning-outline")){
+  if (inputArray[1].classList.contains("input__warning-outline") || wasInputModified[1] == 1){
     document.getElementById("input-tip").value = "";
     inputArray[1].classList.remove("input__warning-outline");
     document.getElementById("warning-info-tip").innerHTML = "";
+    wasInputModified[1] == 0;
   }
 
 
@@ -182,6 +183,15 @@ function inputValidation (el, i){
           currentInputWarning.style.opacity = "1";
           currentInputWarning.innerHTML = cantBeHigher;
           wasInputModified[i] = 0;
+    }
+
+    else {
+
+      currentInputWarning.style.opacity = "0";
+      currentInputWarning.innerHTML = "";
+      currentInputField.classList.remove("input__warning-outline");
+      wasInputModified[i] = 1;
+
     }
 
   } else {
