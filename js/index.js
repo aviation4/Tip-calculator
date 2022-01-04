@@ -65,10 +65,19 @@ buttonTipArray.forEach(function(el, i) {
 inputArray.forEach(function(el, i) {
 
 
-  /**** Validate every keydown ****/
-  el.addEventListener("keypress", function() {
-    keydownValidation(el, i);
-  });
+  if((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+
+    alert("mobile");
+
+  } else {
+
+    /**** Validate every keydown ****/
+    el.addEventListener("keydown", function() {
+      keydownValidation(el, i);
+    });
+
+  }
+
 
 
 
