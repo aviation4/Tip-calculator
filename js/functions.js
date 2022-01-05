@@ -185,9 +185,9 @@ function inputValidation (el, i){
 
     /* When hyphen was typed before */
     else if ((event.data == "." ||
-              inputArray[i].contains(".") ||
+              inputArray[i].includes(".") ||
               event.data == "," ||
-              inputArray[i].contains(",")) &&
+              inputArray[i].includes(",")) &&
               (i == 1 || i ==2)) {
       currentInputWarning.innerHTML = mustBeNumberText;
       currentInputWarning.style.opacity = "1";
