@@ -1,29 +1,52 @@
+/* Checks whether the user uses mobile device (true) or not (false) */
+function checkTouchScreen (){
+
+  let hasTouchScreen = false;
+
+  if ("maxTouchPoints" in navigator) {
+      hasTouchScreen = navigator.maxTouchPoints > 0;
+  } else if ("msMaxTouchPoints" in navigator) {
+      hasTouchScreen = navigator.msMaxTouchPoints > 0;
+  } else {
+      var mQ = window.matchMedia && matchMedia("(pointer:coarse)");
+      if (mQ && mQ.media === "(pointer:coarse)") {
+          hasTouchScreen = !!mQ.matches;
+      } else if ('orientation' in window) {
+          hasTouchScreen = true;
+      }
+  }
+
+  return hasTouchScreen;
+
+}
+
+
 function tipButtonToggler(el) {
 
 
   /* If that element is alredy enabled, disable it */
-  if (el.classList.contains("button--tip-percentage--enabled")) {
-    el.classList.remove("button--tip-percentage--enabled");
+  if (el.classList.contains(buttonTipEnabled)) {
+    el.classList.remove(buttonTipEnabled);
     isTipButtonEnabled = 0;
   }
   /* If any other button is enabled, disable all of them and enable the new one */
   else if (isTipButtonEnabled == 1) {
-    buttonTipArray.forEach(el => el.classList.remove("button--tip-percentage--enabled"));
-    el.classList.add("button--tip-percentage--enabled");
+    buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
+    el.classList.add(buttonTipEnabled);
   }
   /* If all buttons are disabled, enable the new one */
   else {
-    el.classList.add("button--tip-percentage--enabled");
+    el.classList.add(buttonTipEnabled);
     isTipButtonEnabled = 1;
   }
 
 
   /* If user already entered custom value, reset it */
-  if (inputArray[1].classList.contains("input__warning-outline") || wasInputModified[1] == 1){
+  if (inputArray[1].classList.contains(inputWarningOutline) || isInputOk[1] == 1){
     document.getElementById("input-tip").value = "";
-    inputArray[1].classList.remove("input__warning-outline");
-    document.getElementById("warning-info-tip").innerHTML = "";
-    wasInputModified[1] = 0;
+    inputArray[1].classList.remove(inputWarningOutline);
+    warningInfoTip.innerHTML = "";
+    isInputOk[1] = 0;
   }
 
 
@@ -41,24 +64,24 @@ function keydownValidation (el, i) {
   /* Assign data to input type currently active */
   switch (i) {
     case 0:
-      currentInputWarning = document.getElementById("warning-info-bill");
+      currentInputWarning = warningInfoBill;
       currentInputField = inputBill;
       invalidChars = invalidCharsWithoutDot.slice();
       break;
 
     case 1:
-      currentInputWarning = document.getElementById("warning-info-tip");
+      currentInputWarning = warningInfoTip;
       currentInputField = inputTip;
       invalidChars = invalidCharsWithDot.slice();
       /* If any tip was already enabled, diasble all of them */
       if (isTipButtonEnabled == 1){
-        buttonTipArray.forEach(el => el.classList.remove("button--tip-percentage--enabled"));
+        buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
         isTipButtonEnabled = 0;
       }
       break;
 
     case 2:
-      currentInputWarning = document.getElementById("warning-info-people");
+      currentInputWarning = warningInfoPeople;
       currentInputField = inputPeople;
       invalidChars = invalidCharsWithDot.slice();
       break;
@@ -67,7 +90,7 @@ function keydownValidation (el, i) {
 
   /* Enable warning text and outline by default, will be disabld when everything is ok */
   currentInputWarning.style.opacity = "1";
-  currentInputField.classList.add("input__warning-outline");
+  currentInputField.classList.add(inputWarningOutline);
 
 
   /* Display info about using dot (period) instead of comma for bill input only */
@@ -95,16 +118,16 @@ function keydownValidation (el, i) {
   } else {
     currentInputWarning.style.opacity = "0";
     currentInputWarning.innerHTML = "";
-    currentInputField.classList.remove("input__warning-outline");
+    currentInputField.classList.remove(inputWarningOutline);
   }
 
 
   /* If certain key was pressed (from invalidChars), ignore that letter */
   if (invalidChars.includes(event.key)){
     event.preventDefault();
-    wasInputModified[i] = 0;
+    isInputOk[i] = 0;
   } else {
-    wasInputModified[i] = 1;
+    isInputOk[i] = 1;
   }
 
 
@@ -134,37 +157,37 @@ function inputValidation (el, i){
   /* Assign data to input type currently active */
   switch (i) {
     case 0:
-      currentInputWarning = document.getElementById("warning-info-bill");
+      currentInputWarning = warningInfoBill;
       currentInputField = inputBill;
       break;
 
     case 1:
-      currentInputWarning = document.getElementById("warning-info-tip");
+      currentInputWarning = warningInfoTip;
       currentInputField = inputTip;
       /* If any tip was already enabled, diasble all of them (for mobiles) */
       if (isTipButtonEnabled == 1){
-        buttonTipArray.forEach(el => el.classList.remove("button--tip-percentage--enabled"));
+        buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
         isTipButtonEnabled = 0;
       }
       break;
 
     case 2:
-      currentInputWarning = document.getElementById("warning-info-people");
+      currentInputWarning = warningInfoPeople;
       currentInputField = inputPeople;
       break;
   }
 
 
   /* Only for mobiles */
-  if (hasTouchScreen) {
+  if (checkTouchScreen ()) {
 
 
     /* When hyphen was typed */
     if (event.data == "-") {
       currentInputWarning.innerHTML = mustBePositiveText;
       currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add("input__warning-outline");
-      wasInputModified[i] = 0;
+      currentInputField.classList.add(inputWarningOutline);
+      isInputOk[i] = 0;
     }
 
 
@@ -175,8 +198,8 @@ function inputValidation (el, i){
               (i == 1 || i == 2)) {
       currentInputWarning.innerHTML = mustBeIntegerText;
       currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add("input__warning-outline");
-      wasInputModified[i] = 0;
+      currentInputField.classList.add(inputWarningOutline);
+      isInputOk[i] = 0;
     }
 
 
@@ -184,8 +207,8 @@ function inputValidation (el, i){
     else if (inputArray[i].value == "") {
       currentInputWarning.innerHTML = mustBeNumberText;
       currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add("input__warning-outline");
-      wasInputModified[i] = 0;
+      currentInputField.classList.add(inputWarningOutline);
+      isInputOk[i] = 0;
     }
 
 
@@ -193,8 +216,8 @@ function inputValidation (el, i){
     else {
     currentInputWarning.style.opacity = "0";
     currentInputWarning.innerHTML = "";
-    currentInputField.classList.remove("input__warning-outline");
-    wasInputModified[i] = 1;
+    currentInputField.classList.remove(inputWarningOutline);
+    isInputOk[i] = 1;
     }
 
 
@@ -205,7 +228,7 @@ function inputValidation (el, i){
         (inputArray[i].value > 99 && i == 2)) {
           currentInputWarning.style.opacity = "1";
           currentInputWarning.innerHTML = cantBeHigher;
-          wasInputModified[i] = 0;
+          isInputOk[i] = 0;
     }
 
 
@@ -217,20 +240,20 @@ function inputValidation (el, i){
 
       currentInputWarning.innerHTML = mustBePositiveText;
       currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add("input__warning-outline");
-      wasInputModified[i] = 0;
+      currentInputField.classList.add(inputWarningOutline);
+      isInputOk[i] = 0;
 
     } else {
 
       currentInputWarning.style.opacity = "0";
       currentInputWarning.innerHTML = "";
-      currentInputField.classList.remove("input__warning-outline");
-      wasInputModified[i] = 1;
+      currentInputField.classList.remove(inputWarningOutline);
+      isInputOk[i] = 1;
     }
 
   }
 
-  
+
 }
 
 
@@ -238,9 +261,9 @@ function updateResults() {
 
 
    /* If any data are incomplete, set results to $0 */
-  if (wasInputModified[0] == 0 ||
-      wasInputModified[2] == 0 ||
-     (wasInputModified[1] == 0 && isTipButtonEnabled == 0)) {
+  if (isInputOk[0] == 0 ||
+      isInputOk[2] == 0 ||
+     (isInputOk[1] == 0 && isTipButtonEnabled == 0)) {
 
     resetResults();
 
@@ -258,11 +281,11 @@ function calculateTipFactor() {
 
 
   /* Calculate tip factor based on enabled button tip */
-  if (wasInputModified[1] == 0){
+  if (isInputOk[1] == 0){
 
     buttonTipArray.forEach(function(el){
 
-      if (el.classList.contains("button--tip-percentage--enabled")) {
+      if (el.classList.contains(buttonTipEnabled)) {
         tipFactor = 1 + (el.value) / 100;
       }
 
@@ -271,7 +294,7 @@ function calculateTipFactor() {
   }
 
   /* Calculate tip factor based on custom tip value given by user */
-  else if (wasInputModified[1] == 1){
+  else if (isInputOk[1] == 1){
         tipFactor = 1 + (inputTip.value) / 100;
   }
 
@@ -301,10 +324,8 @@ function calculateResults() {
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
   if (resultTip.innerHTML > 1000000){
-    console.log("yes" + resultTip.innerHTML);
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 10) / 10 + "M";
   } else if (resultTip.innerHTML > 1000){
-    console.log("yes" + resultTip.innerHTML);
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 10) / 10 + "k";
   }
 
@@ -335,7 +356,7 @@ function calculateResults() {
 
 function enableResetButton() {
 
-  resetButton.classList.add("button--reset--enabled");
+  resetButton.classList.add(buttonResetEnabled);
 
 }
 
@@ -351,29 +372,29 @@ function resetResults() {
 function resetAll() {
 
   /* Reset input and result values */
-  document.getElementById("input-bill").value = "";
-  document.getElementById("input-tip").value = "";
-  document.getElementById("input-people").value = "";
-  document.getElementById("result-tip").innerHTML = "$" + 0;
-  document.getElementById("result-total").innerHTML = "$" + 0;
-  document.getElementById("warning-info-bill").innerHTML = "";
-  document.getElementById("warning-info-tip").innerHTML = "";
-  document.getElementById("warning-info-people").innerHTML = "";
+  inputBill.value = "";
+  inputTip.value = "";
+  inputPeople.value = "";
+  resultTip.innerHTML = "$" + 0;
+  resultTotal.innerHTML = "$" + 0;
+  warningInfoBill.innerHTML = "";
+  warningInfoTip.innerHTML = "";
+  warningInfoPeople.innerHTML = "";
 
   /* Disable tip button */
-  buttonTipArray.forEach(el => el.classList.remove("button--tip-percentage--enabled"));
+  buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
 
 
   /* Remove warning outlines */
-  inputArray.forEach(el => el.classList.remove("input__warning-outline"));
+  inputArray.forEach(el => el.classList.remove(inputWarningOutline));
 
 
   /* Disable reset button */
-  resetButton.classList.remove("button--reset--enabled");
+  resetButton.classList.remove(buttonResetEnabled);
 
   /* Reset variables */
   isTipButtonEnabled = 0;
-  wasInputModified.forEach((el, i) => wasInputModified[i] = 0);
+  isInputOk.forEach((el, i) => isInputOk[i] = 0);
 }
 
 
