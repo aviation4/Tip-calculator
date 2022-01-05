@@ -167,8 +167,8 @@ function inputValidation (el, i){
       wasInputModified[i] = 0;
     }
 
-    /* When hyphen was typed before */
-    else if (event.data == "-" && inputArray[i].contains("-")) {
+    /* When is empty or contains a hyphen */
+    else if (inputArray[i].value == "") {
       currentInputWarning.innerHTML = mustBeNumberText;
       currentInputWarning.style.opacity = "1";
       currentInputField.classList.add("input__warning-outline");
@@ -176,7 +176,10 @@ function inputValidation (el, i){
     }
 
     /* When dot (period) or comma was typed */
-    else if ((event.data == "." || event.data == ",") && (i == 1 || i ==2)) {
+    else if ((event.data == "." ||
+              event.data == "," ||
+              inputArray[i].value.includes(".")) &&
+              (i == 1 || i == 2)) {
       currentInputWarning.innerHTML = mustBePositiveText;
       currentInputWarning.style.opacity = "1";
       currentInputField.classList.add("input__warning-outline");
@@ -191,18 +194,6 @@ function inputValidation (el, i){
     wasInputModified[i] = 1;
     }
 
-
-    /* When hyphen was typed before */
-    if ((event.data == "." ||
-         inputArray[i].value.includes(".") ||
-         event.data == "," ||
-         inputArray[i].value.includes(",")) &&
-         (i == 1 || i ==2)) {
-           currentInputWarning.innerHTML = mustBeNumberText;
-           currentInputWarning.style.opacity = "1";
-           currentInputField.classList.add("input__warning-outline");
-           wasInputModified[i] = 0;
-    }
 
 
     /* Display text about high numbers */
