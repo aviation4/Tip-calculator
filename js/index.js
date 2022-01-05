@@ -3,7 +3,6 @@ const inputBill = document.getElementById("input-bill");
 const inputTip = document.getElementById("input-tip");
 const inputPeople = document.getElementById("input-people");
 const inputArray = [...document.querySelectorAll("input")];
-/*const inputArray = document.querySelectorAll("input");*/
 const buttonTipArray = document.querySelectorAll(".button--tip-percentage");
 let isTipButtonEnabled = 0;
 const resetButton = document.getElementById("button__reset");
