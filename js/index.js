@@ -1,21 +1,44 @@
-/* Declaring variables */
+/**** Declaring variables ****/
+
+/* Input data */
 const inputBill = document.getElementById("input-bill");
 const inputTip = document.getElementById("input-tip");
 const inputPeople = document.getElementById("input-people");
-const inputArray = [...document.querySelectorAll("input")];
 const buttonTipArray = document.querySelectorAll(".button--tip-percentage");
-let isTipButtonEnabled = 0;
-const resetButton = document.getElementById("button__reset");
 
+/* Warnings */
+const warningInfoBill = document.getElementById("warning-info-bill");
+const warningInfoTip = document.getElementById("warning-info-tip");
+const warningInfoPeople = document.getElementById("warning-info-people");
+
+
+/* Results */
+const resetButton = document.getElementById("button__reset");
 const resultTip = document.getElementById("result-tip");
 const resultTotal = document.getElementById("result-total");
-const wasInputModified = [0, 0, 0];
+let tipFactor = 0;
 
-const invalidCharsWithDot = ["-", "+", "e", ",", "."];
-const invalidCharsWithoutDot = ["-", "+", "e", ","];
 
-let tipFactor;
+/* isTipButtonEnabled monitors whether any tip button is enabled (true) or none of them (false) */
+let isTipButtonEnabled = 0;
 
+
+
+
+
+/**** Declaring arrays ****/
+const inputArray = [...document.querySelectorAll("input")];
+
+/* isInputOk monitors inputs (bill, tip, number of people) whether data are entered AND are correct */
+const isInputOk = new Array (0, 0, 0);
+
+
+const invalidCharsWithDot = new Array("-", "+", "e", ",", ".");
+const invalidCharsWithoutDot = new Array ("-", "+", "e", ",");
+
+
+
+/**** Warning texts ****/
 let periodText = "Use period (.) operator";
 let mustBeNumberText = "Must be a number";
 let mustBeIntegerText = "Must be a whole number";
@@ -23,19 +46,13 @@ let mustBePositiveText = "Must be greater than zero";
 let cantBeHigher = "Don't you have enough?";
 
 
-var hasTouchScreen = false;
-if ("maxTouchPoints" in navigator) {
-    hasTouchScreen = navigator.maxTouchPoints > 0;
-} else if ("msMaxTouchPoints" in navigator) {
-    hasTouchScreen = navigator.msMaxTouchPoints > 0;
-} else {
-    var mQ = window.matchMedia && matchMedia("(pointer:coarse)");
-    if (mQ && mQ.media === "(pointer:coarse)") {
-        hasTouchScreen = !!mQ.matches;
-    } else if ('orientation' in window) {
-        hasTouchScreen = true; // deprecated, but good fallback
-    }
-}
+/**** Class names ****/
+inputWarningOutline = "input__warning-outline";
+buttonTipEnabled = "button--tip-percentage--enabled";
+buttonResetEnabled = "button--reset--enabled";
+
+
+
 
 
 /***** For every tip button *****/
@@ -68,7 +85,7 @@ inputArray.forEach(function(el, i) {
 
 
   /* Validate for desktops */
-  if(!(hasTouchScreen)) {
+  if(!(checkTouchScreen())) {
 
     /**** Validate every keydown ****/
     el.addEventListener("keydown", function() {
