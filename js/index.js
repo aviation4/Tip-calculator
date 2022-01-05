@@ -23,16 +23,19 @@ let mustBePositiveText = "Must be greater than zero";
 let cantBeHigher = "Don't you have enough?";
 
 
-let breakpoint = window.matchMedia("(min-width: 1400px)");
-if (breakpoint.matches) {
-  document.getElementById("warning-info-bill").style.top = "-33px";
-  document.getElementById("warning-info-people").style.top = "-33px";
+var hasTouchScreen = false;
+if ("maxTouchPoints" in navigator) {
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+} else if ("msMaxTouchPoints" in navigator) {
+    hasTouchScreen = navigator.msMaxTouchPoints > 0;
 } else {
-  document.getElementById("warning-info-bill").style.top = "55px";
-  document.getElementById("warning-info-people").style.top = "55px";
+    var mQ = window.matchMedia && matchMedia("(pointer:coarse)");
+    if (mQ && mQ.media === "(pointer:coarse)") {
+        hasTouchScreen = !!mQ.matches;
+    } else if ('orientation' in window) {
+        hasTouchScreen = true; // deprecated, but good fallback
+    }
 }
-
-
 
 
 /***** For every tip button *****/
@@ -65,7 +68,7 @@ inputArray.forEach(function(el, i) {
 
 
   /* Validate for desktops */
-  if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+  if(!(hasTouchScreen)) {
 
     /**** Validate every keydown ****/
     el.addEventListener("keydown", function() {
