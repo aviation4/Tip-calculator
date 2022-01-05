@@ -205,14 +205,7 @@ function inputValidation (el, i){
           wasInputModified[i] = 0;
     }
 
-    else {
 
-      currentInputWarning.style.opacity = "0";
-      currentInputWarning.innerHTML = "";
-      currentInputField.classList.remove("input__warning-outline");
-      wasInputModified[i] = 1;
-
-    }
 
   } else {
 
