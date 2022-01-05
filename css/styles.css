@@ -58,12 +58,12 @@ input::-webkit-inner-spin-button {
   text-align: right;
   color: var(--orange-warning);
   transition: all 200ms;
+  position: absolute;
 }
 
 
 .bill .input__warning-info,
 .number-of-people .input__warning-info {
-  position: absolute;
   top: 55px;
 }
 
@@ -235,7 +235,8 @@ input::placeholder {
     flex-basis: 50%;
   }
 
-  .input__warning-info {
+  .bill .input__warning-info,
+  .number-of-people .input__warning-info {
     top: -33px;
   }
 
