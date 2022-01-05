@@ -19,7 +19,7 @@ let tipFactor;
 
 let periodText = "Use period (.) operator";
 let mustBeNumberText = "Must be a number";
-let mustBeIntegerText = "Must be an integer";
+let mustBeIntegerText = "Must be a whole number";
 let mustBePositiveText = "Must be greater than zero";
 let cantBeHigher = "Don't you have enough?";
 
