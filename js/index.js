@@ -185,7 +185,7 @@ function inputValidation (el, i){
       currentInputWarning.style.opacity = "1";
       currentInputField.classList.add("input__warning-outline");
       wasInputModified[i] = 0;
-    }
+    
 
 
     /* When seems ok */
