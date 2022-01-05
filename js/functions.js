@@ -173,7 +173,7 @@ function inputValidation (el, i){
               event.data == "," ||
               inputArray[i].value.includes(".")) &&
               (i == 1 || i == 2)) {
-      currentInputWarning.innerHTML = mustBePositiveText;
+      currentInputWarning.innerHTML = mustBeIntegerText;
       currentInputWarning.style.opacity = "1";
       currentInputField.classList.add("input__warning-outline");
       wasInputModified[i] = 0;
