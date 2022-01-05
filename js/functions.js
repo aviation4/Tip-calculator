@@ -136,7 +136,7 @@ function keydownValidation (el, i) {
       (inputArray[i].value > 999 && i == 1) ||
       (inputArray[i].value > 99 && i == 2)) {
         currentInputWarning.style.opacity = "1";
-        currentInputWarning.innerHTML = cantBeHigher;
+        currentInputWarning.innerHTML = cantBeHigherText;
         /* When maximum numbers reached, allow only for deleting data */
         if (event.key !== "Backspace" &&
             event.key !== "Delete" &&
@@ -152,6 +152,7 @@ function inputValidation (el, i){
 
   let currentInputWarning;
   let currentInputField;
+  const regex = /\.\d{3}/;
 
 
   /* Assign data to input type currently active */
@@ -227,7 +228,7 @@ function inputValidation (el, i){
         (inputArray[i].value > 999 && i == 1) ||
         (inputArray[i].value > 99 && i == 2)) {
           currentInputWarning.style.opacity = "1";
-          currentInputWarning.innerHTML = cantBeHigher;
+          currentInputWarning.innerHTML = cantBeHigherText;
           isInputOk[i] = 0;
     }
 
@@ -252,6 +253,17 @@ function inputValidation (el, i){
     }
 
   }
+
+
+  if (regex.test(inputArray[i].value) && i == 0){
+
+    currentInputWarning.innerHTML = decimalNumbersText;
+    currentInputWarning.style.opacity = "1";
+    currentInputField.classList.add(inputWarningOutline);
+    isInputOk[i] = 0;
+
+  }
+
 
 
 }
