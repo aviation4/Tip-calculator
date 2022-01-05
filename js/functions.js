@@ -2,7 +2,6 @@
 function checkTouchScreen (){
 
 
-
   if ("maxTouchPoints" in navigator) {
       hasTouchScreen = navigator.maxTouchPoints > 0;
   } else if ("msMaxTouchPoints" in navigator) {
