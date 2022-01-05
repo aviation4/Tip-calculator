@@ -205,14 +205,14 @@ input::placeholder {
 
 
 @media (hover:hover) {
-  .button--reset--enabled:hover {
-    cursor: pointer;
-  }
-
   .button--reset:hover {
     background-color: var(--light-grayish-cyan-1);
     color: var(--very-dark-cyan);
     cursor: not-allowed;
+  }
+
+  .button--reset--enabled:hover {
+    cursor: pointer;
   }
 
   .button--tip-percentage:hover {
