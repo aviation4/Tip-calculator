@@ -22,7 +22,7 @@ let tipFactor = 0;
 /* isTipButtonEnabled monitors whether any tip button is enabled (true) or none of them (false) */
 let isTipButtonEnabled = 0;
 
-
+let hasTouchScreen = false;
 
 
 
@@ -39,11 +39,12 @@ const invalidCharsWithoutDot = new Array ("-", "+", "e", ",");
 
 
 /**** Warning texts ****/
-let periodText = "Use period (.) operator";
-let mustBeNumberText = "Must be a number";
-let mustBeIntegerText = "Must be a whole number";
-let mustBePositiveText = "Must be greater than zero";
-let cantBeHigher = "Don't you have enough?";
+const periodText = "Use period (.) operator";
+const mustBeNumberText = "Must be a number";
+const mustBeIntegerText = "Must be a whole number";
+const mustBePositiveText = "Must be greater than zero";
+const cantBeHigherText = "Don't you have enough?";
+const decimalNumbersText = "Too many decimal numbers";
 
 
 /**** Class names ****/
@@ -52,7 +53,7 @@ buttonTipEnabled = "button--tip-percentage--enabled";
 buttonResetEnabled = "button--reset--enabled";
 
 
-
+checkTouchScreen ();
 
 
 /***** For every tip button *****/
@@ -85,7 +86,7 @@ inputArray.forEach(function(el, i) {
 
 
   /* Validate for desktops */
-  if(!(checkTouchScreen())) {
+  if(!(hasTouchScreen)) {
 
     /**** Validate every keydown ****/
     el.addEventListener("keydown", function() {
