@@ -230,10 +230,7 @@ function inputValidation (el, i){
 
   }
 
-  if (i == 1 && wasInputModified[1] == 1){
-    inputArray[1].innerHTML = inputArray[1].value + "%";
-  }
-
+  
 }
 
 
