@@ -156,7 +156,7 @@ function inputValidation (el, i){
 
 
   /* Only for mobiles */
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  if (hasTouchScreen) {
 
 
     /* When hyphen was typed */
@@ -213,7 +213,7 @@ function inputValidation (el, i){
   } else {
 
     /* If data is empty or is equal to zero, display text and outline */
-    if (el.value == "" || el.value == 0) {
+    if (el.value == "" || el.value <= 0) {
 
       currentInputWarning.innerHTML = mustBePositiveText;
       currentInputWarning.style.opacity = "1";
