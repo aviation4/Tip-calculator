@@ -183,16 +183,17 @@ function inputValidation (el, i){
       wasInputModified[i] = 0;
     }
 
+
     /* When hyphen was typed before */
-    else if ((event.data == "." ||
-              inputArray[i].value.includes(".") ||
-              event.data == "," ||
-              inputArray[i].value.includes(",")) &&
-              (i == 1 || i ==2)) {
-      currentInputWarning.innerHTML = mustBeNumberText;
-      currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add("input__warning-outline");
-      wasInputModified[i] = 0;
+    if ((event.data == "." ||
+         inputArray[i].value.includes(".") ||
+         event.data == "," ||
+         inputArray[i].value.includes(",")) &&
+         (i == 1 || i ==2)) {
+           currentInputWarning.innerHTML = mustBeNumberText;
+           currentInputWarning.style.opacity = "1";
+           currentInputField.classList.add("input__warning-outline");
+           wasInputModified[i] = 0;
     }
 
 
@@ -227,12 +228,6 @@ function inputValidation (el, i){
 
   }
 
-
-
-
-
-
-
 }
 
 
@@ -240,7 +235,9 @@ function updateResults() {
 
 
    /* If any data are incomplete, set results to $0 */
-  if (wasInputModified[0] == 0 || wasInputModified[2] == 0 || (wasInputModified[1] == 0 && isTipButtonEnabled == 0)) {
+  if (wasInputModified[0] == 0 ||
+      wasInputModified[2] == 0 ||
+     (wasInputModified[1] == 0 && isTipButtonEnabled == 0)) {
 
     resetResults();
 
