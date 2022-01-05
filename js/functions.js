@@ -177,6 +177,7 @@ function inputValidation (el, i){
       currentInputWarning.style.opacity = "1";
       currentInputField.classList.add("input__warning-outline");
       wasInputModified[i] = 0;
+    }
 
 
     /* When is empty or contains a hyphen */
@@ -189,7 +190,7 @@ function inputValidation (el, i){
 
 
     /* When seems ok */
-    } else {
+    else {
     currentInputWarning.style.opacity = "0";
     currentInputWarning.innerHTML = "";
     currentInputField.classList.remove("input__warning-outline");
@@ -227,6 +228,10 @@ function inputValidation (el, i){
       wasInputModified[i] = 1;
     }
 
+  }
+
+  if (i == 1 && wasInputModified[1] == 1){
+    inputArray[1].innerHTML = inputArray[1].value + "%";
   }
 
 }
