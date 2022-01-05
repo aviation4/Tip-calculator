@@ -42,9 +42,9 @@ function tipButtonToggler(el) {
 
 
   /* If user already entered custom value, reset it */
-  if (inputArray[1].classList.contains(inputWarningOutline) || isInputOk[1] == 1){
-    document.getElementById("input-tip").value = "";
-    inputArray[1].classList.remove(inputWarningOutline);
+  if (inputTip.classList.contains(inputWarningOutline) || isInputOk[1] == 1){
+    inputTip.value = "";
+    inputTip.classList.remove(inputWarningOutline);
     warningInfoTip.innerHTML = "";
     isInputOk[1] = 0;
   }
