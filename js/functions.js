@@ -167,13 +167,6 @@ function inputValidation (el, i){
       wasInputModified[i] = 0;
     }
 
-    /* When is empty or contains a hyphen */
-    else if (inputArray[i].value == "") {
-      currentInputWarning.innerHTML = mustBeNumberText;
-      currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add("input__warning-outline");
-      wasInputModified[i] = 0;
-    }
 
     /* When dot (period) or comma was typed */
     else if ((event.data == "." ||
@@ -184,6 +177,15 @@ function inputValidation (el, i){
       currentInputWarning.style.opacity = "1";
       currentInputField.classList.add("input__warning-outline");
       wasInputModified[i] = 0;
+
+
+    /* When is empty or contains a hyphen */
+    else if (inputArray[i].value == "") {
+      currentInputWarning.innerHTML = mustBeNumberText;
+      currentInputWarning.style.opacity = "1";
+      currentInputField.classList.add("input__warning-outline");
+      wasInputModified[i] = 0;
+    }
 
 
     /* When seems ok */
