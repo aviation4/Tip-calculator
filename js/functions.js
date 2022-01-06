@@ -204,7 +204,7 @@ function inputValidation (el, i){
 
 
     /* When is empty or contains a hyphen */
-    else if (inputArray[i].value == "") {
+    else if (inputArray[i].value == "" && event.data != ".") {
       currentInputWarning.innerHTML = mustBeNumberText;
       currentInputWarning.style.opacity = "1";
       currentInputField.classList.add(inputWarningOutline);
