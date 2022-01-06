@@ -22,8 +22,6 @@ let tipFactor = 0;
 /* isTipButtonEnabled monitors whether any tip button is enabled (true) or none of them (false) */
 let isTipButtonEnabled = 0;
 
-let hasTouchScreen = false;
-
 
 
 /**** Declaring arrays ****/
@@ -52,7 +50,7 @@ inputWarningOutline = "input__warning-outline";
 buttonTipEnabled = "button--tip-percentage--enabled";
 buttonResetEnabled = "button--reset--enabled";
 
-
+/*
 function checkTouchScreen (){
 
 
@@ -71,9 +69,9 @@ function checkTouchScreen (){
 
   return hasTouchScreen;
 
-}
+}*/
 
-checkTouchScreen ();
+
 
 
 /***** For every tip button *****/
@@ -106,7 +104,7 @@ inputArray.forEach(function(el, i) {
 
 
   /* Validate for desktops */
-  if(!(hasTouchScreen)) {
+  if(!(checkTouchScreen ())) {
 
     /**** Validate every keydown ****/
     el.addEventListener("keydown", function() {
