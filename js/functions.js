@@ -2,18 +2,18 @@ function tipButtonToggler(el) {
 
 
   /* If that element is alredy enabled, disable it */
-  if (el.classList.contains(buttonTipEnabled)) {
-    el.classList.remove(buttonTipEnabled);
+  if (el.classList.contains(buttonEnabled)) {
+    el.classList.remove(buttonEnabled);
     isTipButtonEnabled = 0;
   }
   /* If any other button is enabled, disable all of them and enable the new one */
   else if (isTipButtonEnabled == 1) {
-    buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
-    el.classList.add(buttonTipEnabled);
+    buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
+    el.classList.add(buttonEnabled);
   }
   /* If all buttons are disabled, enable the new one */
   else {
-    el.classList.add(buttonTipEnabled);
+    el.classList.add(buttonEnabled);
     isTipButtonEnabled = 1;
   }
 
@@ -52,7 +52,7 @@ function keydownValidation (el, i) {
       invalidChars = invalidCharsWithDot.slice();
       /* If any tip was already enabled, diasble all of them */
       if (isTipButtonEnabled == 1){
-        buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
+        buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
         isTipButtonEnabled = 0;
       }
       break;
@@ -144,7 +144,7 @@ function inputValidation (el, i){
       currentInputField = inputTip;
       /* If any tip was already enabled, diasble all of them (for mobiles) */
       if (isTipButtonEnabled == 1){
-        buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
+        buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
         isTipButtonEnabled = 0;
       }
       break;
@@ -274,7 +274,7 @@ function calculateTipFactor() {
 
     buttonTipArray.forEach(function(el){
 
-      if (el.classList.contains(buttonTipEnabled)) {
+      if (el.classList.contains(buttonEnabled)) {
         tipFactor = 1 + (el.value) / 100;
       }
 
@@ -345,7 +345,7 @@ function calculateResults() {
 
 function enableResetButton() {
 
-  resetButton.classList.add(buttonResetEnabled);
+  resetButton.classList.add(buttonEnabled);
 
 }
 
@@ -371,7 +371,7 @@ function resetAll() {
   warningInfoPeople.innerHTML = "";
 
   /* Disable tip button */
-  buttonTipArray.forEach(el => el.classList.remove(buttonTipEnabled));
+  buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
 
 
   /* Remove warning outlines */
@@ -379,7 +379,7 @@ function resetAll() {
 
 
   /* Disable reset button */
-  resetButton.classList.remove(buttonResetEnabled);
+  resetButton.classList.remove(buttonEnabled);
 
   /* Reset variables */
   isTipButtonEnabled = 0;
