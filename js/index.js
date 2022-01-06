@@ -1,21 +1,21 @@
 /**** Declaring variables ****/
 
 /* Input data */
-const inputBill = document.getElementById("input-bill");
-const inputTip = document.getElementById("input-tip");
-const inputPeople = document.getElementById("input-people");
-const buttonTipArray = document.querySelectorAll(".button--tip-percentage");
+const inputBill = document.getElementById("input--bill");
+const inputTip = document.getElementById("input--tip");
+const inputPeople = document.getElementById("input--people");
+const buttonTipArray = document.querySelectorAll(".button--tipButton");
 
 /* Warnings */
-const warningInfoBill = document.getElementById("warning-info-bill");
-const warningInfoTip = document.getElementById("warning-info-tip");
-const warningInfoPeople = document.getElementById("warning-info-people");
+const warningInfoBill = document.getElementById("warningInfo--bill");
+const warningInfoTip = document.getElementById("warningInfo--tip");
+const warningInfoPeople = document.getElementById("warningInfo--people");
 
 
 /* Results */
-const resetButton = document.getElementById("button__reset");
-const resultTip = document.getElementById("result-tip");
-const resultTotal = document.getElementById("result-total");
+const resetButton = document.getElementById("button--reset");
+const resultTip = document.getElementById("results--tip");
+const resultTotal = document.getElementById("results--total");
 let tipFactor = 0;
 
 
@@ -47,9 +47,8 @@ const decimalNumbersText = "Too many decimal numbers";
 
 
 /**** Class names ****/
-inputWarningOutline = "input__warning-outline";
-buttonTipEnabled = "button--tip-percentage--enabled";
-buttonResetEnabled = "button--reset--enabled";
+inputWarningOutline = "input--warning";
+buttonEnabled = "button--enabled";
 
 
 
