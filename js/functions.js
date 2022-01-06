@@ -179,7 +179,7 @@ function inputValidation (el, i){
 
 
   /* Only for mobiles */
-  if (hasTouchScreen) {
+  if (checkTouchScreen ()) {
 
 
     /* When hyphen was typed */
