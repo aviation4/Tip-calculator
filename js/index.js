@@ -22,7 +22,8 @@ let tipFactor = 0;
 /* isTipButtonEnabled monitors whether any tip button is enabled (true) or none of them (false) */
 let isTipButtonEnabled = 0;
 
-
+/* hasTouchScreen handles info about using mobile device (true) or not (false) */
+let hasTouchScreen = false;
 
 /**** Declaring arrays ****/
 const inputArray = [...document.querySelectorAll("input")];
@@ -50,10 +51,9 @@ inputWarningOutline = "input__warning-outline";
 buttonTipEnabled = "button--tip-percentage--enabled";
 buttonResetEnabled = "button--reset--enabled";
 
-/*
-function checkTouchScreen (){
 
 
+/* Checks whether the user uses mobile device (true) or not (false) */
   if ("maxTouchPoints" in navigator) {
       hasTouchScreen = navigator.maxTouchPoints > 0;
   } else if ("msMaxTouchPoints" in navigator) {
@@ -67,9 +67,7 @@ function checkTouchScreen (){
       }
   }
 
-  return hasTouchScreen;
 
-}*/
 
 
 
@@ -104,7 +102,7 @@ inputArray.forEach(function(el, i) {
 
 
   /* Validate for desktops */
-  if(!(checkTouchScreen ())) {
+  if(!(hasTouchScreen)) {
 
     /**** Validate every keydown ****/
     el.addEventListener("keydown", function() {
