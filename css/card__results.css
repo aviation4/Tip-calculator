@@ -1,0 +1,32 @@
+.results__article {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+  gap: var(--space-md);
+}
+
+
+.results__subheader {
+  color: var(--white);
+  font-size: var(--text-xxs);
+  font-weight: 700;
+  opacity: 0.5;
+}
+
+.results__value {
+  color: var(--strong-cyan);
+  display: block;
+  font-size: var(--text-xxl);
+  margin-top: 0;
+}
+
+
+
+@media (min-width: 1400px) {
+
+  .results__article {
+    margin-bottom: var(--space-md);
+  }
+
+}

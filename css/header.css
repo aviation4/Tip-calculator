@@ -1,0 +1,51 @@
+.header {
+  color: var(--very-dark-cyan);
+  font-size: var(--text-xs);
+  opacity: 0.8;
+  margin-bottom: var(--space-xs);
+}
+
+
+.header--warningInfo {
+  display: inline-block;
+  opacity: 1;
+  width: 100%;
+  text-align: right;
+  color: var(--orange-warning);
+  transition: all 200ms;
+  position: absolute;
+}
+
+
+.header--results {
+  color: var(--white);
+  opacity: 1;
+  margin-bottom: 0;
+}
+
+
+.article__bill .header--warningInfo,
+.article__numberOfPeople .header--warningInfo {
+  top: 88px;
+}
+
+
+.article__selectTip .header--warningInfo {
+  margin-top: 7px;
+}
+
+
+
+@media (min-width: 1400px) {
+
+  .header {
+    font-size: var(--text-xs);
+  }
+
+
+  .article__bill .header--warningInfo,
+  .article__numberOfPeople .header--warningInfo {
+    top: 0;
+  }
+
+}

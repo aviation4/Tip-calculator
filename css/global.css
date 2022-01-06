@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a:hover, button:hover {
+  cursor: pointer;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  text-align: left;
+  font-family: var(--font-primary), var(--font-secondary);
+  background-color: var(--light-grayish-cyan-1);
+  min-width: var(--min-width);
+
+}
+
+main {
+  padding-bottom: var(--space-xl);
+}
+
+h1 {
+  color: var(--very-dark-cyan);
+  text-align: center;
+  letter-spacing: var(--space-sm);
+  padding: var(--space-lg);
+  font-size: var(--text-lg);
+}
+
+img {
+  max-width: 100%;
+}
+
+
+@media (min-width: 1400px) {
+
+  h1 {
+    padding-top: var(--space-xl);
+    padding-bottom:  var(--space-xl);
+  }
+
+}

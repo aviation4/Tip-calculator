@@ -1,0 +1,26 @@
+.userData__article {
+  position: relative;
+  margin-bottom: var(--space-xl);
+}
+
+
+.userData__inputArea {
+  position: relative;
+}
+
+
+.userData__tipButtons {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+
+
+@media (min-width: 1400px) {
+
+  .userData__article:last-child {
+    margin-bottom: 0;
+  }
+
+}
