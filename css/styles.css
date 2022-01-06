@@ -153,10 +153,6 @@ input::placeholder {
 }
 
 
-
-
-
-
 .button--reset--enabled {
   background-color: var(--strong-cyan);
   opacity: 1;
@@ -164,7 +160,7 @@ input::placeholder {
 
 
 
-.summary {
+.card__summary {
   background-color: var(--very-dark-cyan);
   border-radius: var(--space-sm);
   padding: var(--space-md);
@@ -179,6 +175,7 @@ input::placeholder {
 .summary__card {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: var(--space-md);
   gap: var(--space-md);
 }
@@ -253,7 +250,7 @@ input::placeholder {
     padding-bottom:  var(--space-xl);
   }
 
-  .summary {
+  .card__summary {
     flex-basis: 50%;
     padding: var(--space-lg);
     justify-content: space-between;
