@@ -43,7 +43,17 @@ The tip value must be a positive number, no greater than 999 999. Trying to type
 
 ![maximum number verification](/docs/tip-amount/tip-amount-max-number.png)
 
+Trying to type a letter is blocked.
 
+![letter verification](/docs/tip-amount/tip-amount-letter.png)
+
+Trying to type a comma is blocked.
+
+![comma verification](/docs/tip-amount/tip-amount-period.png)
+
+Trying to type a dash/hyphen is blocked.
+
+![negative number verification](/docs/tip-amount/tip-amount-negative.png)
 
 ### The challenge
 
