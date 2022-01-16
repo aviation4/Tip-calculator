@@ -39,11 +39,21 @@ In order to calculate results, you have to provide three data.
 
 ### Tip Amount
 
-The tip value must be a positive number, no greater than 999 999. Trying to type seventh number is blocked.
+The tip value must be a positive number, no greater than 999 999. Trying to type seventh number is blocked:
 
 ![maximum number verification](/docs/tip-amount/tip-amount-max-number.png)
 
+Trying to type a letter is blocked:
 
+![letter verification](/docs/tip-amount/tip-amount-letter.png)
+
+Trying to type a comma is blocked:
+
+![comma verification](/docs/tip-amount/tip-amount-period.png)
+
+Trying to type a dash/hyphen is blocked:
+
+![negative number verification](/docs/tip-amount/tip-amount-negative.png)
 
 ### The challenge
 
