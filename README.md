@@ -41,7 +41,7 @@ In order to calculate results, you have to provide three data.
 
 The tip value must be a positive number, no greater than 999 999. Trying to type seventh number is blocked.
 
-![maximum number verification](/docs/tip-amount/tip-amount-max-number)
+![maximum number verification](/docs/tip-amount/tip-amount-max-number.png)
 
 
 
