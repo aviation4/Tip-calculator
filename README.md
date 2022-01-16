@@ -15,6 +15,7 @@ based on three inputs:
 ![mobile view](/docs/general-view-mobile.png)
 
 
+
 **Desktop view**
 
 ![desktop view](/docs/general-view-desktop.png)
@@ -40,7 +41,8 @@ In order to calculate results, you have to provide three data.
 
 The tip value must be a positive number, no greater than 999 999. Trying to type seventh number is blocked.
 
-![maximum number verification](docs/tip amount/tip-amount-max-number)
+![maximum number verification](/docs/tip amount/tip-amount-max-number)
+
 
 
 ### The challenge
