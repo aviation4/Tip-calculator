@@ -12,11 +12,12 @@ based on three inputs:
 
 **Mobile view**
 
-![mobile view](/screenshots/general-view-mobile.png)
+![mobile view](/docs/general-view-mobile.png)
+
 
 **Desktop view**
 
-![desktop view](/screenshots/general-view-desktop.png)
+![desktop view](/docs/general-view-desktop.png)
 
 ## Table of contents
 
@@ -32,6 +33,15 @@ based on three inputs:
 
 
 ## Usage
+
+In order to calculate results, you have to provide three data.
+
+### Tip Amount
+
+The tip value must be a positive number, no greater than 999 999. Trying to type seventh number is blocked.
+
+![maximum number verification](docs/tip amount/tip-amount-max-number)
+
 
 ### The challenge
 
