@@ -3,17 +3,24 @@
 This is a solution to the [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX). The app allows to calculate:
 + tip amount
 + total bill value
+
 based on three inputs:
+
 + bill value
 + tip percentage
 + number of people
 
+**Mobile view**
+
+![mobile view](/screenshots/general-view-mobile.png)
+
+**Desktop view**
+
+![desktop view](/screenshots/general-view-desktop.png)
+
 ## Table of contents
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
+- [Usage](#usage)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -22,9 +29,9 @@ based on three inputs:
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
-## Overview
+
+## Usage
 
 ### The challenge
 
