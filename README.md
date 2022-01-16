@@ -15,6 +15,7 @@ based on three inputs:
 ![mobile view](/docs/general-view-mobile.png)
 
 
+
 **Desktop view**
 
 ![desktop view](/docs/general-view-desktop.png)
