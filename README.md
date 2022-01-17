@@ -119,7 +119,7 @@ In order to fit into width of mobile devices, the result is displayed in the sho
 
 ![results expressed in thousands](docs/results/results-thousands.png)
 
-When either **Tip amount** or **Total** value is *greater than 1 000 000*, the result is expressed in millions:
+When either **Tip amount** or **Total** value is *greater or equal to 1 000 000*, the result is expressed in millions:
 
 ![results expressed in millions](docs/results/results-millions.png)
 
