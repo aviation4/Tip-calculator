@@ -68,7 +68,7 @@ By pressing **Reset** button, you can restore the app to the initial state.
 ## Built with
 
 - Semantic HTML5
-- CSS + Flexbox
+- SCSS + Flexbox
 - Mobile-first workflow
 - BEM naming convention
 - RWD
