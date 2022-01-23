@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a:hover, button:hover {
+  cursor: pointer;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  text-align: left;
+  font-family: $font-primary, $font-secondary;
+  background-color: $light-grayish-cyan-1;
+  min-width: $min-width;
+
+}
+
+main {
+  padding-bottom: $space-xl;
+}
+
+h1 {
+  color: $very-dark-cyan;
+  text-align: center;
+  letter-spacing: $space-sm;
+  padding: $space-lg;
+  font-size: $text-lg;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+@media (min-width: 1400px) {
+
+  h1 {
+    padding-top: $space-xl;
+    padding-bottom:  $space-xl;
+  }
+
+}

@@ -1,0 +1,57 @@
+.button {
+  border: 0;
+  border-radius: $space-xs;
+  font-family: inherit;
+  padding: $space-sm;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+.button--tipButton {
+  flex: 1 1 130px;
+  background-color: $very-dark-cyan;
+  color: $white;
+  font-size: $text-md;
+  transition: all 200ms;
+}
+
+
+.button--reset {
+  background-color: $white;
+  opacity: 0.2;
+  color: $very-dark-cyan;
+  width: 100%;
+  font-size: $text-sm;
+  margin-top: $space-md;
+  transition: all 200ms;
+}
+
+
+.button--enabled {
+  background-color: $strong-cyan !important;
+  color: $very-dark-cyan !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+}
+
+
+
+@media (hover:hover) {
+
+  .button--reset:hover {
+    background-color: $light-grayish-cyan-1;
+    color: $very-dark-cyan;
+    cursor: not-allowed;
+  }
+
+  .button--reset--enabled:hover {
+    cursor: pointer;
+  }
+
+  .button--tipButton:hover {
+    background-color: $light-grayish-cyan-1;
+    color: $very-dark-cyan;
+  }
+
+}

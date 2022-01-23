@@ -1,0 +1,50 @@
+/*** Typography **/
+$font-primary: "Space Mono";
+$font-secondary: sans-serif;
+
+
+/*** Colors ***/
+$strong-cyan: hsl(172, 67%, 45%);
+$very-dark-cyan: hsl(183, 100%, 15%);
+$dark-grayish-cyan-1: hsl(186, 14%, 43%);
+$dark-grayish-cyan-2: hsl(184, 14%, 56%);
+$light-grayish-cyan-1: hsl(185, 41%, 84%);
+$light-grayish-cyan-2: hsl(189, 41%, 97%);
+$white: hsl(0, 0%, 100%);
+
+$orange-warning: rgba(229,151,0,255);
+
+
+/*** Font sizings ***/
+html {
+  font-size: 24px;
+}
+$text-base-size: 1em;
+$text-scale-ratio: 1.2;
+
+$text-xxs:   1em / ($text-scale-ratio * $text-scale-ratio * $text-scale-ratio);
+$text-xs:   1em / ($text-scale-ratio * $text-scale-ratio);
+$text-sm:   1em / $text-scale-ratio;
+$text-md:   $text-base-size;
+$text-lg:   1em * $text-scale-ratio;
+$text-xl:   1em * $text-scale-ratio * $text-scale-ratio;
+$text-xxl:  1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio;
+$text-xxxl: 1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio;
+
+
+/*** Sizings ***/
+$baseline: 24px;
+$space-xxs:   ($baseline/4);
+$space-xs:   ($baseline/3);
+$space-sm:   ($baseline/2);
+$space-md:   $baseline;
+$space-md-plus:  ($baseline*1.5);
+$space-lg:   ($baseline*2);
+$space-xl:   ($baseline*3);
+$space-xxl:  ($baseline*4);
+$space-xxxl: ($baseline*5);
+
+
+/*** Sizing limits ***/
+$min-width: 375px;
+$max-width: 1400px;
