@@ -1,0 +1,38 @@
+.results__article {
+
+  /* Flexbox */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $space-md;
+
+  /* Spacing */
+  margin-bottom: $space-md;
+
+}
+
+
+.results__value {
+
+  /* Color */
+  color: $strong-cyan;
+
+  /* Position */
+  display: block;
+
+  /* Font */
+  font-size: $text-xxl;
+
+  /* Spacing */
+  margin-top: 0;
+}
+
+
+
+@media (min-width: 1400px) {
+
+  .results__article {
+    margin-bottom: $space-md;
+  }
+
+}

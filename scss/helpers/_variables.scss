@@ -1,3 +1,5 @@
+@use "sass:math";
+
 /*** Typography **/
 $font-primary: "Space Mono";
 $font-secondary: sans-serif;
@@ -22,9 +24,9 @@ html {
 $text-base-size: 1em;
 $text-scale-ratio: 1.2;
 
-$text-xxs:   1em / ($text-scale-ratio * $text-scale-ratio * $text-scale-ratio);
-$text-xs:   1em / ($text-scale-ratio * $text-scale-ratio);
-$text-sm:   1em / $text-scale-ratio;
+$text-xxs:   math.div(1em, ($text-scale-ratio * $text-scale-ratio * $text-scale-ratio));
+$text-xs:   math.div(1em, ($text-scale-ratio * $text-scale-ratio));
+$text-sm:   math.div(1em, $text-scale-ratio);
 $text-md:   $text-base-size;
 $text-lg:   1em * $text-scale-ratio;
 $text-xl:   1em * $text-scale-ratio * $text-scale-ratio;
@@ -34,9 +36,9 @@ $text-xxxl: 1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio * $t
 
 /*** Sizings ***/
 $baseline: 24px;
-$space-xxs:   ($baseline/4);
-$space-xs:   ($baseline/3);
-$space-sm:   ($baseline/2);
+$space-xxs:   math.div($baseline, 4);
+$space-xs:   math.div($baseline, 3);
+$space-sm:   math.div($baseline, 2);
 $space-md:   $baseline;
 $space-md-plus:  ($baseline*1.5);
 $space-lg:   ($baseline*2);

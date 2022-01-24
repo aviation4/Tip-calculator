@@ -1,38 +1,74 @@
 .button {
+
+  /* Font */
+  font-family: inherit;
+  font-weight: 700;
+
+  /* Border */
   border: 0;
   border-radius: $space-xs;
-  font-family: inherit;
+
+  /* Spacing */
   padding: $space-sm;
+
+  /* Position */
   text-align: center;
-  font-weight: 700;
+
 }
 
 
 .button--tipButton {
-  flex: 1 1 130px;
+
+  /* Color */
   background-color: $very-dark-cyan;
   color: $white;
+
+  /* Flexbox */
+  flex: 1 1 130px;
+
+  /* Font */
   font-size: $text-md;
+
+  /* Animation */
   transition: all 200ms;
+
 }
+
 
 
 .button--reset {
+
+  /* Color */
   background-color: $white;
-  opacity: 0.2;
   color: $very-dark-cyan;
+  opacity: 0.2;
+
+  /* Sizing */
   width: 100%;
+
+  /* Font */
   font-size: $text-sm;
+
+  /* Spacing */
   margin-top: $space-md;
+
+  /* Animation */
   transition: all 200ms;
+
 }
 
 
+
 .button--enabled {
-  background-color: $strong-cyan !important;
-  color: $very-dark-cyan !important;
-  opacity: 1 !important;
-  cursor: pointer !important;
+
+  /* Color */
+  background-color: $strong-cyan;
+  color: $very-dark-cyan;
+  opacity: 1;
+
+  /* Cursor */
+  cursor: pointer;
+
 }
 
 
@@ -45,7 +81,7 @@
     cursor: not-allowed;
   }
 
-  .button--reset--enabled:hover {
+  .button--enabled:hover {
     cursor: pointer;
   }
 

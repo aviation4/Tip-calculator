@@ -1,0 +1,93 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+
+input:focus {
+
+  /* Color */
+  background-color: $light-grayish-cyan-2;
+
+  /* Border */
+  outline: 3px solid $strong-cyan;
+
+  /* Animation */
+  transition: all 200ms;
+}
+
+
+input::placeholder {
+  opacity: 0.2;
+}
+
+
+.inputArea__input {
+
+  /* Color */
+  background-color: $light-grayish-cyan-2;
+  color: $very-dark-cyan;
+
+  /* Font */
+  font-family: inherit;
+  font-size: $text-md;
+  font-weight: 700;
+
+  /* Sizing */
+  width: 100%;
+  height: $space-lg;
+
+  /* Spacing */
+  padding: $space-sm;
+  margin: 0;
+
+  /* Border */
+  border: none;
+  border-radius: $space-xs;
+
+  /* Position */
+  text-align: right;
+
+  /* Other */
+  -moz-appearance: textfield;
+
+}
+
+
+.inputArea__icon {
+
+  /* Position */
+  position: absolute;
+  top: 50%;
+  left: $space-sm;
+  transform: translateY(-50%);
+
+}
+
+
+.input--warning {
+  outline: 3px solid $orange-warning;
+}
+
+
+
+.tipButtons__input {
+
+  /* Color */
+  background-color: $light-grayish-cyan-2;
+  color: $very-dark-cyan;
+
+  /* Flexbox */
+  flex: 1 1 130px;
+
+  /* Sizing */
+  width: inherit;
+  min-width: 0;
+
+  /* Font */
+  font-size: $text-md;
+
+  /* Animation */
+  transition: all 200ms;
+  
+}

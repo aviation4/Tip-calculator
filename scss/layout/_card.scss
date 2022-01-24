@@ -1,37 +1,68 @@
 .card {
+
+  /* Color */
   background-color: $white;
-  border-radius: $space-md;
-  padding: $space-md-plus;
+
+  /* Sizing */
   max-width: 768px;
+
+  /* Spacing */
+  padding: $space-md-plus;
   margin: auto;
+
+  /* Border */
+  border-radius: $space-md;
   box-shadow: 0 10px 10px  hsla(172, 67%, 45%, 0.3);
+
 }
 
+
 .card__summary {
+
+  /* Color */
   background-color: $very-dark-cyan;
-  border-radius: $space-sm;
-  padding: $space-md;
+
+  /* Flexbox */
   display: flex;
   flex-direction: column;
+
+  /* Spacing */
+  padding: $space-md;
+
+  /* Border */
+  border-radius: $space-sm;
+
 }
 
 
 @media (min-width: 1400px) {
 
   .card {
+
+    /* Sizing */
     max-width: 1200px;
+
+    /* Flexbox */
     display: flex;
     gap: $space-md-plus;
+
   }
+
 
   .card__userData {
     flex-basis: 50%;
   }
 
+
   .card__summary {
-    flex-basis: 50%;
+
+    /* Spacing */
     padding: $space-lg;
+
+    /* Flexbox */
+    flex-basis: 50%;
     justify-content: space-between;
+
   }
 
 }

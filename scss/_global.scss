@@ -11,31 +11,52 @@ a:hover, button:hover {
 }
 
 body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-  text-align: left;
-  font-family: $font-primary, $font-secondary;
+
+  /* Color */
   background-color: $light-grayish-cyan-1;
+
+  /* Font */
+  font-family: $font-primary, $font-secondary;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+
+  /* Sizing */
+  min-height: 100vh;
   min-width: $min-width;
 
+  /* Position */
+  text-align: left;
+
 }
+
 
 main {
   padding-bottom: $space-xl;
 }
 
+
 h1 {
+
+  /* Color */
   color: $very-dark-cyan;
-  text-align: center;
-  letter-spacing: $space-sm;
-  padding: $space-lg;
+
+  /* Font */
   font-size: $text-lg;
+  letter-spacing: $space-sm;
+
+  /* Spacing */
+  padding: $space-lg;
+
+  /* Position */
+  text-align: center;
+
 }
+
 
 img {
   max-width: 100%;
 }
+
 
 
 @media (min-width: 1400px) {
@@ -43,6 +64,15 @@ img {
   h1 {
     padding-top: $space-xl;
     padding-bottom:  $space-xl;
+  }
+
+}
+
+@media (min-width: 2200px) {
+
+  h1 {
+    padding-top: $space-xxxl;
+    padding-bottom:  $space-xxxl;
   }
 
 }

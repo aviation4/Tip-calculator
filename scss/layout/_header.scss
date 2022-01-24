@@ -1,26 +1,59 @@
 .header {
+
+  /* Color */
   color: $very-dark-cyan;
-  font-size: $text-xs;
   opacity: 0.8;
+
+  /* Font */
+  font-size: $text-xs;
+
+  /* Spacing */
   margin-bottom: $space-xs;
+  
 }
 
 
 .header--warningInfo {
-  display: inline-block;
-  opacity: 1;
-  width: 100%;
-  text-align: right;
+
+  /* Color */
   color: $orange-warning;
-  transition: all 200ms;
+  opacity: 1;
+
+  /* Position */
+  display: inline-block;
+  text-align: right;
+
+  /* Sizing */
   position: absolute;
+  width: 100%;
+
+  /* Animation */
+  transition: all 200ms;
+
 }
 
 
 .header--results {
+
+  /* Color */
   color: $white;
   opacity: 1;
+
+  /* Spacing */
   margin-bottom: 0;
+
+}
+
+
+.header--subheader {
+
+  /* Color */
+  opacity: 0.5;
+
+  /* Font */
+  font-size: $text-xxs;
+  font-weight: 700;
+
 }
 
 
@@ -37,11 +70,6 @@
 
 
 @media (min-width: 1400px) {
-
-  .header {
-    font-size: $text-xs;
-  }
-
 
   .article__bill .header--warningInfo,
   .article__numberOfPeople .header--warningInfo {
