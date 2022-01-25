@@ -74,6 +74,8 @@ input::placeholder {
 
 .tipButtons__input {
 
+  @include button;
+
   /* Color */
   background-color: $light-grayish-cyan-2;
   color: $very-dark-cyan;

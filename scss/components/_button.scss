@@ -1,25 +1,9 @@
 @use '../helpers' as *;
 
-.button {
-
-  /* Font */
-  font-family: inherit;
-  font-weight: 700;
-
-  /* Border */
-  border: 0;
-  border-radius: $space-xs;
-
-  /* Spacing */
-  padding: $space-sm;
-
-  /* Position */
-  text-align: center;
-
-}
-
 
 .button--tipButton {
+
+  @include button;
 
   /* Color */
   background-color: $very-dark-cyan;
@@ -39,6 +23,8 @@
 
 
 .button--reset {
+
+  @include button;
 
   /* Color */
   background-color: $white;

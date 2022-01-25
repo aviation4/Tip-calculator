@@ -65,7 +65,7 @@ img {
     padding-bottom: 120px;
   }
 }
-.button {
+.button--tipButton {
   /* Font */
   font-family: inherit;
   font-weight: 700;
@@ -76,9 +76,6 @@ img {
   padding: 12px;
   /* Position */
   text-align: center;
-}
-
-.button--tipButton {
   /* Color */
   background-color: #00494d;
   color: white;
@@ -91,6 +88,16 @@ img {
 }
 
 .button--reset {
+  /* Font */
+  font-family: inherit;
+  font-weight: 700;
+  /* Border */
+  border: 0;
+  border-radius: 8px;
+  /* Spacing */
+  padding: 12px;
+  /* Position */
+  text-align: center;
   /* Color */
   background-color: white;
   color: #00494d;
@@ -184,6 +191,16 @@ input::placeholder {
 }
 
 .tipButtons__input {
+  /* Font */
+  font-family: inherit;
+  font-weight: 700;
+  /* Border */
+  border: 0;
+  border-radius: 8px;
+  /* Spacing */
+  padding: 12px;
+  /* Position */
+  text-align: center;
   /* Color */
   background-color: #f4fafa;
   color: #00494d;
