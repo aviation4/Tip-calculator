@@ -198,6 +198,61 @@ input::placeholder {
   transition: all 200ms;
 }
 
+.header {
+  /* Color */
+  color: #00494d;
+  opacity: 0.8;
+  /* Font */
+  font-size: 0.6944444444em;
+  /* Spacing */
+  margin-bottom: 8px;
+}
+
+.header--warningInfo {
+  /* Color */
+  color: #e59700;
+  opacity: 1;
+  /* Position */
+  display: inline-block;
+  text-align: right;
+  /* Sizing */
+  position: absolute;
+  width: 100%;
+  /* Animation */
+  transition: all 200ms;
+}
+
+.header--results {
+  /* Color */
+  color: white;
+  opacity: 1;
+  /* Spacing */
+  margin-bottom: 0;
+}
+
+.header--subheader {
+  /* Color */
+  opacity: 0.5;
+  /* Font */
+  font-size: 0.5787037037em;
+  font-weight: 700;
+}
+
+.article__bill .header--warningInfo,
+.article__numberOfPeople .header--warningInfo {
+  top: 88px;
+}
+
+.article__selectTip .header--warningInfo {
+  margin-top: 7px;
+}
+
+@media (min-width: 1400px) {
+  .article__bill .header--warningInfo,
+.article__numberOfPeople .header--warningInfo {
+    top: 0;
+  }
+}
 .card {
   /* Color */
   background-color: white;
@@ -215,7 +270,10 @@ input::placeholder {
   /* Color */
   background-color: #00494d;
   /* Flexbox */
-  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flexbox;
   flex-direction: column;
   /* Spacing */
   padding: 24px;
@@ -228,7 +286,10 @@ input::placeholder {
     /* Sizing */
     max-width: 1200px;
     /* Flexbox */
-    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flexbox;
     gap: 36px;
   }
 
@@ -288,61 +349,6 @@ input::placeholder {
 @media (min-width: 1400px) {
   .results__article {
     margin-bottom: 24px;
-  }
-}
-.header {
-  /* Color */
-  color: #00494d;
-  opacity: 0.8;
-  /* Font */
-  font-size: 0.6944444444em;
-  /* Spacing */
-  margin-bottom: 8px;
-}
-
-.header--warningInfo {
-  /* Color */
-  color: #e59700;
-  opacity: 1;
-  /* Position */
-  display: inline-block;
-  text-align: right;
-  /* Sizing */
-  position: absolute;
-  width: 100%;
-  /* Animation */
-  transition: all 200ms;
-}
-
-.header--results {
-  /* Color */
-  color: white;
-  opacity: 1;
-  /* Spacing */
-  margin-bottom: 0;
-}
-
-.header--subheader {
-  /* Color */
-  opacity: 0.5;
-  /* Font */
-  font-size: 0.5787037037em;
-  font-weight: 700;
-}
-
-.article__bill .header--warningInfo,
-.article__numberOfPeople .header--warningInfo {
-  top: 88px;
-}
-
-.article__selectTip .header--warningInfo {
-  margin-top: 7px;
-}
-
-@media (min-width: 1400px) {
-  .article__bill .header--warningInfo,
-.article__numberOfPeople .header--warningInfo {
-    top: 0;
   }
 }
 

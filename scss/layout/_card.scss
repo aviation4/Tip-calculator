@@ -1,3 +1,5 @@
+@use '../helpers' as *;
+
 .card {
 
   /* Color */
@@ -23,7 +25,7 @@
   background-color: $very-dark-cyan;
 
   /* Flexbox */
-  display: flex;
+  @include flex;
   flex-direction: column;
 
   /* Spacing */
@@ -43,7 +45,7 @@
     max-width: 1200px;
 
     /* Flexbox */
-    display: flex;
+    @include flex;
     gap: $space-md-plus;
 
   }
