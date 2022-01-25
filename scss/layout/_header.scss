@@ -14,8 +14,9 @@
 
 }
 
-
 .header--warningInfo {
+
+  @include header;
 
   /* Color */
   color: $orange-warning;
@@ -36,6 +37,8 @@
 
 
 .header--results {
+
+  @include header;
 
   /* Color */
   color: $white;

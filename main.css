@@ -227,6 +227,13 @@ input::placeholder {
 
 .header--warningInfo {
   /* Color */
+  color: #00494d;
+  opacity: 0.8;
+  /* Font */
+  font-size: 0.6944444444em;
+  /* Spacing */
+  margin-bottom: 8px;
+  /* Color */
   color: #e59700;
   opacity: 1;
   /* Position */
@@ -240,6 +247,13 @@ input::placeholder {
 }
 
 .header--results {
+  /* Color */
+  color: #00494d;
+  opacity: 0.8;
+  /* Font */
+  font-size: 0.6944444444em;
+  /* Spacing */
+  margin-bottom: 8px;
   /* Color */
   color: white;
   opacity: 1;

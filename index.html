@@ -19,7 +19,7 @@
 
     <div class="card">
       <section class="card__userData">
-        <article class="userData__article">
+        <article class="userData__article article__bill">
           <h2 class="header">Bill</h2>
           <div class="userData__inputArea">
             <img class="inputArea__icon" src="images/icon-dollar.svg" alt="">
@@ -28,10 +28,10 @@
                    type="number"
                    placeholder="18.50"/>
           </div>
-          <h2 id="warningInfo--bill" class="header header--warningInfo"></h2>
+          <h2 id="warningInfo--bill" class="header--warningInfo"></h2>
         </article>
 
-        <article class="userData__article">
+        <article class="userData__article article__selectTip">
           <h2 class="header">Select Tip %</h2>
           <div class="userData__tipButtons">
             <button class="button--tipButton" value="5">5%</button>
@@ -44,10 +44,10 @@
                    type="number"
                    placeholder="Custom"/>
           </div>
-          <h2 id="warningInfo--tip" class="header header--warningInfo"></h2>
+          <h2 id="warningInfo--tip" class="header--warningInfo"></h2>
         </article>
 
-        <article class="userData__article">
+        <article class="userData__article article__numberOfPeople">
           <h2 class="header">Number of People</h2>
           <div class="userData__inputArea">
             <img class="inputArea__icon" src="images/icon-person.svg" alt="">
@@ -56,7 +56,7 @@
                    type="number"
                    placeholder="4"/>
           </div>
-          <h2 id="warningInfo--people" class="header header--warningInfo"></h2>
+          <h2 id="warningInfo--people" class="header--warningInfo"></h2>
 
         </article>
       </section>
@@ -66,16 +66,16 @@
         <div class="summary__results">
           <article class="results__article">
             <div>
-              <h2 class="header header--results">Tip Amount</h2>
-              <p class="header header--results header--subheader">/ person</p>
+              <h2 class="header--results">Tip Amount</h2>
+              <p class="header--results header--subheader">/ person</p>
             </div>
             <strong id="results--tip" class="results__value">$0</strong>
           </article>
 
           <article class="results__article">
             <div>
-              <h2 class="header header--results">Total</h2>
-              <p class="header header--results header--subheader">/ person</p>
+              <h2 class="header--results">Total</h2>
+              <p class="header--results header--subheader">/ person</p>
             </div>
             <strong id="results--total" class="results__value">$0</strong>
           </article>
