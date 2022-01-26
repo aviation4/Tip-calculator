@@ -1,0 +1,26 @@
+{
+  "name": "tip-calculator",
+  "version": "1.0.0",
+  "description": "- [Summary](#summary)\r - [Usage](#usage)\r - [Built with](#built-with)\r - [Live website](#live-website)\r - [More insights](#more-insights)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aviation4/Tip-calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aviation4/Tip-calculator/issues"
+  },
+  "homepage": "https://github.com/aviation4/Tip-calculator#readme",
+  "devDependencies": {
+    "sass": "^1.49.0" 
+  }
+}
