@@ -1,0 +1,42 @@
+@use 'variables' as *;
+
+@mixin flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flexbox;
+}
+
+
+@mixin button {
+
+  /* Font */
+  font-family: inherit;
+  font-weight: 700;
+
+  /* Border */
+  border: 0;
+  border-radius: $space-xs;
+
+  /* Spacing */
+  padding: $space-sm;
+
+  /* Position */
+  text-align: center;
+
+}
+
+
+@mixin header {
+
+  /* Color */
+  color: $very-dark-cyan;
+  opacity: 0.8;
+
+  /* Font */
+  font-size: $text-xs;
+
+  /* Spacing */
+  margin-bottom: $space-xs;
+
+}
