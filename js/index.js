@@ -1,4 +1,54 @@
 /**** Declaring variables ****/
+const inputData = {
+
+  bill = {
+    isValid: 0,
+    value: 0
+  },
+
+  tip = {
+    isValid: 0,
+    value: 0,
+    tipButtonStateArray: [0, 0, 0, 0, 0],
+    customTipState: 0
+  },
+
+  people = {
+    isValid: 1,
+    value: 0
+  },
+
+  areAllValid = [this.bill.isValid, this.tip.isValid, this.people.isValid];
+
+
+}
+
+
+
+
+
+
+buttonTipArray.forEach((el, i) => {
+
+  /***** Assign Event Listener *****/
+  el.addEventListener("click", function() {
+
+
+    /* Enable or disable tip buttons */
+    tipButtonToggler(el);
+
+
+    /* Enable reset button */
+    enableResetButton();
+
+
+    /* Update results (calculate or reset) */
+    updateResults(el);
+
+
+  });
+
+})
 
 /* Input data */
 const inputBill = document.getElementById("input--bill");
@@ -74,23 +124,7 @@ buttonEnabled = "button--enabled";
 /***** For every tip button *****/
 buttonTipArray.forEach(function(el, i) {
 
-  /***** Assign Event Listener *****/
-  el.addEventListener("click", function() {
 
-
-    /* Enable or disable tip buttons */
-    tipButtonToggler(el);
-
-
-    /* Enable reset button */
-    enableResetButton();
-
-
-    /* Update results (calculate or reset) */
-    updateResults(el);
-
-
-  });
 
 });
 
