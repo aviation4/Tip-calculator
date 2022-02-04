@@ -3,20 +3,27 @@ const inputData = {
 
   bill = {
     isValid: 0,
-    value: 0
+    value: 0,
+    billDOM: document.getElementById("input--bill")
   },
 
   tip = {
     isValid: 0,
     value: 0,
+
     tipButtonStateArray: [0, 0, 0, 0, 0],
-    customTipState: 0
+    tipButtonDOMArray: document.querySelectorAll(".button--tipButton"),
+
+    customTipState: 0,
+    customTipDOM: document.getElementById("input--tip")
   },
 
   people = {
     isValid: 1,
-    value: 0
+    value: 0,
+    peopleDOM: document.getElementById("input--people")
   },
+
 
   areAllValid = [this.bill.isValid, this.tip.isValid, this.people.isValid];
 
@@ -28,14 +35,14 @@ const inputData = {
 
 
 
-buttonTipArray.forEach((el, i) => {
+inputData.tip.tipButtonDOMArray.forEach((button, i) => {
 
   /***** Assign Event Listener *****/
   el.addEventListener("click", function() {
 
 
     /* Enable or disable tip buttons */
-    tipButtonToggler(el);
+    tipButtonToggler(button, i);
 
 
     /* Enable reset button */
@@ -43,7 +50,7 @@ buttonTipArray.forEach((el, i) => {
 
 
     /* Update results (calculate or reset) */
-    updateResults(el);
+    updateResults(button);
 
 
   });

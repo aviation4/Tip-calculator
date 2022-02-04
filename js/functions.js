@@ -1,21 +1,29 @@
-function tipButtonToggler(el) {
+function tipButtonToggler(button, i) {
 
 
-  /* If that element is alredy enabled, disable it */
-  if (el.classList.contains(buttonEnabled)) {
-    el.classList.remove(buttonEnabled);
-    isTipButtonEnabled = 0;
+  /** Disabling a button **/
+  /* If the pressed button is alredy enabled, disable it */
+  if (inputData.tip.tipButtonStateArray[i] == 1){
+    button.classList.remove(buttonEnabled);
+    inputData.tip.tipButtonStateArray[i] = 0;
+    inputData.tip.isValid = 0;
+    inputData.tip.value = 0;
+    break;
   }
-  /* If any other button is enabled, disable all of them and enable the new one */
-  else if (isTipButtonEnabled == 1) {
-    buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
-    el.classList.add(buttonEnabled);
+
+
+  /** Enabling a button **/
+  /* If any button is enabled, disable it */
+  if (inputData.tip.tipButtonStateArray.some(value => value == 1)){
+    inputData.tip.tipButtonDOMArray.forEach(button => button.classList.remove(buttonEnabled));
+    inputData.tip.tipButtonStateArray.forEach(value => value == 0);
+    inputData.tip.isValid = 0;
+    inputData.tip.value = 0;
+
+    button.classList.add(buttonEnabled);
+    inputData.tip.tipButtonStateArray[i] = 1;
   }
-  /* If all buttons are disabled, enable the new one */
-  else {
-    el.classList.add(buttonEnabled);
-    isTipButtonEnabled = 1;
-  }
+
 
 
   /* If user already entered custom value, reset it */
