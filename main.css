@@ -87,6 +87,31 @@ img {
   transition: all 200ms;
 }
 
+.button--customTipButton {
+  /* Font */
+  font-family: inherit;
+  font-weight: 700;
+  /* Border */
+  border: 0;
+  border-radius: 8px;
+  /* Spacing */
+  padding: 12px;
+  /* Position */
+  text-align: center;
+  /* Color */
+  background-color: #f4fafa;
+  color: #00494d;
+  /* Flexbox */
+  flex: 1 1 130px;
+  /* Sizing */
+  width: inherit;
+  min-width: 0;
+  /* Font */
+  font-size: 1em;
+  /* Animation */
+  transition: all 200ms;
+}
+
 .button--reset {
   /* Font */
   font-family: inherit;
@@ -128,13 +153,19 @@ img {
     cursor: not-allowed;
   }
 
-  .button--enabled:hover {
-    cursor: pointer;
-  }
-
   .button--tipButton:hover {
     background-color: #c5e4e7;
     color: #00494d;
+  }
+
+  .button--enabled:hover {
+    background-color: #26c0ab;
+    color: #00494d;
+    cursor: pointer;
+  }
+
+  .button--customTipButton:hover {
+    background-color: #f4fafa;
   }
 }
 input::-webkit-outer-spin-button,
@@ -188,31 +219,6 @@ input::placeholder {
 
 .input--warning {
   outline: 3px solid #e59700;
-}
-
-.tipButtons__input {
-  /* Font */
-  font-family: inherit;
-  font-weight: 700;
-  /* Border */
-  border: 0;
-  border-radius: 8px;
-  /* Spacing */
-  padding: 12px;
-  /* Position */
-  text-align: center;
-  /* Color */
-  background-color: #f4fafa;
-  color: #00494d;
-  /* Flexbox */
-  flex: 1 1 130px;
-  /* Sizing */
-  width: inherit;
-  min-width: 0;
-  /* Font */
-  font-size: 1em;
-  /* Animation */
-  transition: all 200ms;
 }
 
 .header {

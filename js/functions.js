@@ -1,41 +1,56 @@
-function tipButtonToggler(button, i) {
+import {inputData, buttonEnabled} from "./index.js";
+
+export const tipButtonToggler = (button, i) => {
 
 
-  /** Disabling a button **/
-  /* If the pressed button is alredy enabled, disable it */
-  if (inputData.tip.tipButtonStateArray[i] == 1){
+  /* If the pressed button is already enabled  (except from "Custom" input) */
+  if (inputData.tip.tipStateArray[i] == 1 && i != 5){
+
+    /* disable it */
     button.classList.remove(buttonEnabled);
-    inputData.tip.tipButtonStateArray[i] = 0;
-    inputData.tip.isValid = 0;
-    inputData.tip.value = 0;
-    break;
-  }
-
-
-  /** Enabling a button **/
-  /* If any button is enabled, disable it */
-  if (inputData.tip.tipButtonStateArray.some(value => value == 1)){
-    inputData.tip.tipButtonDOMArray.forEach(button => button.classList.remove(buttonEnabled));
-    inputData.tip.tipButtonStateArray.forEach(value => value == 0);
+    inputData.tip.tipStateArray[i] = 0;
     inputData.tip.isValid = 0;
     inputData.tip.value = 0;
 
-    button.classList.add(buttonEnabled);
-    inputData.tip.tipButtonStateArray[i] = 1;
   }
 
+  /* If any other button is enabled */
+  else if (inputData.tip.tipStateArray.some(value => value == 1)){
+
+    /* disable it */
+    inputData.tip.tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
+    inputData.tip.tipDOMArray[5].value = "";
+    inputData.tip.tipStateArray.forEach((element, index, array) => array[index] = 0);
+    inputData.tip.isValid = 0;
+    inputData.tip.value = 0;
 
 
-  /* If user already entered custom value, reset it */
-  if (inputTip.classList.contains(inputWarningOutline) || isInputOk[1] == 1){
-    inputTip.value = "";
-    inputTip.classList.remove(inputWarningOutline);
-    warningInfoTip.innerHTML = "";
-    isInputOk[1] = 0;
+    /* and enable pressed button */
+    if (i != 5){
+      button.classList.add(buttonEnabled);
+    }
+    inputData.tip.tipStateArray[i] = 1;
+    inputData.tip.value = inputData.tip.tipDOMArray[i].value;
+    inputData.tip.isValid = 1;
+
   }
 
+  /* If all buttons are disabled*/
+  else if (inputData.tip.tipStateArray.every(value => value == 0)) {
+
+    /* and enable pressed button */
+    if (i != 5){
+      button.classList.add(buttonEnabled);
+    }
+    inputData.tip.tipStateArray[i] = 1;
+    inputData.tip.value = inputData.tip.tipDOMArray[i].value;
+    inputData.tip.isValid = 1;
+
+  }
 
 }
+
+
 
 
 function keydownValidation (el, i) {

@@ -1,44 +1,47 @@
 /**** Declaring variables ****/
-const inputData = {
+export const inputData = {
 
-  bill = {
+  bill: {
     isValid: 0,
     value: 0,
     billDOM: document.getElementById("input--bill")
   },
 
-  tip = {
+  tip: {
     isValid: 0,
     value: 0,
 
-    tipButtonStateArray: [0, 0, 0, 0, 0],
-    tipButtonDOMArray: document.querySelectorAll(".button--tipButton"),
+    /* tipDOMArray and tipStateArray have 6 elements, successively: buttons "5%", "10%", "15%", "25%", "50%" and input "Custom" */
+    tipDOMArray: document.querySelectorAll(".button--tipButton"),
+    /* tipStateArray can take two values: "0" - button/input is disabled, "1" - button/input is enabled */
+    tipStateArray: [0, 0, 0, 0, 0, 0]
 
-    customTipState: 0,
-    customTipDOM: document.getElementById("input--tip")
   },
 
-  people = {
+  people: {
     isValid: 1,
     value: 0,
     peopleDOM: document.getElementById("input--people")
   },
 
 
-  areAllValid = [this.bill.isValid, this.tip.isValid, this.people.isValid];
+  areAllValid(){
+
+    return ((this.bill.isValid && this.tip.isValid && this.people.isValid) ? true : false)
+
+  }
 
 
 }
 
 
+import {tipButtonToggler} from "./functions.js";
 
 
-
-
-inputData.tip.tipButtonDOMArray.forEach((button, i) => {
+inputData.tip.tipDOMArray.forEach((button, i) => {
 
   /***** Assign Event Listener *****/
-  el.addEventListener("click", function() {
+  button.addEventListener("click", function() {
 
 
     /* Enable or disable tip buttons */
@@ -46,11 +49,11 @@ inputData.tip.tipButtonDOMArray.forEach((button, i) => {
 
 
     /* Enable reset button */
-    enableResetButton();
+    /*enableResetButton();*/
 
 
     /* Update results (calculate or reset) */
-    updateResults(button);
+    /*updateResults(button);*/
 
 
   });
@@ -104,8 +107,8 @@ const decimalNumbersText = "Too many decimal numbers";
 
 
 /**** Class names ****/
-inputWarningOutline = "input--warning";
-buttonEnabled = "button--enabled";
+const inputWarningOutline = "input--warning";
+export const buttonEnabled = "button--enabled";
 
 
 
