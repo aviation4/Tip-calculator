@@ -1,4 +1,4 @@
-import {inputData, buttonEnabled} from "./index.js";
+import {inputData, buttonEnabled} from "./variables.js";
 
 export const tipButtonToggler = (button, i) => {
 
