@@ -1,4 +1,4 @@
-import {tipButtonToggler} from "./functions.js";
+import {tipButtonToggler, enableResetButton} from "./functions.js";
 import {inputData} from "./variables.js";
 
 
@@ -13,7 +13,7 @@ inputData.tip.tipDOMArray.forEach((button, i) => {
 
 
     /* Enable reset button */
-    /*enableResetButton();*/
+    enableResetButton();
 
 
     /* Update results (calculate or reset) */
@@ -37,7 +37,7 @@ const warningInfoPeople = document.getElementById("warningInfo--people");
 
 
 /* Results */
-const resetButton = document.getElementById("button--reset");
+
 const resultTip = document.getElementById("results--tip");
 const resultTotal = document.getElementById("results--total");
 let tipFactor = 0;

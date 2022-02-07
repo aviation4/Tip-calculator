@@ -1,4 +1,5 @@
-import {inputData, buttonEnabled} from "./variables.js";
+import {inputData} from "./variables.js";
+import {buttonEnabled, resetButton} from "./variables.js";
 
 export const tipButtonToggler = (button, i) => {
 
@@ -51,6 +52,11 @@ export const tipButtonToggler = (button, i) => {
 }
 
 
+export function enableResetButton() {
+
+  resetButton.classList.add(buttonEnabled);
+
+}
 
 
 function keydownValidation (el, i) {
@@ -366,11 +372,7 @@ function calculateResults() {
 }
 
 
-function enableResetButton() {
 
-  resetButton.classList.add(buttonEnabled);
-
-}
 
 
 function resetResults() {

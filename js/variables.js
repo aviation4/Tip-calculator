@@ -35,3 +35,4 @@ export const inputData = {
 /**** Class names ****/
 const inputWarningOutline = "input--warning";
 export const buttonEnabled = "button--enabled";
+export const resetButton = document.getElementById("button--reset");
