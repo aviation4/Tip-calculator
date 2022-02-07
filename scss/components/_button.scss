@@ -22,6 +22,33 @@
 
 
 
+.button--customTipButton{
+
+  @include button;
+
+  /* Color */
+  background-color: $light-grayish-cyan-2;
+  color: $very-dark-cyan;
+
+  /* Flexbox */
+  flex: 1 1 130px;
+
+  /* Sizing */
+  width: inherit;
+  min-width: 0;
+
+  /* Font */
+  font-size: $text-md;
+
+  /* Animation */
+  transition: all 200ms;
+
+
+
+}
+
+
+
 .button--reset {
 
   @include button;
@@ -69,13 +96,20 @@
     cursor: not-allowed;
   }
 
-  .button--enabled:hover {
-    cursor: pointer;
-  }
-
   .button--tipButton:hover {
     background-color: $light-grayish-cyan-1;
     color: $very-dark-cyan;
   }
+
+  .button--enabled:hover {
+    background-color: $strong-cyan;
+    color: $very-dark-cyan;
+    cursor: pointer;
+  }
+
+  .button--customTipButton:hover {
+    background-color: $light-grayish-cyan-2;
+  }
+
 
 }

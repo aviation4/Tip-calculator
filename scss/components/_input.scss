@@ -70,27 +70,3 @@ input::placeholder {
 .input--warning {
   outline: 3px solid $orange-warning;
 }
-
-
-.tipButtons__input {
-
-  @include button;
-
-  /* Color */
-  background-color: $light-grayish-cyan-2;
-  color: $very-dark-cyan;
-
-  /* Flexbox */
-  flex: 1 1 130px;
-
-  /* Sizing */
-  width: inherit;
-  min-width: 0;
-
-  /* Font */
-  font-size: $text-md;
-
-  /* Animation */
-  transition: all 200ms;
-
-}
