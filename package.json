@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/aviation4/Tip-calculator#readme",
   "devDependencies": {
-    "sass": "^1.49.0" 
+    "sass": "^1.49.0"
+  },
+  "dependencies": {
+    "http-server": "^14.1.0"
   }
 }

@@ -1,5 +1,5 @@
-import {tipButtonToggler, enableResetButton} from "./functions.js";
-import {inputData} from "./variables.js";
+import {tipButtonToggler, enableResetButton, resetAll} from "./functions.js";
+import {inputData, resetButton} from "./variables.js";
 
 
 inputData.tip.tipDOMArray.forEach((button, i) => {
@@ -23,6 +23,16 @@ inputData.tip.tipDOMArray.forEach((button, i) => {
   });
 
 })
+
+
+/*** Resetting ***/
+resetButton.addEventListener("click", function() {
+
+  resetAll();
+
+})
+
+
 
 /* Input data */
 const inputBill = document.getElementById("input--bill");
@@ -74,47 +84,10 @@ const decimalNumbersText = "Too many decimal numbers";
 
 
 
-/* Checks whether the user uses mobile device (true) or not (false) */
-  if ("maxTouchPoints" in navigator) {
-      hasTouchScreen = navigator.maxTouchPoints > 0;
-  } else if ("msMaxTouchPoints" in navigator) {
-      hasTouchScreen = navigator.msMaxTouchPoints > 0;
-  } else {
-      var mQ = window.matchMedia && matchMedia("(pointer:coarse)");
-      if (mQ && mQ.media === "(pointer:coarse)") {
-          hasTouchScreen = !!mQ.matches;
-      } else if ('orientation' in window) {
-          hasTouchScreen = true;
-      }
-  }
-
-
-
-
-
-
-/***** For every tip button *****/
-buttonTipArray.forEach(function(el, i) {
-
-
-
-});
-
 
 
 /***** For every input *****/
 inputArray.forEach(function(el, i) {
-
-
-  /* Validate for desktops */
-  if(!(hasTouchScreen)) {
-
-    /**** Validate every keydown ****/
-    el.addEventListener("keydown", function() {
-      keydownValidation(el, i);
-    });
-
-  }
 
 
 
@@ -144,12 +117,3 @@ inputArray.forEach(function(el, i) {
   });
 
 });
-
-
-
-/*** Resetting ***/
-resetButton.addEventListener("click", function() {
-
-  resetAll();
-
-})

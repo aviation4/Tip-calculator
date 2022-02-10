@@ -18,7 +18,7 @@ export const inputData = {
   },
 
   people: {
-    isValid: 1,
+    isValid: 0,
     value: 0,
     peopleDOM: document.getElementById("input--people")
   },
@@ -33,6 +33,6 @@ export const inputData = {
 }
 
 /**** Class names ****/
-const inputWarningOutline = "input--warning";
+export const inputWarningOutline = "input--warning";
 export const buttonEnabled = "button--enabled";
 export const resetButton = document.getElementById("button--reset");

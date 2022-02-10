@@ -1,4 +1,4 @@
-import {inputData} from "./variables.js";
+import {inputData, inputWarningOutline} from "./variables.js";
 import {buttonEnabled, resetButton} from "./variables.js";
 
 export const tipButtonToggler = (button, i) => {
@@ -55,6 +55,39 @@ export const tipButtonToggler = (button, i) => {
 export function enableResetButton() {
 
   resetButton.classList.add(buttonEnabled);
+
+}
+
+export function resetAll() {
+
+  /* Reset input and result values */
+  inputData.bill.billDOM.value = "";
+  inputData.bill.billDOM.classList.remove(inputWarningOutline);
+  inputData.bill.value = 0;
+  inputData.bill.isValid = 0;
+
+  inputData.tip.tipDOMArray[5].value = "";
+  inputData.tip.tipDOMArray[5].classList.remove(inputWarningOutline);
+  inputData.tip.tipDOMArray.forEach(el => el.classList.remove(buttonEnabled));
+  inputData.tip.tipStateArray.forEach((el, i) => el = 0);
+  inputData.tip.value = 0;
+  inputData.tip.isValid = 0;
+
+  inputData.people.peopleDOM.value = "";
+  inputData.people.peopleDOM.classList.remove(inputWarningOutline);
+  inputData.people.value = 0;
+  inputData.people.isValid = 0;
+
+/*
+  resultTip.innerHTML = "$" + 0;
+  resultTotal.innerHTML = "$" + 0;
+  warningInfoBill.innerHTML = "";
+  warningInfoTip.innerHTML = "";
+  warningInfoPeople.innerHTML = "";
+*/
+
+  /* Disable reset button */
+  resetButton.classList.remove(buttonEnabled);
 
 }
 
@@ -383,33 +416,7 @@ function resetResults() {
 }
 
 
-function resetAll() {
 
-  /* Reset input and result values */
-  inputBill.value = "";
-  inputTip.value = "";
-  inputPeople.value = "";
-  resultTip.innerHTML = "$" + 0;
-  resultTotal.innerHTML = "$" + 0;
-  warningInfoBill.innerHTML = "";
-  warningInfoTip.innerHTML = "";
-  warningInfoPeople.innerHTML = "";
-
-  /* Disable tip button */
-  buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
-
-
-  /* Remove warning outlines */
-  inputArray.forEach(el => el.classList.remove(inputWarningOutline));
-
-
-  /* Disable reset button */
-  resetButton.classList.remove(buttonEnabled);
-
-  /* Reset variables */
-  isTipButtonEnabled = 0;
-  isInputOk.forEach((el, i) => isInputOk[i] = 0);
-}
 
 
 function isArrayEqual(a, b) {
