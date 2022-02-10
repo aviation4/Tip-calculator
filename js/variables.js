@@ -41,6 +41,7 @@ export const buttonEnabled = "button--enabled";
 /* tipDOMArray and tipStateArray have 6 elements, successively: buttons "5%", "10%", "15%", "25%", "50%" and input "Custom" */
 export const tipDOMArray = document.querySelectorAll(".button--tipButton");
 export const inputsDOMArray = [document.getElementById("input--bill"), document.getElementById("input--tip"), document.getElementById("input--people")];
+export const warningInfoDOMArray = [document.getElementById("warningInfo--bill"), document.getElementById("warningInfo--tip"), document.getElementById("warningInfo--people")];
 export const resetButton = document.getElementById("button--reset");
 export const resultTip = document.getElementById("results--tip");
 export const resultTotal = document.getElementById("results--total");

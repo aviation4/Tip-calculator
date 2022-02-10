@@ -70,3 +70,7 @@ input::placeholder {
 .input--warning {
   outline: 3px solid $orange-warning;
 }
+
+input:invalid {
+  outline: 3px solid red;
+}

@@ -27,6 +27,8 @@
                    class="inputArea__input"
                    type="number"
                    placeholder="18.50"
+                   min="0"
+                   max="999999"
                    autofocus/>
           </div>
           <h2 id="warningInfo--bill" class="header--warningInfo"></h2>
@@ -42,7 +44,11 @@
             <button class="button--tipButton" value="50">50%</button>
             <input id="input--tip"
                    class="button--tipButton button--customTipButton"
-                   type="number"
+                   type="tel"
+                   min="1"
+                   max="1000"
+                   step="1"
+                   pattern="[3-7]{2,}"
                    placeholder="Custom"/>
           </div>
           <h2 id="warningInfo--tip" class="header--warningInfo"></h2>

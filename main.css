@@ -221,6 +221,10 @@ input::placeholder {
   outline: 3px solid #e59700;
 }
 
+input:invalid {
+  outline: 3px solid red;
+}
+
 .header {
   /* Color */
   color: #00494d;

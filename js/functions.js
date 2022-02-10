@@ -1,5 +1,5 @@
 import {inputData, inputWarningOutline} from "./variables.js";
-import {buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray} from "./variables.js";
+import {buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray} from "./variables.js";
 
 
 export const tipButtonToggler = (button, i) => {
@@ -79,11 +79,10 @@ export function resetAll() {
 
 
   resultTip.innerHTML = "$" + 0;
-  resultTotal.innerHTML = "$" + 0;/*
-  warningInfoBill.innerHTML = "";
-  warningInfoTip.innerHTML = "";
-  warningInfoPeople.innerHTML = "";
-*/
+  resultTotal.innerHTML = "$" + 0;
+  warningInfoDOMArray.forEach(el => el.textContent = "");
+
+
 
   /* Disable reset button */
   resetButton.classList.remove(buttonEnabled);
@@ -191,10 +190,7 @@ export function inputValidation(input, i){
   let currentInputWarning;
   let currentInputField;
 
-  const warningInfoBill = document.getElementById("warningInfo--bill");
-  const warningInfoTip = document.getElementById("warningInfo--tip");
-  const warningInfoPeople = document.getElementById("warningInfo--people");
-
+/*
   switch(i){
     case 0:
       currentInputWarning = warningInfoBill;
@@ -213,10 +209,33 @@ export function inputValidation(input, i){
       inputData.people.isValid = 1;
       inputData.people.value = input.value;
       break;
+  }*/
+
+  if (input.validity.valid){
+    warningInfoDOMArray[i].textContent = "";
+    input.classList.remove(inputWarningOutline);
+  } else {
+    showError(input, i);
   }
 
-  
 
+}
+
+
+function showError(input, i){
+  if (input.validity.rangeOverflow){
+    warningInfoDOMArray[i].textContent = "Big numbo bro";
+  } else if (input.validity.rangeUnderflow){
+    warningInfoDOMArray[i].textContent = "No negative numbo bro";
+  } else if (input.validity.badInput){
+    warningInfoDOMArray[i].textContent = "Only numbos bro";
+  } else if (input.validity.tooLong){
+    warningInfoDOMArray[i].textContent = "Too long bro";
+  } else if (input.validity.stepMismatch){
+    warningInfoDOMArray[i].textContent = "Please type a whole number";
+  } else if (input.validity.patternMismatch){
+    warningInfoDOMArray[i].textContent = "Invalid pattern";
+  }
 }
 
 
