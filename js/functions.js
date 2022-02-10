@@ -188,19 +188,34 @@ function keydownValidation (el, i) {
 
 export function inputValidation(input, i){
 
+  let currentInputWarning;
+  let currentInputField;
+
+  const warningInfoBill = document.getElementById("warningInfo--bill");
+  const warningInfoTip = document.getElementById("warningInfo--tip");
+  const warningInfoPeople = document.getElementById("warningInfo--people");
+
   switch(i){
     case 0:
+      currentInputWarning = warningInfoBill;
+      currentInputField = inputBill;
       inputData.bill.isValid = 1;
       inputData.bill.value = input.value;
       break;
     case 1:
+      currentInputWarning = warningInfoTip;
+      currentInputField = inputTip;
       inputData.tip.isValid = 1;
       break;
     case 2:
+      currentInputWarning = warningInfoPeople;
+      currentInputField = inputPeople;
       inputData.people.isValid = 1;
       inputData.people.value = input.value;
       break;
   }
+
+  
 
 }
 
@@ -208,9 +223,7 @@ export function inputValidation(input, i){
 export function inputValidationOld (el, i){
 
 
-  const warningInfoBill = document.getElementById("warningInfo--bill");
-  const warningInfoTip = document.getElementById("warningInfo--tip");
-  const warningInfoPeople = document.getElementById("warningInfo--people");
+
 
 
   let currentInputWarning;
