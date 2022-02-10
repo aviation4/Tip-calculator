@@ -1,5 +1,6 @@
 import {inputData, inputWarningOutline} from "./variables.js";
-import {buttonEnabled, resetButton} from "./variables.js";
+import {buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray} from "./variables.js";
+
 
 export const tipButtonToggler = (button, i) => {
 
@@ -19,8 +20,8 @@ export const tipButtonToggler = (button, i) => {
   else if (inputData.tip.tipStateArray.some(value => value == 1)){
 
     /* disable it */
-    inputData.tip.tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
-    inputData.tip.tipDOMArray[5].value = "";
+    tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
+    inputsDOMArray[1].value = "";
     inputData.tip.tipStateArray.forEach((element, index, array) => array[index] = 0);
     inputData.tip.isValid = 0;
     inputData.tip.value = 0;
@@ -31,7 +32,7 @@ export const tipButtonToggler = (button, i) => {
       button.classList.add(buttonEnabled);
     }
     inputData.tip.tipStateArray[i] = 1;
-    inputData.tip.value = inputData.tip.tipDOMArray[i].value;
+    inputData.tip.value = tipDOMArray[i].value;
     inputData.tip.isValid = 1;
 
   }
@@ -44,7 +45,7 @@ export const tipButtonToggler = (button, i) => {
       button.classList.add(buttonEnabled);
     }
     inputData.tip.tipStateArray[i] = 1;
-    inputData.tip.value = inputData.tip.tipDOMArray[i].value;
+    inputData.tip.value = tipDOMArray[i].value;
     inputData.tip.isValid = 1;
 
   }
@@ -58,29 +59,27 @@ export function enableResetButton() {
 
 }
 
+
 export function resetAll() {
 
-  /* Reset input and result values */
-  inputData.bill.billDOM.value = "";
-  inputData.bill.billDOM.classList.remove(inputWarningOutline);
+  /* Reset input values */
+  inputsDOMArray.forEach(el => el.value = "");
+  inputsDOMArray.forEach(el => el.classList.remove(inputWarningOutline));
+  tipDOMArray.forEach(el => el.classList.remove(buttonEnabled));
+
   inputData.bill.value = 0;
   inputData.bill.isValid = 0;
 
-  inputData.tip.tipDOMArray[5].value = "";
-  inputData.tip.tipDOMArray[5].classList.remove(inputWarningOutline);
-  inputData.tip.tipDOMArray.forEach(el => el.classList.remove(buttonEnabled));
   inputData.tip.tipStateArray.forEach((el, i) => el = 0);
   inputData.tip.value = 0;
   inputData.tip.isValid = 0;
 
-  inputData.people.peopleDOM.value = "";
-  inputData.people.peopleDOM.classList.remove(inputWarningOutline);
   inputData.people.value = 0;
   inputData.people.isValid = 0;
 
-/*
+
   resultTip.innerHTML = "$" + 0;
-  resultTotal.innerHTML = "$" + 0;
+  resultTotal.innerHTML = "$" + 0;/*
   warningInfoBill.innerHTML = "";
   warningInfoTip.innerHTML = "";
   warningInfoPeople.innerHTML = "";
@@ -187,7 +186,32 @@ function keydownValidation (el, i) {
 }
 
 
-function inputValidation (el, i){
+export function inputValidation(input, i){
+
+  switch(i){
+    case 0:
+      inputData.bill.isValid = 1;
+      inputData.bill.value = input.value;
+      break;
+    case 1:
+      inputData.tip.isValid = 1;
+      break;
+    case 2:
+      inputData.people.isValid = 1;
+      inputData.people.value = input.value;
+      break;
+  }
+
+}
+
+
+export function inputValidationOld (el, i){
+
+
+  const warningInfoBill = document.getElementById("warningInfo--bill");
+  const warningInfoTip = document.getElementById("warningInfo--tip");
+  const warningInfoPeople = document.getElementById("warningInfo--people");
+
 
   let currentInputWarning;
   let currentInputField;
@@ -308,58 +332,36 @@ function inputValidation (el, i){
 }
 
 
-function updateResults() {
+export function updateResults() {
 
 
-   /* If any data are incomplete, set results to $0 */
-  if (isInputOk[0] == 0 ||
-      isInputOk[2] == 0 ||
-     (isInputOk[1] == 0 && isTipButtonEnabled == 0)) {
-
-    resetResults();
-
-  } else {
+   /* If all data are complete, calcualate results */
+  if (inputData.areAllValid()){
 
     calculateResults();
+    console.log("1");
+
+  /* If any data are incomplete, set results to $0 */
+  } else {
+
+    resetResults();
+    console.log("2");
 
   }
-
 
 }
 
 
-function calculateTipFactor() {
 
+export function calculateResults() {
 
-  /* Calculate tip factor based on enabled button tip */
-  if (isInputOk[1] == 0){
+  /** Calculate tip and total, with two decimal numbers **/
+  /* e.g. tipFactor = 1.25 means 25% tip */
+  const tipFactor = 1 + (inputData.tip.value) / 100;
+  const resultTipNotRounded = ((inputData.bill.value * tipFactor) - inputData.bill.value) / inputData.people.value;
 
-    buttonTipArray.forEach(function(el){
-
-      if (el.classList.contains(buttonEnabled)) {
-        tipFactor = 1 + (el.value) / 100;
-      }
-
-    });
-
-  }
-
-  /* Calculate tip factor based on custom tip value given by user */
-  else if (isInputOk[1] == 1){
-        tipFactor = 1 + (inputTip.value) / 100;
-  }
-
-  return tipFactor;
-
-}
-
-
-function calculateResults() {
-
-  /* Calculate tip and total, with two decimal numbers */
-  let resultTipNotRounded = ((inputBill.value * calculateTipFactor()) - inputBill.value) / inputPeople.value;
   resultTip.innerHTML = Math.round(resultTipNotRounded * 100) / 100;
-  resultTotal.innerHTML = Math.round(inputBill.value * calculateTipFactor() / inputPeople.value * 100) / 100;
+  resultTotal.innerHTML = Math.round(inputData.bill.value * tipFactor / inputData.people.value * 100) / 100;
 
 
   /* When data are wrongly calculated /*/
@@ -397,9 +399,6 @@ function calculateResults() {
 
   /* Add dollar sign */
   resultTotal.innerHTML = "$" + resultTotal.innerHTML;
-
-
-
 
 
 }

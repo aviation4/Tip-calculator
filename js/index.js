@@ -1,8 +1,8 @@
-import {tipButtonToggler, enableResetButton, resetAll} from "./functions.js";
-import {inputData, resetButton} from "./variables.js";
+import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation} from "./functions.js";
+import {inputData, resetButton, inputsDOMArray, tipDOMArray} from "./variables.js";
 
 
-inputData.tip.tipDOMArray.forEach((button, i) => {
+tipDOMArray.forEach((button, i) => {
 
   /***** Assign Event Listener *****/
   button.addEventListener("click", function() {
@@ -17,8 +17,7 @@ inputData.tip.tipDOMArray.forEach((button, i) => {
 
 
     /* Update results (calculate or reset) */
-    /*updateResults(button);*/
-
+    updateResults();
 
   });
 
@@ -33,39 +32,31 @@ resetButton.addEventListener("click", function() {
 })
 
 
+inputsDOMArray.forEach((input, i) => {
 
-/* Input data */
-const inputBill = document.getElementById("input--bill");
-const inputTip = document.getElementById("input--tip");
-const inputPeople = document.getElementById("input--people");
-const buttonTipArray = document.querySelectorAll(".button--tipButton");
+  /***** Assign Event Listener *****/
+  input.addEventListener("input", function() {
 
-/* Warnings */
-const warningInfoBill = document.getElementById("warningInfo--bill");
-const warningInfoTip = document.getElementById("warningInfo--tip");
-const warningInfoPeople = document.getElementById("warningInfo--people");
+    inputValidation(input, i);
+
+
+    /* Enable reset button */
+    enableResetButton();
+
+
+    /* Update results (calculate or reset) */
+    updateResults();
+
+  })
+
+
+})
+
+
+
 
 
 /* Results */
-
-const resultTip = document.getElementById("results--tip");
-const resultTotal = document.getElementById("results--total");
-let tipFactor = 0;
-
-
-/* isTipButtonEnabled monitors whether any tip button is enabled (true) or none of them (false) */
-let isTipButtonEnabled = 0;
-
-/* hasTouchScreen handles info about using mobile device (true) or not (false) */
-let hasTouchScreen = false;
-
-/**** Declaring arrays ****/
-const inputArray = [...document.querySelectorAll("input")];
-
-/* isInputOk monitors inputs (bill, tip, number of people) whether data are entered AND are correct */
-const isInputOk = new Array (0, 0, 0);
-
-
 const invalidCharsWithDot = new Array("-", "+", "e", ",", ".");
 const invalidCharsWithoutDot = new Array ("-", "+", "e", ",");
 
@@ -83,37 +74,34 @@ const decimalNumbersText = "Too many decimal numbers";
 
 
 
-
-
-
-/***** For every input *****/
-inputArray.forEach(function(el, i) {
-
-
-
-  /**** Validate when losing focus ****/
-    el.addEventListener("blur", function() {
-    inputValidation(el, i);
-  });
-
-
-
-  /**** Calculate when input modifies ****/
-  el.addEventListener("input", function(event) {
-
-
-    /* Validate inserted data */
-    inputValidation(el, i);
-
-
-    /* Enable reset buton */
-    enableResetButton();
-
-
-    /* Update results (calculate or reset) */
-    updateResults();
-
-
-  });
-
-});
+//
+//
+// inputArray.forEach(function(el, i) {
+//
+//
+//
+//
+//     el.addEventListener("blur", function() {
+//     inputValidation(el, i);
+//   });
+//
+//
+//
+//   el.addEventListener("input", function(event) {
+//
+//
+//     /* Validate inserted data */
+//     inputValidation(el, i);
+//
+//
+//     /* Enable reset buton */
+//     enableResetButton();
+//
+//
+//     /* Update results (calculate or reset) */
+//     updateResults();
+//
+//
+//   });
+//
+// });
