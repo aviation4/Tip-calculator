@@ -60,8 +60,8 @@ export const tipButtonToggler = (button, i) => {
 
 export function enableResetButton() {
 
-  resetButton.classList.add(buttonEnabled);
-
+    resetButton.classList.add(buttonEnabled);
+  
 }
 
 
@@ -132,7 +132,6 @@ function showError(input, i){
     warningInfoDOMArray[i].textContent = "Invalid pattern";
   }
 }
-
 
 
 export function updateResults() {
@@ -209,22 +208,9 @@ export function calculateResults() {
 
 
 
-
-
 function resetResults() {
 
   resultTip.innerHTML = "$" + "0";
   resultTotal.innerHTML = "$" + "0";
 
-}
-
-
-
-
-
-function isArrayEqual(a, b) {
-
-  /* Compare if arrays "a" and "b" have the same elements */
-  return a.length === b.length &&
-         a.every((val, index) => val === b[index]);
 }

@@ -12,13 +12,15 @@ tipDOMArray.forEach((button, i) => {
 
 
     /* Enable reset button */
-    enableResetButton();
-
+    if (inputData.tipStateArray.some(el => el == 1)){
+      enableResetButton();
+    }
+    
 
     /* Update results (calculate or reset) */
     updateResults();
 
-    console.log(inputData.tipStateArray);
+
 
   });
 

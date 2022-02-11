@@ -59,7 +59,7 @@ img {
     padding-bottom: 72px;
   }
 }
-@media (min-width: 2200px) {
+@media (min-width: 2000px) {
   h1 {
     padding-top: 120px;
     padding-bottom: 120px;
