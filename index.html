@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" type="text/css" href="main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <title>Frontend Mentor | Tip calculator app</title>
+  <title>Tip calculator app</title>
 
 </head>
 <body>
@@ -20,7 +20,7 @@
     <div class="card">
       <section class="card__userData">
         <article class="userData__article article__bill">
-          <h2 class="header">Bill</h2>
+          <label class="header" for="input--bill">Bill</label>
           <div class="userData__inputArea">
             <img class="inputArea__icon" src="images/icon-dollar.svg" alt="">
             <input id="input--bill"
@@ -36,7 +36,7 @@
         </article>
 
         <article class="userData__article article__selectTip">
-          <h2 class="header">Select Tip %</h2>
+          <label class="header" for="input--tip">Select Tip %</label>
           <div class="userData__tipButtons">
             <button class="button--tipButton" value="5">5%</button>
             <button class="button--tipButton" value="10">10%</button>
@@ -54,7 +54,7 @@
         </article>
 
         <article class="userData__article article__numberOfPeople">
-          <h2 class="header">Number of People</h2>
+          <h2 class="header" for="input--people">Number of People</h2>
           <div class="userData__inputArea">
             <img class="inputArea__icon" src="images/icon-person.svg" alt="">
             <input id="input--people"

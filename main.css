@@ -227,8 +227,11 @@ input::placeholder {
   opacity: 0.8;
   /* Font */
   font-size: 0.6944444444em;
+  font-weight: bold;
   /* Spacing */
   margin-bottom: 8px;
+  /* Position */
+  display: inline-block;
 }
 
 .header--warningInfo {
