@@ -15,7 +15,7 @@ tipDOMArray.forEach((button, i) => {
     if (inputData.tipStateArray.some(el => el == 1)){
       enableResetButton();
     }
-    
+
 
     /* Update results (calculate or reset) */
     updateResults();
@@ -61,57 +61,3 @@ inputsDOMArray.forEach((input, i) => {
 
 
 })
-
-
-
-
-
-/* Results */
-const invalidCharsWithDot = new Array("-", "+", "e", ",", ".");
-const invalidCharsWithoutDot = new Array ("-", "+", "e", ",");
-
-
-
-/**** Warning texts ****/
-const periodText = "Use period (.) operator";
-const mustBeNumberText = "Must be a number";
-const mustBeIntegerText = "Must be a whole number";
-const mustBePositiveText = "Must be greater than zero";
-const cantBeHigherText = "Don't you have enough?";
-const decimalNumbersText = "Too many decimal numbers";
-
-
-
-
-
-//
-//
-// inputArray.forEach(function(el, i) {
-//
-//
-//
-//
-//     el.addEventListener("blur", function() {
-//     inputValidation(el, i);
-//   });
-//
-//
-//
-//   el.addEventListener("input", function(event) {
-//
-//
-//     /* Validate inserted data */
-//     inputValidation(el, i);
-//
-//
-//     /* Enable reset buton */
-//     enableResetButton();
-//
-//
-//     /* Update results (calculate or reset) */
-//     updateResults();
-//
-//
-//   });
-//
-// });

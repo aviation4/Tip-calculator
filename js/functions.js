@@ -1,5 +1,4 @@
-import {inputData, inputWarningOutline} from "./variables.js";
-import {buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray} from "./variables.js";
+import {inputData, inputWarningOutline, buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray} from "./variables.js";
 
 
 export const tipButtonToggler = (button, i) => {
@@ -58,25 +57,24 @@ export const tipButtonToggler = (button, i) => {
 }
 
 
-export function enableResetButton() {
+export const enableResetButton = () {
 
     resetButton.classList.add(buttonEnabled);
-  
+
 }
 
 
-export function determineCustomTipValue() {
+export const determineCustomTipValue = () {
   inputData.tipValue = inputsDOMArray[1].value;
 }
 
 
-export function resetAll() {
+export const resetAll = () {
 
-  /* Reset input values */
+
   inputsDOMArray.forEach(el => el.value = "");
   inputsDOMArray.forEach(el => el.classList.remove(inputWarningOutline));
   tipDOMArray.forEach(el => el.classList.remove(buttonEnabled));
-
 
 
   inputData.tipStateArray.forEach(el => el = 0);
@@ -84,22 +82,17 @@ export function resetAll() {
   inputData.tipValue = 0;
 
 
-
-
-
   resultTip.innerHTML = "$" + 0;
   resultTotal.innerHTML = "$" + 0;
   warningInfoDOMArray.forEach(el => el.textContent = "");
 
 
-
-  /* Disable reset button */
   resetButton.classList.remove(buttonEnabled);
 
 }
 
 
-export function inputValidation(input, i){
+export const inputValidation = (input, i) {
 
 
   if (input.validity.valid){
@@ -116,7 +109,8 @@ export function inputValidation(input, i){
 }
 
 
-function showError(input, i){
+const showError = (input, i) {
+
   inputData.inputValidityArray[i] = 0;
   if (input.validity.rangeOverflow){
     warningInfoDOMArray[i].textContent = "Big numbo bro";
@@ -131,10 +125,11 @@ function showError(input, i){
   } else if (input.validity.patternMismatch){
     warningInfoDOMArray[i].textContent = "Invalid pattern";
   }
+
 }
 
 
-export function updateResults() {
+export const updateResults = () {
 
      /* If all data are complete, calcualate results */
   if (inputData.areAllValid()){
@@ -152,7 +147,7 @@ export function updateResults() {
 
 
 
-export function calculateResults() {
+export const calculateResults = () {
 
   /** Calculate tip and total, with two decimal numbers **/
   /* e.g. tipFactor = 1.25 means 25% tip */
@@ -197,9 +192,6 @@ export function calculateResults() {
   }
 
 
-
-
-
   /* Add dollar sign */
   resultTotal.innerHTML = "$" + resultTotal.innerHTML;
 
@@ -208,7 +200,7 @@ export function calculateResults() {
 
 
 
-function resetResults() {
+const resetResults = () {
 
   resultTip.innerHTML = "$" + "0";
   resultTotal.innerHTML = "$" + "0";
