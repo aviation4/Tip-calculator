@@ -16,11 +16,12 @@ export const tipButtonToggler = (button, i) => {
 
   }
 
-  /* If any other button is enabled AND it isn't pressed custom input with already provded value */
+  /* If any other button is enabled AND it isn't pressed custom input with already provided value */
   else if (inputData.tipStateArray.some(value => value == 1) && !(inputData.tipStateArray[5] == 1 && i == 5)){
 
     /* disable it */
     tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
+    /* Clean custom input, but only when button is pressed */
     if (i != 5){
       inputsDOMArray[1].value = "";
     }
@@ -173,10 +174,13 @@ export function calculateResults() {
     resultTotal.innerHTML = "0";
    }
 
+   console.log(resultTip.innerHTML);
+   console.log(resultTotal.innerHTML);
+
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
   if (resultTip.innerHTML > 1000000){
-    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 )  + "M";
+    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100 ) / 100  + "M";
   } else if (resultTip.innerHTML > 10000){
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 100) / 100 + "k";
   }
@@ -188,12 +192,13 @@ export function calculateResults() {
 
   /* When total result is too long - compress to thousands (k) millions (M) */
   if (resultTotal.innerHTML > 1000000){
-    console.log("yes" + resultTotal.innerHTML);
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
   } else if (resultTotal.innerHTML > 10000){
-    console.log("yes" + resultTotal.innerHTML);
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000 * 100) / 100 + "k";
   }
+
+
+
 
 
   /* Add dollar sign */
