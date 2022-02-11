@@ -57,19 +57,19 @@ export const tipButtonToggler = (button, i) => {
 }
 
 
-export const enableResetButton = () {
+export const enableResetButton = () => {
 
     resetButton.classList.add(buttonEnabled);
 
 }
 
 
-export const determineCustomTipValue = () {
+export const determineCustomTipValue = () => {
   inputData.tipValue = inputsDOMArray[1].value;
 }
 
 
-export const resetAll = () {
+export const resetAll = () => {
 
 
   inputsDOMArray.forEach(el => el.value = "");
@@ -92,7 +92,7 @@ export const resetAll = () {
 }
 
 
-export const inputValidation = (input, i) {
+export const inputValidation = (input, i) => {
 
 
   if (input.validity.valid){
@@ -109,27 +109,23 @@ export const inputValidation = (input, i) {
 }
 
 
-const showError = (input, i) {
+const showError = (input, i) => {
 
   inputData.inputValidityArray[i] = 0;
   if (input.validity.rangeOverflow){
-    warningInfoDOMArray[i].textContent = "Big numbo bro";
+    warningInfoDOMArray[i].textContent = "Too big numbo bro";
   } else if (input.validity.rangeUnderflow){
     warningInfoDOMArray[i].textContent = "No negative numbo bro";
   } else if (input.validity.badInput){
-    warningInfoDOMArray[i].textContent = "Only numbos bro";
-  } else if (input.validity.tooLong){
-    warningInfoDOMArray[i].textContent = "Too long bro";
+    warningInfoDOMArray[i].textContent = "Please only numbos bro";
   } else if (input.validity.stepMismatch){
     warningInfoDOMArray[i].textContent = "Please type a whole number";
-  } else if (input.validity.patternMismatch){
-    warningInfoDOMArray[i].textContent = "Invalid pattern";
   }
 
 }
 
 
-export const updateResults = () {
+export const updateResults = () => {
 
      /* If all data are complete, calcualate results */
   if (inputData.areAllValid()){
@@ -147,7 +143,7 @@ export const updateResults = () {
 
 
 
-export const calculateResults = () {
+export const calculateResults = () => {
 
   /** Calculate tip and total, with two decimal numbers **/
   /* e.g. tipFactor = 1.25 means 25% tip */
@@ -200,7 +196,7 @@ export const calculateResults = () {
 
 
 
-const resetResults = () {
+const resetResults = () => {
 
   resultTip.innerHTML = "$" + "0";
   resultTotal.innerHTML = "$" + "0";
