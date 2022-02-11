@@ -19,6 +19,11 @@ input:focus {
 }
 
 
+input:invalid {
+  outline: 3px solid $orange-warning;
+}
+
+
 input::placeholder {
   opacity: 0.2;
 }
@@ -64,13 +69,4 @@ input::placeholder {
   left: $space-sm;
   transform: translateY(-50%);
 
-}
-
-
-.input--warning {
-  outline: 3px solid $orange-warning;
-}
-
-input:invalid {
-  outline: 3px solid red;
 }

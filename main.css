@@ -182,6 +182,10 @@ input:focus {
   transition: all 200ms;
 }
 
+input:invalid {
+  outline: 3px solid #e59700;
+}
+
 input::placeholder {
   opacity: 0.2;
 }
@@ -217,14 +221,6 @@ input::placeholder {
   transform: translateY(-50%);
 }
 
-.input--warning {
-  outline: 3px solid #e59700;
-}
-
-input:invalid {
-  outline: 3px solid red;
-}
-
 .header {
   /* Color */
   color: #00494d;
@@ -253,7 +249,7 @@ input:invalid {
   position: absolute;
   width: 100%;
   /* Animation */
-  transition: all 200ms;
+  transition: all 2000ms;
 }
 
 .header--results {
