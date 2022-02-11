@@ -16,8 +16,8 @@ export const tipButtonToggler = (button, i) => {
 
   }
 
-  /* If any other button is enabled */
-  else if (inputData.tipStateArray.some(value => value == 1)){
+  /* If any other button is enabled AND it isn't pressed custom input with already provded value */
+  else if (inputData.tipStateArray.some(value => value == 1) && !(inputData.tipStateArray[5] == 1 && i == 5)){
 
     /* disable it */
     tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
@@ -105,7 +105,9 @@ export function inputValidation(input, i){
     warningInfoDOMArray[i].textContent = "";
     input.classList.remove(inputWarningOutline);
     inputData.inputValidityArray[i] = 1;
-    inputData.tipStateArray[5] = 1;
+    if (i == 1){
+      inputData.tipStateArray[5] = 1;
+    }
   } else {
     showError(input, i);
   }
@@ -174,10 +176,10 @@ export function calculateResults() {
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
   if (resultTip.innerHTML > 1000000){
-    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100) / 100 + "M";
-  }/* else if (resultTip.innerHTML > 1000000){
+    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 )  + "M";
+  } else if (resultTip.innerHTML > 10000){
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 100) / 100 + "k";
-  }*/
+  }
 
 
   /* Add dollar sign */
@@ -188,10 +190,10 @@ export function calculateResults() {
   if (resultTotal.innerHTML > 1000000){
     console.log("yes" + resultTotal.innerHTML);
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
-  }/* else if (resultTotal.innerHTML > 1000000){
+  } else if (resultTotal.innerHTML > 10000){
     console.log("yes" + resultTotal.innerHTML);
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000 * 100) / 100 + "k";
-  }*/
+  }
 
 
   /* Add dollar sign */

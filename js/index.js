@@ -7,7 +7,6 @@ tipDOMArray.forEach((button, i) => {
   /***** Assign Event Listener *****/
   button.addEventListener("click", function() {
 
-
     /* Enable or disable tip buttons */
     tipButtonToggler(button, i);
 
@@ -18,6 +17,8 @@ tipDOMArray.forEach((button, i) => {
 
     /* Update results (calculate or reset) */
     updateResults();
+
+    console.log(inputData.tipStateArray);
 
   });
 
@@ -37,7 +38,6 @@ inputsDOMArray.forEach((input, i) => {
   /***** Assign Event Listener *****/
   input.addEventListener("input", function() {
 
-
     if (i == 1){
       determineCustomTipValue();
     }
@@ -52,6 +52,8 @@ inputsDOMArray.forEach((input, i) => {
 
     /* Update results (calculate or reset) */
     updateResults();
+
+    console.log(inputData.tipStateArray);
 
   })
 
