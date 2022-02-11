@@ -134,9 +134,7 @@ function showError(input, i){
 
 export function updateResults() {
 
-  console.log(inputData.inputValidityArray);
-
-   /* If all data are complete, calcualate results */
+     /* If all data are complete, calcualate results */
   if (inputData.areAllValid()){
 
     calculateResults();
@@ -175,7 +173,7 @@ export function calculateResults() {
 
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
-  if (resultTip.innerHTML > 10000000){
+  if (resultTip.innerHTML > 1000000){
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100) / 100 + "M";
   }/* else if (resultTip.innerHTML > 1000000){
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 100) / 100 + "k";
@@ -187,7 +185,7 @@ export function calculateResults() {
 
 
   /* When total result is too long - compress to thousands (k) millions (M) */
-  if (resultTotal.innerHTML > 10000000){
+  if (resultTotal.innerHTML > 1000000){
     console.log("yes" + resultTotal.innerHTML);
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
   }/* else if (resultTotal.innerHTML > 1000000){
