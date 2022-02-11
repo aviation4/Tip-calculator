@@ -371,9 +371,9 @@ input:invalid {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 24px;
+  gap: 12px;
   /* Spacing */
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 }
 
 .results__value {
@@ -382,7 +382,8 @@ input:invalid {
   /* Position */
   display: block;
   /* Font */
-  font-size: 1.728em;
+  font-size: 1.44em;
+  line-height: 1.2;
   /* Spacing */
   margin-top: 0;
 }

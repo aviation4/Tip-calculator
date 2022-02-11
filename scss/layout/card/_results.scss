@@ -6,10 +6,10 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: $space-md;
+  gap: $space-sm;
 
   /* Spacing */
-  margin-bottom: $space-md;
+  margin-bottom: $space-md-plus;
 
 }
 
@@ -23,7 +23,8 @@
   display: block;
 
   /* Font */
-  font-size: $text-xxl;
+  font-size: $text-xl;
+  line-height: 1.2;
 
   /* Spacing */
   margin-top: 0;
