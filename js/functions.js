@@ -105,6 +105,7 @@ export function inputValidation(input, i){
     warningInfoDOMArray[i].textContent = "";
     input.classList.remove(inputWarningOutline);
     inputData.inputValidityArray[i] = 1;
+    inputData.tipStateArray[5] = 1;
   } else {
     showError(input, i);
   }
