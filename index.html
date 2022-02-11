@@ -27,6 +27,7 @@
                    class="inputArea__input"
                    type="number"
                    placeholder="18.50"
+                   step="0.01"
                    min="0"
                    max="999999"
                    autofocus/>
@@ -44,11 +45,9 @@
             <button class="button--tipButton" value="50">50%</button>
             <input id="input--tip"
                    class="button--tipButton button--customTipButton"
-                   type="tel"
+                   type="number"
                    min="1"
                    max="1000"
-                   step="1"
-                   pattern="[3-7]{2,}"
                    placeholder="Custom"/>
           </div>
           <h2 id="warningInfo--tip" class="header--warningInfo"></h2>
@@ -61,6 +60,8 @@
             <input id="input--people"
                    class="inputArea__input"
                    type="number"
+                   min="1"
+                   max="9999"
                    placeholder="4"/>
           </div>
           <h2 id="warningInfo--people" class="header--warningInfo"></h2>

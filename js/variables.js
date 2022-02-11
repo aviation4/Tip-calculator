@@ -1,29 +1,22 @@
 export const inputData = {
 
-  bill: {
-    isValid: 0,
-    value: 0
-  },
+
 
 
   tip: {
-    isValid: 0,
-    value: 0,
     /* tipStateArray can take two values: "0" - button/input is disabled, "1" - button/input is enabled */
     tipStateArray: [0, 0, 0, 0, 0, 0]
   },
 
+  tipValue: 0,
 
-  people: {
-    isValid: 0,
-    value: 0
-  },
+  inputValidityArray: [0, 0, 0],
 
 
 
   areAllValid(){
 
-    return ((this.bill.isValid && this.tip.isValid && this.people.isValid) ? true : false)
+    return ((this.inputValidityArray.every((el) => el == 1)) ? true : false)
 
   }
 

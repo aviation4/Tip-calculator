@@ -1,4 +1,4 @@
-import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation} from "./functions.js";
+import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineTipValue} from "./functions.js";
 import {inputData, resetButton, inputsDOMArray, tipDOMArray} from "./variables.js";
 
 
@@ -37,6 +37,12 @@ inputsDOMArray.forEach((input, i) => {
   /***** Assign Event Listener *****/
   input.addEventListener("input", function() {
 
+
+    if (i == 1){
+      determineTipValue();
+    }
+
+    /* Check if provided data are correct */
     inputValidation(input, i);
 
 

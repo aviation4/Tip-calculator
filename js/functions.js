@@ -11,8 +11,8 @@ export const tipButtonToggler = (button, i) => {
     /* disable it */
     button.classList.remove(buttonEnabled);
     inputData.tip.tipStateArray[i] = 0;
-    inputData.tip.isValid = 0;
-    inputData.tip.value = 0;
+    inputData.inputValidityArray[1] = 0;
+    inputData.tipValue = 0;
 
   }
 
@@ -22,9 +22,9 @@ export const tipButtonToggler = (button, i) => {
     /* disable it */
     tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
     inputsDOMArray[1].value = "";
+    inputData.tipValue = 0;
+    inputData.inputValidityArray[1] = 0;
     inputData.tip.tipStateArray.forEach((element, index, array) => array[index] = 0);
-    inputData.tip.isValid = 0;
-    inputData.tip.value = 0;
 
 
     /* and enable pressed button */
@@ -32,8 +32,8 @@ export const tipButtonToggler = (button, i) => {
       button.classList.add(buttonEnabled);
     }
     inputData.tip.tipStateArray[i] = 1;
-    inputData.tip.value = tipDOMArray[i].value;
-    inputData.tip.isValid = 1;
+    inputData.inputValidityArray[1] = 1;
+    inputData.tipValue = tipDOMArray[i].value;
 
   }
 
@@ -44,9 +44,8 @@ export const tipButtonToggler = (button, i) => {
     if (i != 5){
       button.classList.add(buttonEnabled);
     }
-    inputData.tip.tipStateArray[i] = 1;
-    inputData.tip.value = tipDOMArray[i].value;
-    inputData.tip.isValid = 1;
+    inputData.tip.tipStateArray[i] = 1;inputData.inputValidityArray[1] = 1;
+    inputData.tipValue = tipDOMArray[i].value;
 
   }
 
@@ -60,6 +59,11 @@ export function enableResetButton() {
 }
 
 
+export function determineTipValue() {
+  inputData.tipValue = inputsDOMArray[1].value;
+}
+
+
 export function resetAll() {
 
   /* Reset input values */
@@ -67,15 +71,14 @@ export function resetAll() {
   inputsDOMArray.forEach(el => el.classList.remove(inputWarningOutline));
   tipDOMArray.forEach(el => el.classList.remove(buttonEnabled));
 
-  inputData.bill.value = 0;
-  inputData.bill.isValid = 0;
 
-  inputData.tip.tipStateArray.forEach((el, i) => el = 0);
-  inputData.tip.value = 0;
-  inputData.tip.isValid = 0;
 
-  inputData.people.value = 0;
-  inputData.people.isValid = 0;
+  inputData.tip.tipStateArray.forEach(el => el = 0);
+  inputData.inputValidityArray.forEach(el => el = 0);
+  inputData.tipValue = 0;
+
+
+
 
 
   resultTip.innerHTML = "$" + 0;
@@ -90,139 +93,24 @@ export function resetAll() {
 }
 
 
-function keydownValidation (el, i) {
-
-  let regex = /[a-z]/i;
-  let currentInputWarning;
-  let currentInputField;
-  let invalidChars = [];
-
-
-  /* Assign data to input type currently active */
-  switch (i) {
-    case 0:
-      currentInputWarning = warningInfoBill;
-      currentInputField = inputBill;
-      invalidChars = invalidCharsWithoutDot.slice();
-      break;
-
-    case 1:
-      currentInputWarning = warningInfoTip;
-      currentInputField = inputTip;
-      invalidChars = invalidCharsWithDot.slice();
-      /* If any tip was already enabled, diasble all of them */
-      if (isTipButtonEnabled == 1){
-        buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
-        isTipButtonEnabled = 0;
-      }
-      break;
-
-    case 2:
-      currentInputWarning = warningInfoPeople;
-      currentInputField = inputPeople;
-      invalidChars = invalidCharsWithDot.slice();
-      break;
-  }
-
-
-  /* Enable warning text and outline by default, will be disabld when everything is ok */
-  currentInputWarning.style.opacity = "1";
-  currentInputField.classList.add(inputWarningOutline);
-
-
-  /* Display info about using dot (period) instead of comma for bill input only */
-  if (event.key == "," && i == 0) {
-    currentInputWarning.innerHTML = periodText;
-
-  /* Display info about not using dot (period) or comma for tip and people input only */
-  } else if ((event.key == "," || event.key == ".") && (i == 1 || i == 2)) {
-    currentInputWarning.innerHTML = mustBeIntegerText;
-
-  /* Display info about using hyphen */
-  } else if (event.key == "-") {
-    currentInputWarning.innerHTML = mustBePositiveText;
-
-  /* Display info about using numbers only (considering Backspace, Delete, Arrows) */
-  } else if (regex.test(event.key) &&
-    event.key !== "Backspace" &&
-    event.key !== "Delete" &&
-    event.key !== "ArrowLeft" &&
-    event.key !== "ArrowRight" ||
-    event.key == " ") {
-    currentInputWarning.innerHTML = mustBeNumberText;
-
-  /* If everything is ok, disable warning text and outline */
-  } else {
-    currentInputWarning.style.opacity = "0";
-    currentInputWarning.innerHTML = "";
-    currentInputField.classList.remove(inputWarningOutline);
-  }
-
-
-  /* If certain key was pressed (from invalidChars), ignore that letter */
-  if (invalidChars.includes(event.key)){
-    event.preventDefault();
-    isInputOk[i] = 0;
-  } else {
-    isInputOk[i] = 1;
-  }
-
-
-  /* Display text about high numbers */
-  if ((inputArray[i].value > 99999 && i == 0) ||
-      (inputArray[i].value > 999 && i == 1) ||
-      (inputArray[i].value > 99 && i == 2)) {
-        currentInputWarning.style.opacity = "1";
-        currentInputWarning.innerHTML = cantBeHigherText;
-        /* When maximum numbers reached, allow only for deleting data */
-        if (event.key !== "Backspace" &&
-            event.key !== "Delete" &&
-            event.key !== "ArrowLeft" &&
-            event.key !== "ArrowRight"){
-              event.preventDefault();
-        }
-  }
-}
 
 
 export function inputValidation(input, i){
 
-  let currentInputWarning;
-  let currentInputField;
-
-/*
-  switch(i){
-    case 0:
-      currentInputWarning = warningInfoBill;
-      currentInputField = inputBill;
-      inputData.bill.isValid = 1;
-      inputData.bill.value = input.value;
-      break;
-    case 1:
-      currentInputWarning = warningInfoTip;
-      currentInputField = inputTip;
-      inputData.tip.isValid = 1;
-      break;
-    case 2:
-      currentInputWarning = warningInfoPeople;
-      currentInputField = inputPeople;
-      inputData.people.isValid = 1;
-      inputData.people.value = input.value;
-      break;
-  }*/
 
   if (input.validity.valid){
     warningInfoDOMArray[i].textContent = "";
     input.classList.remove(inputWarningOutline);
+    inputData.inputValidityArray[i] = 1;
   } else {
     showError(input, i);
   }
-
 
 }
 
 
 function showError(input, i){
+  inputData.inputValidityArray[i] = 0;
   if (input.validity.rangeOverflow){
     warningInfoDOMArray[i].textContent = "Big numbo bro";
   } else if (input.validity.rangeUnderflow){
@@ -239,133 +127,10 @@ function showError(input, i){
 }
 
 
-export function inputValidationOld (el, i){
-
-
-
-
-
-  let currentInputWarning;
-  let currentInputField;
-  const regex = /\.\d{3}/;
-
-
-  /* Assign data to input type currently active */
-  switch (i) {
-    case 0:
-      currentInputWarning = warningInfoBill;
-      currentInputField = inputBill;
-      break;
-
-    case 1:
-      currentInputWarning = warningInfoTip;
-      currentInputField = inputTip;
-      /* If any tip was already enabled, diasble all of them (for mobiles) */
-      if (isTipButtonEnabled == 1){
-        buttonTipArray.forEach(el => el.classList.remove(buttonEnabled));
-        isTipButtonEnabled = 0;
-      }
-      break;
-
-    case 2:
-      currentInputWarning = warningInfoPeople;
-      currentInputField = inputPeople;
-      break;
-  }
-
-
-  /* Only for mobiles */
-  if (hasTouchScreen) {
-
-
-    /* When hyphen was typed */
-    if (event.data == "-") {
-      currentInputWarning.innerHTML = mustBePositiveText;
-      currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add(inputWarningOutline);
-      isInputOk[i] = 0;
-    }
-
-
-    /* When dot (period) or comma was typed */
-    else if ((event.data == "." ||
-              event.data == "," ||
-              inputArray[i].value.includes(".")) &&
-              (i == 1 || i == 2)) {
-      currentInputWarning.innerHTML = mustBeIntegerText;
-      currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add(inputWarningOutline);
-      isInputOk[i] = 0;
-    }
-
-
-    /* When is empty or contains a hyphen */
-    else if (inputArray[i].value == "" && event.data != ".") {
-      currentInputWarning.innerHTML = mustBeNumberText;
-      currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add(inputWarningOutline);
-      isInputOk[i] = 0;
-    }
-
-
-    /* When seems ok */
-    else {
-    currentInputWarning.style.opacity = "0";
-    currentInputWarning.innerHTML = "";
-    currentInputField.classList.remove(inputWarningOutline);
-    isInputOk[i] = 1;
-    }
-
-
-
-    /* Display text about high numbers */
-    if ((inputArray[i].value > 99999 && i == 0) ||
-        (inputArray[i].value > 999 && i == 1) ||
-        (inputArray[i].value > 99 && i == 2)) {
-          currentInputWarning.style.opacity = "1";
-          currentInputWarning.innerHTML = cantBeHigherText;
-          isInputOk[i] = 0;
-    }
-
-
-
-  } else {
-
-    /* If data is empty or is equal to zero, display text and outline */
-    if (el.value == "" || el.value <= 0) {
-
-      currentInputWarning.innerHTML = mustBePositiveText;
-      currentInputWarning.style.opacity = "1";
-      currentInputField.classList.add(inputWarningOutline);
-      isInputOk[i] = 0;
-
-    } else {
-
-      currentInputWarning.style.opacity = "0";
-      currentInputWarning.innerHTML = "";
-      currentInputField.classList.remove(inputWarningOutline);
-      isInputOk[i] = 1;
-    }
-
-  }
-
-
-  if (regex.test(inputArray[i].value) && i == 0){
-
-    currentInputWarning.innerHTML = decimalNumbersText;
-    currentInputWarning.style.opacity = "1";
-    currentInputField.classList.add(inputWarningOutline);
-    isInputOk[i] = 0;
-
-  }
-
-
-
-}
-
 
 export function updateResults() {
 
+  console.log(inputData.inputValidityArray);
 
    /* If all data are complete, calcualate results */
   if (inputData.areAllValid()){
@@ -377,7 +142,6 @@ export function updateResults() {
   } else {
 
     resetResults();
-    console.log("2");
 
   }
 
@@ -389,11 +153,11 @@ export function calculateResults() {
 
   /** Calculate tip and total, with two decimal numbers **/
   /* e.g. tipFactor = 1.25 means 25% tip */
-  const tipFactor = 1 + (inputData.tip.value) / 100;
-  const resultTipNotRounded = ((inputData.bill.value * tipFactor) - inputData.bill.value) / inputData.people.value;
+  const tipFactor = 1 + (inputData.tipValue) / 100;
+  const resultTipNotRounded = ((inputsDOMArray[0].value * tipFactor) - inputsDOMArray[0].value) / inputsDOMArray[2].value;
 
   resultTip.innerHTML = Math.round(resultTipNotRounded * 100) / 100;
-  resultTotal.innerHTML = Math.round(inputData.bill.value * tipFactor / inputData.people.value * 100) / 100;
+  resultTotal.innerHTML = Math.round(inputsDOMArray[0].value * tipFactor / inputsDOMArray[2].value * 100) / 100;
 
 
   /* When data are wrongly calculated /*/
@@ -408,11 +172,11 @@ export function calculateResults() {
 
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
-  if (resultTip.innerHTML > 1000000){
-    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 10) / 10 + "M";
-  } else if (resultTip.innerHTML > 1000){
-    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 10) / 10 + "k";
-  }
+  if (resultTip.innerHTML > 10000000){
+    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100) / 100 + "M";
+  }/* else if (resultTip.innerHTML > 1000000){
+    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 100) / 100 + "k";
+  }*/
 
 
   /* Add dollar sign */
@@ -420,13 +184,13 @@ export function calculateResults() {
 
 
   /* When total result is too long - compress to thousands (k) millions (M) */
-  if (resultTotal.innerHTML > 1000000){
+  if (resultTotal.innerHTML > 10000000){
     console.log("yes" + resultTotal.innerHTML);
-    resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 10) / 10 + "M";
-  } else if (resultTotal.innerHTML > 1000){
+    resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
+  }/* else if (resultTotal.innerHTML > 1000000){
     console.log("yes" + resultTotal.innerHTML);
-    resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000 * 10) / 10 + "k";
-  }
+    resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000 * 100) / 100 + "k";
+  }*/
 
 
   /* Add dollar sign */
