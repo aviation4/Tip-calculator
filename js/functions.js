@@ -6,46 +6,51 @@ export const tipButtonToggler = (button, i) => {
 
 
   /* If the pressed button is already enabled  (except from "Custom" input) */
-  if (inputData.tip.tipStateArray[i] == 1 && i != 5){
+  if (inputData.tipStateArray[i] == 1 && i != 5){
 
     /* disable it */
     button.classList.remove(buttonEnabled);
-    inputData.tip.tipStateArray[i] = 0;
+    inputData.tipStateArray[i] = 0;
     inputData.inputValidityArray[1] = 0;
     inputData.tipValue = 0;
 
   }
 
   /* If any other button is enabled */
-  else if (inputData.tip.tipStateArray.some(value => value == 1)){
+  else if (inputData.tipStateArray.some(value => value == 1)){
 
     /* disable it */
     tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
-    inputsDOMArray[1].value = "";
+    if (i != 5){
+      inputsDOMArray[1].value = "";
+    }
     inputData.tipValue = 0;
     inputData.inputValidityArray[1] = 0;
-    inputData.tip.tipStateArray.forEach((element, index, array) => array[index] = 0);
+    inputData.tipStateArray.forEach((element, index, array) => array[index] = 0);
 
 
     /* and enable pressed button */
     if (i != 5){
       button.classList.add(buttonEnabled);
+      inputData.tipStateArray[i] = 1;
+      inputData.inputValidityArray[1] = 1;
+      inputData.tipValue = tipDOMArray[i].value;
     }
-    inputData.tip.tipStateArray[i] = 1;
-    inputData.inputValidityArray[1] = 1;
-    inputData.tipValue = tipDOMArray[i].value;
+
 
   }
 
   /* If all buttons are disabled*/
-  else if (inputData.tip.tipStateArray.every(value => value == 0)) {
+  else if (inputData.tipStateArray.every(value => value == 0)) {
 
     /* and enable pressed button */
     if (i != 5){
       button.classList.add(buttonEnabled);
+      inputData.tipStateArray[i] = 1;
+      inputData.inputValidityArray[1] = 1;
+      inputData.tipValue = tipDOMArray[i].value;
     }
-    inputData.tip.tipStateArray[i] = 1;inputData.inputValidityArray[1] = 1;
-    inputData.tipValue = tipDOMArray[i].value;
+
 
   }
 
@@ -59,7 +64,7 @@ export function enableResetButton() {
 }
 
 
-export function determineTipValue() {
+export function determineCustomTipValue() {
   inputData.tipValue = inputsDOMArray[1].value;
 }
 
@@ -73,7 +78,7 @@ export function resetAll() {
 
 
 
-  inputData.tip.tipStateArray.forEach(el => el = 0);
+  inputData.tipStateArray.forEach(el => el = 0);
   inputData.inputValidityArray.forEach(el => el = 0);
   inputData.tipValue = 0;
 
@@ -91,8 +96,6 @@ export function resetAll() {
   resetButton.classList.remove(buttonEnabled);
 
 }
-
-
 
 
 export function inputValidation(input, i){
@@ -136,7 +139,6 @@ export function updateResults() {
   if (inputData.areAllValid()){
 
     calculateResults();
-    console.log("1");
 
   /* If any data are incomplete, set results to $0 */
   } else {

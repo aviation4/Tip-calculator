@@ -1,4 +1,4 @@
-import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineTipValue} from "./functions.js";
+import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineCustomTipValue} from "./functions.js";
 import {inputData, resetButton, inputsDOMArray, tipDOMArray} from "./variables.js";
 
 
@@ -39,7 +39,7 @@ inputsDOMArray.forEach((input, i) => {
 
 
     if (i == 1){
-      determineTipValue();
+      determineCustomTipValue();
     }
 
     /* Check if provided data are correct */
