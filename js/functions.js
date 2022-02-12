@@ -82,8 +82,8 @@ export const resetAll = () => {
   inputData.tipValue = 0;
 
 
-  resultTip.innerHTML = "$" + 0;
-  resultTotal.innerHTML = "$" + 0;
+  resultTip.innerHTML = "€" + 0;
+  resultTotal.innerHTML = "€" + 0;
   warningInfoDOMArray.forEach(el => el.textContent = "");
 
 
@@ -115,7 +115,7 @@ const showError = (input, i) => {
   if (input.validity.rangeOverflow){
     warningInfoDOMArray[i].textContent = "Too big numbo bro";
   } else if (input.validity.rangeUnderflow){
-    warningInfoDOMArray[i].textContent = "No negative numbo bro";
+    warningInfoDOMArray[i].textContent = "No negative numbos bro";
   } else if (input.validity.badInput){
     warningInfoDOMArray[i].textContent = "Please only numbos bro";
   } else if (input.validity.stepMismatch){
@@ -132,7 +132,7 @@ export const updateResults = () => {
 
     calculateResults();
 
-  /* If any data are incomplete, set results to $0 */
+  /* If any data are incomplete, set results to €0 */
   } else {
 
     resetResults();
@@ -176,8 +176,8 @@ export const calculateResults = () => {
   }
 
 
-  /* Add dollar sign */
-  resultTip.innerHTML = "$" + resultTip.innerHTML;
+  /* Add euro sign */
+  resultTip.innerHTML = "€" + resultTip.innerHTML;
 
 
   /* When total result is too long - compress to thousands (k) millions (M) */
@@ -188,8 +188,8 @@ export const calculateResults = () => {
   }
 
 
-  /* Add dollar sign */
-  resultTotal.innerHTML = "$" + resultTotal.innerHTML;
+  /* Add euro sign */
+  resultTotal.innerHTML = "€" + resultTotal.innerHTML;
 
 
 }
@@ -198,7 +198,7 @@ export const calculateResults = () => {
 
 const resetResults = () => {
 
-  resultTip.innerHTML = "$" + "0";
-  resultTotal.innerHTML = "$" + "0";
+  resultTip.innerHTML = "€" + "0";
+  resultTotal.innerHTML = "€" + "0";
 
 }
