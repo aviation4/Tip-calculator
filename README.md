@@ -13,8 +13,8 @@
 ## Summary
 
 This project is a solution to the [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX). The app allows to calculate:
-+ tip amount
-+ total bill value
++ tip amount per person
++ total bill value per person
 
 based on three values:
 
