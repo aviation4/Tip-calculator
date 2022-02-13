@@ -6,7 +6,7 @@
 - [Usage](#usage)
 - [Built with](#built-with)
 - [Live website](#live-website)
-- [Installation] (#installation)
+- [Installation](#installation)
 - [More insights](#more-insights)
 
 
@@ -82,10 +82,10 @@ By pressing **Reset** button, you can restore the app to the initial state.
 
 ## Installation
 
-  1. Clone the repository
+  1. Clone the repository:
   `git clone https://github.com/aviation4/Tip-calculator.git`
 
-  2. Instal npm packages
+  2. Install npm packages:
   `npm install`
 
 ## More Insights
