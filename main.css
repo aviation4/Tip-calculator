@@ -223,6 +223,7 @@ input::placeholder {
   transform: translateY(-50%);
   /* Color */
   color: #7f9c9f;
+  opacity: 0.7;
 }
 
 .header {
