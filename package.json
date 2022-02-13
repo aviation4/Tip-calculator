@@ -2,12 +2,13 @@
   "name": "tip-calculator",
   "version": "1.0.0",
   "description": "- [Summary](#summary)\r - [Usage](#usage)\r - [Built with](#built-with)\r - [Live website](#live-website)\r - [More insights](#more-insights)",
-  "main": "index.js",
+  "main": "index.html",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel",
+    "build": "parcel build"
   },
   "repository": {
     "type": "git",
