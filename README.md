@@ -61,7 +61,7 @@ If entered data are correct, **Tip amount/person** and **Total/person** values a
 
 ![results calculated](docs/results/results.png)
 
-![results calculated zoomed out](docs/general-view-desktop-calculated.png)
+![results calculated zoomed out](docs/general-view-mobile-calculated.png)
 
 By pressing **Reset** button, you can restore the app to the initial state.
 
@@ -86,29 +86,21 @@ By pressing **Reset** button, you can restore the app to the initial state.
 All inputs are checked for data validity. When any of the entered values is incorrect, warning message is displayed and result values are set to zero.
 
 
-The **Bill** value must be a positive number, not greater than 999 999. Typing the seventh digit is blocked:
+The entered data must be a positive number:
 
-![maximum number verification](/docs/bill/bill-max-number.png)
+![positive verification](/docs/bill/bill-negative.png)
 
-Typing a letter is blocked:
+The entered number must be within the defined range:
+- 9 999 999 for **Bill** value,
+- 9999 for custom **Tip** value,
+- 99 999 for **Number of People** value:
 
-![letter verification](/docs/bill/bill-letter.png)
+![maximum custom tip percentage verification](docs/tip-percentage/tip-percentage-custom-value-max.png)
 
-Typing a comma is blocked:
+Additionally, for **Number of People** input, the given number must be an integer:
 
-![comma verification](/docs/bill/bill-period.png)
+![whole number of people verification](docs/number-of-people/number-of-people-integer.png)
 
-Typing a dash/hyphen is blocked:
-
-![negative number verification](/docs/bill/bill-negative.png)
-
-When entering custom tip value in **Select Tip %** section, the only acceptable characters are numbers. Entering any other character causes the warning message to be displayed. Maximum tip percentage is 9999:
-
-![maximum tip percentage](docs/tip-percentage/tip-percentage-custom-value-max.png)
-
-When entering **Number Of People** value, the only acceptable characters are numbers. Entering any other character causes the warning message to be displayed. Maximum number is 999:
-
-![maximum number of people](docs/number-of-people/number-of-people-max.png)
 
 **As long as warning message is displayed, results are not calculated**
 
