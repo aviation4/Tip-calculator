@@ -1,0 +1,113 @@
+@use '../helpers' as *;
+
+
+.button--tipButton {
+
+  @include button;
+
+  /* Color */
+  background-color: $very-dark-cyan;
+  color: $white;
+
+  /* Flexbox */
+  flex: 1 1 130px;
+
+  /* Font */
+  font-size: $text-md;
+
+  /* Animation */
+  transition: all 200ms;
+
+}
+
+
+
+.button--customTipButton{
+
+  @include button;
+
+  /* Color */
+  background-color: $light-grayish-cyan-2;
+  color: $very-dark-cyan;
+
+  /* Flexbox */
+  flex: 1 1 130px;
+
+  /* Sizing */
+  width: inherit;
+  min-width: 0;
+
+  /* Font */
+  font-size: $text-md;
+
+  /* Animation */
+  transition: all 200ms;
+
+}
+
+
+
+.button--reset {
+
+  @include button;
+
+  /* Color */
+  background-color: $white;
+  color: $very-dark-cyan;
+  opacity: 0.2;
+
+  /* Sizing */
+  width: 100%;
+
+  /* Font */
+  font-size: $text-sm;
+
+  /* Spacing */
+  margin-top: $space-md;
+
+  /* Animation */
+  transition: all 200ms;
+
+}
+
+
+
+.button--enabled {
+
+  /* Color */
+  background-color: $strong-cyan;
+  color: $very-dark-cyan;
+  opacity: 1;
+
+  /* Cursor */
+  cursor: pointer;
+
+}
+
+
+
+@media (hover:hover) {
+
+  .button--reset:hover {
+    background-color: $light-grayish-cyan-1;
+    color: $very-dark-cyan;
+    cursor: not-allowed;
+  }
+
+  .button--tipButton:hover {
+    background-color: $light-grayish-cyan-1;
+    color: $very-dark-cyan;
+  }
+
+  .button--enabled:hover {
+    background-color: $strong-cyan;
+    color: $very-dark-cyan;
+    cursor: pointer;
+  }
+
+  .button--customTipButton:hover {
+    background-color: $light-grayish-cyan-2;
+  }
+
+
+}

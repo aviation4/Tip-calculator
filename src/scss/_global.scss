@@ -1,0 +1,80 @@
+@use 'helpers' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a:hover, button:hover {
+  cursor: pointer;
+}
+
+body {
+
+  /* Color */
+  background-color: $light-grayish-cyan-1;
+
+  /* Font */
+  font-family: $font-primary, $font-secondary;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+
+  /* Sizing */
+  min-height: 100vh;
+  min-width: $min-width;
+
+  /* Position */
+  text-align: left;
+
+}
+
+
+main {
+  padding-bottom: $space-xl;
+}
+
+
+h1 {
+
+  /* Color */
+  color: $very-dark-cyan;
+
+  /* Font */
+  font-size: $text-lg;
+  letter-spacing: $space-sm;
+
+  /* Spacing */
+  padding: $space-lg;
+
+  /* Position */
+  text-align: center;
+
+}
+
+
+img {
+  max-width: 100%;
+}
+
+
+
+@media (min-width: 1400px) {
+
+  h1 {
+    padding-top: $space-xl;
+    padding-bottom:  $space-xl;
+  }
+
+}
+
+@media (min-width: 2000px) {
+
+  h1 {
+    padding-top: $space-xxxl;
+    padding-bottom:  $space-xxxl;
+  }
+
+}

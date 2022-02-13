@@ -1,0 +1,88 @@
+@use '../helpers' as *;
+
+.header {
+
+  /* Color */
+  color: $very-dark-cyan;
+  opacity: 0.8;
+
+  /* Font */
+  font-size: $text-xs;
+  font-weight: bold;
+
+  /* Spacing */
+  margin-bottom: $space-xs;
+
+  /* Position */
+  display: inline-block;
+
+}
+
+.header--warningInfo {
+
+  @include header;
+
+  /* Color */
+  color: $orange-warning;
+  opacity: 1;
+
+  /* Position */
+  display: inline-block;
+  text-align: right;
+
+  /* Sizing */
+  position: absolute;
+  width: 100%;
+
+  /* Animation */
+  transition: all 2000ms;
+
+}
+
+
+.header--results {
+
+  @include header;
+
+  /* Color */
+  color: $white;
+  opacity: 1;
+
+  /* Spacing */
+  margin-bottom: 0;
+
+}
+
+
+.header--subheader {
+
+  /* Color */
+  opacity: 0.5;
+
+  /* Font */
+  font-size: $text-xxs;
+  font-weight: 700;
+
+}
+
+
+.article__bill .header--warningInfo,
+.article__numberOfPeople .header--warningInfo {
+  top: 96px;
+}
+
+
+.article__selectTip .header--warningInfo {
+  margin-top: 7px;
+}
+
+
+
+@media (min-width: 1400px) {
+
+  .article__bill .header--warningInfo,
+  .article__numberOfPeople .header--warningInfo {
+    top: 8px;
+  }
+
+}
