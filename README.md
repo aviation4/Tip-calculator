@@ -103,16 +103,16 @@ Additionally, for **Number of People** input, the given number must be an intege
 ![whole number of people verification](docs/number-of-people/number-of-people-integer.png)
 
 
-**As long as warning message is displayed, results are not calculated**
+**As long as warning message is displayed, results are not calculated.**
 
 
 ### Outputs ###
 
-In order to fit into width of mobile devices, the result is displayed in the short form in some cases. When either **Tip amount** or **Total** value is *greater or equal to 1000 and lower than 1 000 000*, the result is expressed in thousands:
+In order to fit into width of mobile devices, the result is displayed in the short form in some cases. When either **Tip amount** or **Total** value is *greater than 10 000 and lower or equal to 1 000 000*, the result is expressed in thousands:
 
 ![results expressed in thousands](docs/results/results-thousands.png)
 
-When either **Tip amount** or **Total** value is *greater or equal to 1 000 000*, the result is expressed in millions:
+When either **Tip amount** or **Total** value is *greater than 1 000 000*, the result is expressed in millions:
 
 ![results expressed in millions](docs/results/results-millions.png)
 

@@ -127,7 +127,7 @@ const showError = (input, i) => {
 
 export const updateResults = () => {
 
-     /* If all data are complete, calcualate results */
+  /* If all data are complete, calcualate results */
   if (inputData.areAllValid()){
 
     calculateResults();
