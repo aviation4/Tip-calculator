@@ -115,5 +115,3 @@ In order to fit into width of mobile devices, the result is displayed in the sho
 When either **Tip amount** or **Total** value is *greater than 1 000 000*, the result is expressed in millions:
 
 ![results expressed in millions](docs/results/results-millions.png)
-
-Result value will not be greater than $101M, in accordance with input limitations.
