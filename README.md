@@ -6,6 +6,7 @@
 - [Usage](#usage)
 - [Built with](#built-with)
 - [Live website](#live-website)
+- [Installation] (#installation)
 - [More insights](#more-insights)
 
 
@@ -72,12 +73,20 @@ By pressing **Reset** button, you can restore the app to the initial state.
 - Mobile-first workflow
 - BEM naming convention
 - RWD
-- Vanilla JS
+- Vanilla JS with ES modules
+- Parcel
 
 ## Live website
 
 [Here you can test live website](https://aviation4.github.io/Tip-calculator/)
 
+## Installation
+
+  1. Clone the repository
+  'git clone https://github.com/aviation4/Tip-calculator.git'
+
+  2. Instal npm packages
+  'npm install'
 
 ## More Insights
 
