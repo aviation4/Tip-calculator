@@ -93,14 +93,34 @@ The entered data must be a positive number:
 The entered number must be within the defined range:
 - 9 999 999 for **Bill** value,
 - 9999 for custom **Tip** value,
+<<<<<<< HEAD
 - 99 999 for **Number of People** value:
 
 ![maximum custom tip percentage verification](docs/tip-percentage/tip-percentage-custom-value-max.png)
+=======
+- 99 999 for **Number of People** value: 
+
+![maximum tip percentage](docs/tip-percentage/tip-percentage-custom-value-max.png)
+>>>>>>> 3c7f39ad46136922452d8c6c3529875367ab3a48
 
 Additionally, for **Number of People** input, the given number must be an integer:
 
 ![whole number of people verification](docs/number-of-people/number-of-people-integer.png)
 
+<<<<<<< HEAD
+=======
+Typing a dash/hyphen is blocked:
+
+![negative number verification](/docs/bill/bill-negative.png)
+
+When entering custom tip value in **Select Tip %** section, the only acceptable characters are numbers. Entering any other character causes the warning message to be displayed. Maximum tip percentage is 9999:
+
+
+
+When entering **Number Of People** value, the only acceptable characters are numbers. Entering any other character causes the warning message to be displayed. Maximum number is 999:
+
+![maximum number of people](docs/number-of-people/number-of-people-max.png)
+>>>>>>> 3c7f39ad46136922452d8c6c3529875367ab3a48
 
 **As long as warning message is displayed, results are not calculated**
 
