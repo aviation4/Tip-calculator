@@ -167,8 +167,6 @@ export const calculateResults = () => {
     resultTotal.innerHTML = "0";
    }
 
-   console.log(resultTip.innerHTML);
-   console.log(resultTotal.innerHTML);
 
 
   /* When tip result is too long - compress to thousands (k) millions (M) */

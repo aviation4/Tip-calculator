@@ -55,8 +55,7 @@ inputsDOMArray.forEach((input, i) => {
     /* Update results (calculate or reset) */
     updateResults();
 
-    console.log(inputData.tipStateArray);
-
+    
   })
 
 
