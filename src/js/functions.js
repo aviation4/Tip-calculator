@@ -96,7 +96,7 @@ export const inputValidation = (input, i) => {
 
 
   if (input.validity.valid){
-    warningInfoDOMArray[i].textContent = "";
+    warningInfoDOMArray[i].style.display = "none";
     input.classList.remove(inputWarningOutline);
     inputData.inputValidityArray[i] = 1;
     if (i == 1){
@@ -112,9 +112,12 @@ export const inputValidation = (input, i) => {
 const showError = (input, i) => {
 
   inputData.inputValidityArray[i] = 0;
+  warningInfoDOMArray[i].style.display = "inline-block";
+
   if (input.validity.rangeOverflow){
     warningInfoDOMArray[i].textContent = "Too big numbo bro";
   } else if (input.validity.rangeUnderflow){
+    warningInfoDOMArray[i].style.display = "inline-block";
     warningInfoDOMArray[i].textContent = "No negative numbos bro";
   } else if (input.validity.badInput){
     warningInfoDOMArray[i].textContent = "Please only numbos bro";

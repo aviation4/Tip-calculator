@@ -617,7 +617,7 @@ const resetAll = ()=>{
 };
 const inputValidation = (input, i)=>{
     if (input.validity.valid) {
-        _variablesJs.warningInfoDOMArray[i].textContent = "";
+        _variablesJs.warningInfoDOMArray[i].style.display = "none";
         input.classList.remove(_variablesJs.inputWarningOutline);
         _variablesJs.inputData.inputValidityArray[i] = 1;
         if (i == 1) _variablesJs.inputData.tipStateArray[5] = 1;
@@ -625,9 +625,12 @@ const inputValidation = (input, i)=>{
 };
 const showError = (input, i)=>{
     _variablesJs.inputData.inputValidityArray[i] = 0;
+    _variablesJs.warningInfoDOMArray[i].style.display = "inline-block";
     if (input.validity.rangeOverflow) _variablesJs.warningInfoDOMArray[i].textContent = "Too big numbo bro";
-    else if (input.validity.rangeUnderflow) _variablesJs.warningInfoDOMArray[i].textContent = "No negative numbos bro";
-    else if (input.validity.badInput) _variablesJs.warningInfoDOMArray[i].textContent = "Please only numbos bro";
+    else if (input.validity.rangeUnderflow) {
+        _variablesJs.warningInfoDOMArray[i].style.display = "inline-block";
+        _variablesJs.warningInfoDOMArray[i].textContent = "No negative numbos bro";
+    } else if (input.validity.badInput) _variablesJs.warningInfoDOMArray[i].textContent = "Please only numbos bro";
     else if (input.validity.stepMismatch) _variablesJs.warningInfoDOMArray[i].textContent = "Please type a whole number";
 };
 const updateResults = ()=>{

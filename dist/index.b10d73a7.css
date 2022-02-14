@@ -251,8 +251,8 @@ input::placeholder {
   color: #e59700;
   opacity: 1;
   /* Position */
-  display: inline-block;
-  text-align: right;
+  display: none;
+  text-align: left;
   /* Sizing */
   position: absolute;
   width: 100%;
