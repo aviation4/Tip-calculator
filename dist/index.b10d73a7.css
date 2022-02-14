@@ -252,7 +252,7 @@ input::placeholder {
   opacity: 1;
   /* Position */
   display: none;
-  text-align: left;
+  text-align: right;
   /* Sizing */
   position: absolute;
   width: 100%;
