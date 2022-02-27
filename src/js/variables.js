@@ -5,6 +5,10 @@ export const inputData = {
 
   tipValue: 0,
 
+  currencyRate: 1,
+  currencyState: 0,
+  currencySymbols: ["€", "zł ", "$", "£", "CHF ", "¥", "₴ ", "₽ "],
+
   /* inputValidityArray can take two values: "0" - input datum is invalid, "1" - input datum is valid,
   elements successively refer to: [bill, tip, number of people] */
   inputValidityArray: [0, 0, 0],
@@ -32,3 +36,9 @@ export const warningInfoDOMArray = [document.getElementById("warningInfo--bill")
 export const resetButton = document.getElementById("button--reset");
 export const resultTip = document.getElementById("results--tip");
 export const resultTotal = document.getElementById("results--total");
+export const currencyInfo = document.getElementById("currencyInfo");
+export const currencyButton = document.getElementById("button--currency");
+export const currencyModule = document.getElementById("currencyModule");
+const currencyBill = document.getElementById("input--currency-bill");
+export const currencyUser = document.getElementById("input--currency-user");
+export const currencyArray = [currencyBill, currencyUser];

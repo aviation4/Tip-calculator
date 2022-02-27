@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="./scss/main.scss">
+  <link rel="stylesheet" href="./css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@
         </article>
 
         <article class="userData__article article__numberOfPeople">
-          <h2 class="header" for="input--people">Number of People</h2>
+          <label class="header" for="input--people">Number of People</label>
           <div class="userData__inputArea">
             <img class="inputArea__icon" src="images/icon-person.svg" alt="">
             <input id="input--people"
@@ -70,6 +70,8 @@
           </div>
           <h3 id="warningInfo--people" class="header--warningInfo">Warning Info</h3>
         </article>
+
+
 
       </section>
 
@@ -93,17 +95,59 @@
             <strong id="results--total" class="results__value">€0</strong>
           </article>
 
+          <div id="currencyModule" class="results__currency">
+
+            <article class="userData__article userData__article--currency">
+              <label class="header header--currency" for="input--currency-bill">Bill currency</label>
+              <div class="userData__inputArea">
+                <select name="pets" id="input--currency-bill" class="inputArea__input inputArea__currency">
+                  <option value="EUR">Euro</option>
+                  <option value="PLN">Polish Złoty</option>
+                  <option value="USD">US Dollar</option>
+                  <option value="GBP">British Pound</option>
+                  <option value="CHF">Swiss Franc</option>
+                  <option value="JPY">Japanese Yen</option>
+                  <option value="UAH">Ukrainian Hryvnia</option>
+                  <option value="RUB">Russian Ruble</option>
+                </select>
+              </div>
+            </article>
+
+            <article class="userData__article userData__article--currency">
+              <label class="header header--currency" for="input--currency-bill">My currency</label>
+              <div class="userData__inputArea">
+                <select name="pets" id="input--currency-user" class="inputArea__input inputArea__currency">
+                  <option value="EUR">Euro</option>
+                  <option value="PLN">Polish Złoty</option>
+                  <option value="USD">US Dollar</option>
+                  <option value="GBP">British Pound</option>
+                  <option value="CHF">Swiss Franc</option>
+                  <option value="JPY">Japanese Yen</option>
+                  <option value="UAH">Ukrainian Hryvnia</option>
+                  <option value="RUB">Russian Ruble</option>
+                </select>
+              </div>
+            </article>
+
+          </div>
+        <span id="currencyInfo" class="header--results header--subheader header--currencyRate">1 EUR = 1.14 USD (23.02.2022)</span>
         </div>
 
-        <button id="button--reset" class="button--reset">Reset</button>
+        <div class="summary__buttons">
+
+          <button id="button--currency" class="button--reset button--enabled">Change currency</button>
+          <button id="button--reset" class="button--reset button--enabled">Reset</button>
+
+        </div>
+
+
+
 
       </section>
 
     </div>
 
   </main>
-
-
 
 
 </body>

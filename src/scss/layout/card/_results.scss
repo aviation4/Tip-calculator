@@ -29,3 +29,23 @@
   /* Spacing */
   margin-top: 0;
 }
+
+
+.results__currency{
+
+  @include flex;
+  flex-direction: column;
+  gap: $space-md;
+  display: none;
+  justify-content: space-between;
+
+}
+
+
+@media (min-width: 700px) {
+
+  .results__currency {
+    flex-direction: row;
+  }
+
+}

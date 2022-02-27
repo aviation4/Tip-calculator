@@ -5,6 +5,10 @@
   margin-bottom: $space-xl;
 }
 
+.userData__article--currency {
+  margin-bottom: $space-sm;
+}
+
 
 .userData__inputArea {
   position: relative;
@@ -23,6 +27,12 @@
 
   .userData__article:last-child {
     margin-bottom: 0;
+  }
+
+
+  .userData__article {
+    position: relative;
+    margin-bottom: $space-lg;
   }
 
 }

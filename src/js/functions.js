@@ -1,4 +1,4 @@
-import {inputData, inputWarningOutline, buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray} from "./variables.js";
+import {inputData, inputWarningOutline, buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray, currencyInfo, currencyButton, currencyModule, currencyArray, currencyUser} from "./variables.js";
 
 
 export const tipButtonToggler = (button, i) => {
@@ -80,11 +80,17 @@ export const resetAll = () => {
   inputData.tipStateArray.forEach(el => el = 0);
   inputData.inputValidityArray.forEach(el => el = 0);
   inputData.tipValue = 0;
+  inputData.currencyState = 0;
+  inputData.currencyRate = 1;
 
 
   resultTip.innerHTML = "€" + 0;
   resultTotal.innerHTML = "€" + 0;
   warningInfoDOMArray.forEach(el => el.textContent = "");
+
+  currencyButton.style.display = "inline-block";
+  currencyModule.style.display = "none";
+  currencyInfo.style.display = "none";
 
 
   resetButton.classList.remove(buttonEnabled);
@@ -151,10 +157,10 @@ export const calculateResults = () => {
   /** Calculate tip and total, with two decimal numbers **/
   /* e.g. tipFactor = 1.25 means 25% tip */
   const tipFactor = 1 + (inputData.tipValue) / 100;
-  const resultTipNotRounded = ((inputsDOMArray[0].value * tipFactor) - inputsDOMArray[0].value) / inputsDOMArray[2].value;
+  const resultTipNotRounded = (((inputsDOMArray[0].value * tipFactor) - inputsDOMArray[0].value) / inputsDOMArray[2].value) * inputData.currencyRate;
 
-  resultTip.innerHTML = Math.round(resultTipNotRounded * 100) / 100;
-  resultTotal.innerHTML = Math.round(inputsDOMArray[0].value * tipFactor / inputsDOMArray[2].value * 100) / 100;
+  resultTip.innerHTML = (Math.round(resultTipNotRounded * 100) / 100);
+  resultTotal.innerHTML = (Math.round(inputsDOMArray[0].value * tipFactor / inputsDOMArray[2].value * 100) / 100) * inputData.currencyRate;
 
 
   /* When data are wrongly calculated /*/
@@ -177,8 +183,9 @@ export const calculateResults = () => {
   }
 
 
-  /* Add euro sign */
-  resultTip.innerHTML = "€" + resultTip.innerHTML;
+  /* Add currency sign */
+  console.log(inputData.currencyState);
+  resultTip.innerHTML = inputData.currencySymbols[inputData.currencyState] + resultTip.innerHTML;
 
 
   /* When total result is too long - compress to thousands (k) millions (M) */
@@ -189,8 +196,8 @@ export const calculateResults = () => {
   }
 
 
-  /* Add euro sign */
-  resultTotal.innerHTML = "€" + resultTotal.innerHTML;
+  /* Add currency sign */
+  resultTotal.innerHTML =  inputData.currencySymbols[inputData.currencyState] + resultTotal.innerHTML;
 
 
 }
@@ -201,5 +208,94 @@ const resetResults = () => {
 
   resultTip.innerHTML = "€" + "0";
   resultTotal.innerHTML = "€" + "0";
+
+}
+
+
+export const enableCurrencyModule = () => {
+
+  currencyButton.style.display = "none";
+  currencyModule.style.display = "flex";
+
+
+}
+
+
+
+export const retrieveAPI = async (currencyBill, currencyUser) => {
+
+console.log(currencyBill);
+console.log(currencyUser);
+
+  const apiKey = "8a3dafc6208f3fb608102288354dfcc672db22bf";
+  const url = `https://api.getgeoapi.com/v2/currency/convert?api_key=${apiKey}&from=${currencyBill}&to=${currencyUser}&amount=1&format=json`;
+
+  try {
+    const response = await fetch(url);
+    if (response.ok){
+
+      const jsonResponse = await response.json();
+      return jsonResponse;
+    }
+  } catch (error){
+    console.log(error);
+  }
+
+}
+
+
+export const renderCurrency = jsonResponse => {
+
+  const billCurrency = currencyArray[0].value;
+  const myCurrency = currencyArray[1].value;
+  const rate = Object.values(jsonResponse.rates)[0].rate;
+  const date = jsonResponse.updated_date;
+  inputData.currencyRate = rate;
+
+  switch(currencyUser.value){
+    case "EUR":
+      inputData.currencyState = 0;
+      break;
+
+    case "PLN":
+      inputData.currencyState = 1;
+      break;
+
+    case "USD":
+      inputData.currencyState = 2;
+      break;
+
+    case "GBP":
+      inputData.currencyState = 3;
+      break;
+
+    case "CHF":
+      inputData.currencyState = 4;
+      break;
+
+    case "JPY":
+      inputData.currencyState = 5;
+      break;
+
+    case "UAH":
+      inputData.currencyState = 6;
+      break;
+
+    case "RUB":
+      inputData.currencyState = 7;
+      break;
+
+    case "BTC":
+      inputData.currencyState = 8;
+      break;
+
+  }
+
+  console.log(currencyUser);
+  console.log(jsonResponse);
+
+  currencyInfo.style.display = "inline-block";
+  currencyInfo.innerHTML = `1 ${billCurrency} = ${rate} ${myCurrency} (${date})`;
+
 
 }

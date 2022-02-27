@@ -66,6 +66,21 @@
 }
 
 
+.header--currency {
+
+  /* Color */
+  color: $white;
+
+}
+
+
+.header--currencyRate {
+
+  display: none;
+
+}
+
+
 .article__bill .header--warningInfo,
 .article__numberOfPeople .header--warningInfo {
   top: 96px;

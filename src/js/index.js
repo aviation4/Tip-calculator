@@ -1,5 +1,5 @@
-import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineCustomTipValue} from "./functions.js";
-import {inputData, resetButton, inputsDOMArray, tipDOMArray} from "./variables.js";
+import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineCustomTipValue, enableCurrencyModule, retrieveAPI, renderCurrency, calculateResults} from "./functions.js";
+import {inputData, resetButton, inputsDOMArray, tipDOMArray, currencyButton, currencyArray} from "./variables.js";
 
 
 tipDOMArray.forEach((button, i) => {
@@ -25,6 +25,36 @@ tipDOMArray.forEach((button, i) => {
   });
 
 })
+
+
+/*** Enabling currency module ***/
+currencyButton.addEventListener("click", function() {
+
+  enableCurrencyModule();
+
+})
+
+
+
+
+
+currencyArray.forEach((currency, i, array) => {
+
+
+  currency.addEventListener("input", function () {
+
+
+    if (array[0].value != array[1].value){
+      retrieveAPI(array[0].value, array[1].value)
+        .then(jsonResponse => renderCurrency(jsonResponse))
+        .then(calculateResults);
+    } else {
+      calculateResults();
+    }
+  } )
+
+})
+
 
 
 /*** Resetting ***/
@@ -55,7 +85,7 @@ inputsDOMArray.forEach((input, i) => {
     /* Update results (calculate or reset) */
     updateResults();
 
-    
+
   })
 
 
