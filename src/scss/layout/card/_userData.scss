@@ -5,8 +5,20 @@
   margin-bottom: $space-xl;
 }
 
-.userData__article--currency {
-  margin-bottom: $space-sm;
+
+@media (min-width: 1400px) {
+
+  .userData__article:last-child {
+    margin-bottom: 0;
+  }
+
+
+  .userData__article {
+    position: relative;
+    margin-bottom: $space-lg;
+  }
+
+
 }
 
 
@@ -22,17 +34,6 @@
 }
 
 
-
-@media (min-width: 1400px) {
-
-  .userData__article:last-child {
-    margin-bottom: 0;
-  }
-
-
-  .userData__article {
-    position: relative;
-    margin-bottom: $space-lg;
-  }
-
+.userData__article--currency {
+  margin-bottom: 0;
 }

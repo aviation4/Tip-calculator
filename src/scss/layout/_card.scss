@@ -19,6 +19,14 @@
 }
 
 
+.card__userData {
+
+  @include flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
 .card__summary {
 
   /* Color */
