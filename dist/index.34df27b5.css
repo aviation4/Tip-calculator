@@ -418,7 +418,7 @@ input::placeholder {
   /* Position */
   display: block;
   /* Font */
-  font-size: 1.44em;
+  font-size: 1.2em;
   line-height: 1.2;
   /* Spacing */
   margin-top: 0;
@@ -435,9 +435,22 @@ input::placeholder {
   justify-content: space-between;
 }
 
+@media (min-width: 450px) {
+  .results__currency {
+    flex-direction: row;
+  }
+
+  .results__value {
+    font-size: 1.44em;
+  }
+}
 @media (min-width: 700px) {
   .results__currency {
     flex-direction: row;
+  }
+
+  .results__value {
+    font-size: 1.44em;
   }
 }
 

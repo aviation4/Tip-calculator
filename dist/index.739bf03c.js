@@ -658,19 +658,22 @@ const updateResults = ()=>{
     else resetResults();
 };
 const calculateResults = ()=>{
-    /** Calculate tip and total, with two decimal numbers **/ /* e.g. tipFactor = 1.25 means 25% tip */ const tipFactor = 1 + _variablesJs.inputData.tipValue / 100;
-    const resultTipNotRounded = (_variablesJs.inputsDOMArray[0].value * tipFactor - _variablesJs.inputsDOMArray[0].value) / _variablesJs.inputsDOMArray[2].value * _variablesJs.inputData.currencyRate;
+    /* Calculating to user currency */ const billUserCurrency = _variablesJs.inputsDOMArray[0].value * _variablesJs.inputData.currencyRate;
+    /** Calculate tip and total, with two decimal numbers **/ /* e.g. tipFactor = 1.25 means 25% tip */ const tipFactor = 1 + billUserCurrency / 100;
+    const resultTipNotRounded = (billUserCurrency * tipFactor - billUserCurrency) / _variablesJs.inputsDOMArray[2].value;
     _variablesJs.resultTip.innerHTML = Math.round(resultTipNotRounded * 100) / 100;
-    _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.inputsDOMArray[0].value * tipFactor / _variablesJs.inputsDOMArray[2].value * 100) / 100 * _variablesJs.inputData.currencyRate;
+    _variablesJs.resultTotal.innerHTML = Math.round(billUserCurrency * tipFactor / _variablesJs.inputsDOMArray[2].value * 100) / 100;
     /* When data are wrongly calculated /*/ if (_variablesJs.resultTip.innerHTML == "Infinity" || _variablesJs.resultTotal.innerHTML == "Infinity" || _variablesJs.resultTip.innerHTML == "NaN" || _variablesJs.resultTotal.innerHTML == "NaN") {
         _variablesJs.resultTip.innerHTML = "0";
         _variablesJs.resultTotal.innerHTML = "0";
     }
-    /* When tip result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTip.innerHTML > 1000000) _variablesJs.resultTip.innerHTML = Math.round(_variablesJs.resultTip.innerHTML / 1000000 * 100) / 100 + "M";
+    /* When tip result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTip.innerHTML > 100000000) _variablesJs.resultTip.innerHTML = "очень mного";
+    else if (_variablesJs.resultTip.innerHTML > 1000000) _variablesJs.resultTip.innerHTML = Math.round(_variablesJs.resultTip.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTip.innerHTML > 10000) _variablesJs.resultTip.innerHTML = Math.round(_variablesJs.resultTip.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ console.log(_variablesJs.inputData.currencyState);
     _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTip.innerHTML;
-    /* When total result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
+    /* When total result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTotal.innerHTML > 100000000) _variablesJs.resultTotal.innerHTML = "очень mного";
+    else if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTotal.innerHTML > 10000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTotal.innerHTML;
 };

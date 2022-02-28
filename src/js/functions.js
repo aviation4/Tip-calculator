@@ -153,7 +153,7 @@ export const updateResults = () => {
 
 
 export const calculateResults = () => {
-  
+
   /* Calculating to user currency */
   const billUserCurrency = inputsDOMArray[0].value * inputData.currencyRate;
 
@@ -178,7 +178,9 @@ export const calculateResults = () => {
 
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
-  if (resultTip.innerHTML > 1000000){
+  if (resultTip.innerHTML > 100000000){
+    resultTip.innerHTML = "очень mного";
+  } else if (resultTip.innerHTML > 1000000){
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100 ) / 100  + "M";
   } else if (resultTip.innerHTML > 10000){
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 100) / 100 + "k";
@@ -191,7 +193,9 @@ export const calculateResults = () => {
 
 
   /* When total result is too long - compress to thousands (k) millions (M) */
-  if (resultTotal.innerHTML > 1000000){
+  if (resultTotal.innerHTML > 100000000){
+    resultTotal.innerHTML = "очень mного";
+  } else if (resultTotal.innerHTML > 1000000){
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
   } else if (resultTotal.innerHTML > 10000){
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000 * 100) / 100 + "k";

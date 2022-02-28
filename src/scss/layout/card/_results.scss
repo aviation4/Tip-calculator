@@ -23,7 +23,7 @@
   display: block;
 
   /* Font */
-  font-size: $text-xl;
+  font-size: $text-lg;
   line-height: 1.2;
 
   /* Spacing */
@@ -41,11 +41,29 @@
 
 }
 
+@media (min-width: 450px) {
+
+  .results__currency {
+    flex-direction: row;
+  }
+
+
+  .results__value {
+    font-size: $text-xl;
+  }
+
+}
+
 
 @media (min-width: 700px) {
 
   .results__currency {
     flex-direction: row;
+  }
+
+
+  .results__value {
+    font-size: $text-xl;
   }
 
 }
