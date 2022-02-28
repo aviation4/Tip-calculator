@@ -153,14 +153,16 @@ export const updateResults = () => {
 
 
 export const calculateResults = () => {
+  
+  /* Calculating to user currency */
+  const billUserCurrency = inputsDOMArray[0].value * inputData.currencyRate;
 
   /** Calculate tip and total, with two decimal numbers **/
   /* e.g. tipFactor = 1.25 means 25% tip */
-  const tipFactor = 1 + (inputData.tipValue) / 100;
-  const resultTipNotRounded = (((inputsDOMArray[0].value * tipFactor) - inputsDOMArray[0].value) / inputsDOMArray[2].value) * inputData.currencyRate;
-
+  const tipFactor = 1 + (billUserCurrency) / 100;
+  const resultTipNotRounded = ((billUserCurrency * tipFactor) - billUserCurrency) / inputsDOMArray[2].value;
   resultTip.innerHTML = (Math.round(resultTipNotRounded * 100) / 100);
-  resultTotal.innerHTML = (Math.round(inputsDOMArray[0].value * tipFactor / inputsDOMArray[2].value * 100) / 100) * inputData.currencyRate;
+  resultTotal.innerHTML = (Math.round(billUserCurrency * tipFactor / inputsDOMArray[2].value * 100) / 100);
 
 
   /* When data are wrongly calculated /*/
