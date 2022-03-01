@@ -313,7 +313,7 @@ input::placeholder {
   border-radius: 24px 24px 24px 0;
   position: absolute;
   bottom: 90%;
-  min-width: 150px;
+  min-width: 135px;
   padding: 12px;
   z-index: 1;
 }
@@ -324,15 +324,20 @@ input::placeholder {
   text-align: center;
   opacity: 1;
   color: #00494d;
-  border-radius: 24px 24px 0 24px;
+  border-radius: 24px 24px 24px 0;
   position: absolute;
   bottom: 90%;
-  transform: translateX(-115%);
-  min-width: 150px;
+  min-width: 135px;
   padding: 12px;
   z-index: 1;
 }
 
+@media (min-width: 500px) {
+  .header--extraInfoUserCurrency {
+    transform: translateX(-115%);
+    border-radius: 24px 24px 0 24px;
+  }
+}
 .article__bill .header--warningInfo,
 .article__numberOfPeople .header--warningInfo {
   top: 96px;
