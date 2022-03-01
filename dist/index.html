@@ -25,7 +25,7 @@
         <article class="userData__article article__bill">
           <label class="header" for="input--bill">Bill</label>
           <div class="userData__inputArea">
-            <span class="fa-solid fa-file-invoice-dollar fa-sm inputArea__icon"></span>
+            <img class="inputArea__icon" src="/icon-dollar.4244b05b.svg" alt="">
             <input id="input--bill" class="inputArea__input" type="number" placeholder="84.50" step="0.01" min="0" max="9999999" autofocus="">
           </div>
           <h3 id="warningInfo--bill" class="header--warningInfo">Warning Info</h3>
@@ -81,6 +81,10 @@
 
             <article class="userData__article userData__article--currency">
               <label class="header header--currency" for="input--currency-bill">Bill currency</label>
+              <i id="extraInfoBillCurrencyIcon" class="fa-solid fa-circle-question fa-xs"></i>
+              <div id="extraInfoBillCurrencyText" class="header header--extraInfoBillCurrency">
+                Pick the currency in which you have paid your bill
+              </div>
               <div class="userData__inputArea">
                 <select name="pets" id="input--currency-bill" class="inputArea__input inputArea__currency">
                   <option value="EUR">Euro</option>
@@ -97,6 +101,10 @@
 
             <article class="userData__article userData__article--currency">
               <label class="header header--currency" for="input--currency-bill">My currency</label>
+              <i id="extraInfoUserCurrencyIcon" class="fa-solid fa-circle-question fa-xs"></i>
+              <div id="extraInfoUserCurrencyText" class="header header--extraInfoUserCurrency">
+                Pick the currency in which you want to pay your part
+              </div>
               <div class="userData__inputArea">
                 <select name="pets" id="input--currency-user" class="inputArea__input inputArea__currency">
                   <option value="EUR">Euro</option>

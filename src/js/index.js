@@ -1,5 +1,5 @@
-import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineCustomTipValue, enableCurrencyModule, retrieveAPI, renderCurrency, calculateResults} from "./functions.js";
-import {inputData, resetButton, inputsDOMArray, tipDOMArray, currencyButton, currencyArray} from "./variables.js";
+import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineCustomTipValue, enableCurrencyModule, retrieveAPI, renderCurrency, calculateResults, determineCurrencySymbol} from "./functions.js";
+import {inputData, resetButton, inputsDOMArray, tipDOMArray, currencyButton, currencyArray, extraInfoBillCurrencyIcon, extraInfoBillCurrencyText, extraInfoUserCurrencyIcon, extraInfoUserCurrencyText} from "./variables.js";
 
 
 tipDOMArray.forEach((button, i) => {
@@ -32,6 +32,8 @@ currencyButton.addEventListener("click", function() {
 
   enableCurrencyModule();
 
+  enableResetButton();
+
 })
 
 
@@ -44,13 +46,22 @@ currencyArray.forEach((currency, i, array) => {
   currency.addEventListener("input", function () {
 
 
-    if (array[0].value != array[1].value){
-      retrieveAPI(array[0].value, array[1].value)
-        .then(jsonResponse => renderCurrency(jsonResponse))
-        .then(calculateResults);
-    } else {
-      calculateResults();
-    }
+
+      if (array[0].value != array[1].value){
+        retrieveAPI(array[0].value, array[1].value)
+          .then(jsonResponse => renderCurrency(jsonResponse))
+          .then(calculateResults);
+      } else {
+        determineCurrencySymbol();
+        currencyInfo.style.display = "none";
+        inputData.currencyRate = 1;
+        calculateResults();
+      }
+
+
+
+
+
   } )
 
 })
@@ -88,5 +99,33 @@ inputsDOMArray.forEach((input, i) => {
 
   })
 
+
+})
+
+
+extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
+
+  extraInfoBillCurrencyText.style.display = "inline-block";
+
+})
+
+
+extraInfoBillCurrencyIcon.addEventListener("mouseout", function() {
+
+  extraInfoBillCurrencyText.style.display = "none";
+
+})
+
+
+extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
+
+  extraInfoUserCurrencyText.style.display = "inline-block";
+
+})
+
+
+extraInfoUserCurrencyIcon.addEventListener("mouseout", function() {
+
+  extraInfoUserCurrencyText.style.display = "none";
 
 })

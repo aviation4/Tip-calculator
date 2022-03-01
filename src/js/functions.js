@@ -136,6 +136,7 @@ const showError = (input, i) => {
 
 export const updateResults = () => {
 
+
   /* If all data are complete, calcualate results */
   if (inputData.areAllValid()){
 
@@ -159,10 +160,12 @@ export const calculateResults = () => {
 
   /** Calculate tip and total, with two decimal numbers **/
   /* e.g. tipFactor = 1.25 means 25% tip */
-  const tipFactor = 1 + (billUserCurrency) / 100;
+  const tipFactor = 1 + (inputData.tipValue) / 100;
   const resultTipNotRounded = ((billUserCurrency * tipFactor) - billUserCurrency) / inputsDOMArray[2].value;
   resultTip.innerHTML = (Math.round(resultTipNotRounded * 100) / 100);
   resultTotal.innerHTML = (Math.round(billUserCurrency * tipFactor / inputsDOMArray[2].value * 100) / 100);
+  console.log((Math.round(resultTipNotRounded * 100) / 100));
+  console.log(Math.round(billUserCurrency * tipFactor / inputsDOMArray[2].value * 100) / 100);
 
 
   /* When data are wrongly calculated /*/
@@ -179,7 +182,7 @@ export const calculateResults = () => {
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
   if (resultTip.innerHTML > 100000000){
-    resultTip.innerHTML = "очень mного";
+    resultTip.innerHTML = "mного";
   } else if (resultTip.innerHTML > 1000000){
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100 ) / 100  + "M";
   } else if (resultTip.innerHTML > 10000){
@@ -188,13 +191,12 @@ export const calculateResults = () => {
 
 
   /* Add currency sign */
-  console.log(inputData.currencyState);
   resultTip.innerHTML = inputData.currencySymbols[inputData.currencyState] + resultTip.innerHTML;
 
 
   /* When total result is too long - compress to thousands (k) millions (M) */
   if (resultTotal.innerHTML > 100000000){
-    resultTotal.innerHTML = "очень mного";
+    resultTotal.innerHTML = "mного";
   } else if (resultTotal.innerHTML > 1000000){
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
   } else if (resultTotal.innerHTML > 10000){
@@ -255,8 +257,19 @@ export const renderCurrency = jsonResponse => {
   const billCurrency = currencyArray[0].value;
   const myCurrency = currencyArray[1].value;
   const rate = Object.values(jsonResponse.rates)[0].rate;
+  const roundRate = Math.round(rate * 100)/100;
   const date = jsonResponse.updated_date;
   inputData.currencyRate = rate;
+
+  determineCurrencySymbol();
+
+  currencyInfo.style.display = "inline-block";
+  currencyInfo.innerHTML = `1 ${billCurrency} = ${roundRate} ${myCurrency} (${date})`;
+
+}
+
+
+export const determineCurrencySymbol = () => {
 
   switch(currencyUser.value){
     case "EUR":
@@ -296,12 +309,5 @@ export const renderCurrency = jsonResponse => {
       break;
 
   }
-
-  console.log(currencyUser);
-  console.log(jsonResponse);
-
-  currencyInfo.style.display = "inline-block";
-  currencyInfo.innerHTML = `1 ${billCurrency} = ${rate} ${myCurrency} (${date})`;
-
 
 }

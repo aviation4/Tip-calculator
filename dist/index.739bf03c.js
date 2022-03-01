@@ -531,12 +531,18 @@ _variablesJs.tipDOMArray.forEach((button, i)=>{
 });
 /*** Enabling currency module ***/ _variablesJs.currencyButton.addEventListener("click", function() {
     _functionsJs.enableCurrencyModule();
+    _functionsJs.enableResetButton();
 });
 _variablesJs.currencyArray.forEach((currency, i, array)=>{
     currency.addEventListener("input", function() {
         if (array[0].value != array[1].value) _functionsJs.retrieveAPI(array[0].value, array[1].value).then((jsonResponse)=>_functionsJs.renderCurrency(jsonResponse)
         ).then(_functionsJs.calculateResults);
-        else _functionsJs.calculateResults();
+        else {
+            _functionsJs.determineCurrencySymbol();
+            currencyInfo.style.display = "none";
+            _variablesJs.inputData.currencyRate = 1;
+            _functionsJs.calculateResults();
+        }
     });
 });
 /*** Resetting ***/ _variablesJs.resetButton.addEventListener("click", function() {
@@ -549,6 +555,18 @@ _variablesJs.inputsDOMArray.forEach((input, i)=>{
         /* Enable reset button */ _functionsJs.enableResetButton();
         /* Update results (calculate or reset) */ _functionsJs.updateResults();
     });
+});
+_variablesJs.extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
+    _variablesJs.extraInfoBillCurrencyText.style.display = "inline-block";
+});
+_variablesJs.extraInfoBillCurrencyIcon.addEventListener("mouseout", function() {
+    _variablesJs.extraInfoBillCurrencyText.style.display = "none";
+});
+_variablesJs.extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
+    _variablesJs.extraInfoUserCurrencyText.style.display = "inline-block";
+});
+_variablesJs.extraInfoUserCurrencyIcon.addEventListener("mouseout", function() {
+    _variablesJs.extraInfoUserCurrencyText.style.display = "none";
 });
 
 },{"./functions.js":"bfprH","./variables.js":"abb56"}],"bfprH":[function(require,module,exports) {
@@ -573,6 +591,8 @@ parcelHelpers.export(exports, "enableCurrencyModule", ()=>enableCurrencyModule
 parcelHelpers.export(exports, "retrieveAPI", ()=>retrieveAPI
 );
 parcelHelpers.export(exports, "renderCurrency", ()=>renderCurrency
+);
+parcelHelpers.export(exports, "determineCurrencySymbol", ()=>determineCurrencySymbol
 );
 var _variablesJs = require("./variables.js");
 const tipButtonToggler = (button1, i)=>{
@@ -659,20 +679,21 @@ const updateResults = ()=>{
 };
 const calculateResults = ()=>{
     /* Calculating to user currency */ const billUserCurrency = _variablesJs.inputsDOMArray[0].value * _variablesJs.inputData.currencyRate;
-    /** Calculate tip and total, with two decimal numbers **/ /* e.g. tipFactor = 1.25 means 25% tip */ const tipFactor = 1 + billUserCurrency / 100;
+    /** Calculate tip and total, with two decimal numbers **/ /* e.g. tipFactor = 1.25 means 25% tip */ const tipFactor = 1 + _variablesJs.inputData.tipValue / 100;
     const resultTipNotRounded = (billUserCurrency * tipFactor - billUserCurrency) / _variablesJs.inputsDOMArray[2].value;
     _variablesJs.resultTip.innerHTML = Math.round(resultTipNotRounded * 100) / 100;
     _variablesJs.resultTotal.innerHTML = Math.round(billUserCurrency * tipFactor / _variablesJs.inputsDOMArray[2].value * 100) / 100;
+    console.log(Math.round(resultTipNotRounded * 100) / 100);
+    console.log(Math.round(billUserCurrency * tipFactor / _variablesJs.inputsDOMArray[2].value * 100) / 100);
     /* When data are wrongly calculated /*/ if (_variablesJs.resultTip.innerHTML == "Infinity" || _variablesJs.resultTotal.innerHTML == "Infinity" || _variablesJs.resultTip.innerHTML == "NaN" || _variablesJs.resultTotal.innerHTML == "NaN") {
         _variablesJs.resultTip.innerHTML = "0";
         _variablesJs.resultTotal.innerHTML = "0";
     }
-    /* When tip result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTip.innerHTML > 100000000) _variablesJs.resultTip.innerHTML = "очень mного";
+    /* When tip result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTip.innerHTML > 100000000) _variablesJs.resultTip.innerHTML = "mного";
     else if (_variablesJs.resultTip.innerHTML > 1000000) _variablesJs.resultTip.innerHTML = Math.round(_variablesJs.resultTip.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTip.innerHTML > 10000) _variablesJs.resultTip.innerHTML = Math.round(_variablesJs.resultTip.innerHTML / 1000 * 100) / 100 + "k";
-    /* Add currency sign */ console.log(_variablesJs.inputData.currencyState);
-    _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTip.innerHTML;
-    /* When total result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTotal.innerHTML > 100000000) _variablesJs.resultTotal.innerHTML = "очень mного";
+    /* Add currency sign */ _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTip.innerHTML;
+    /* When total result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTotal.innerHTML > 100000000) _variablesJs.resultTotal.innerHTML = "mного";
     else if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTotal.innerHTML > 10000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTotal.innerHTML;
@@ -704,8 +725,14 @@ const renderCurrency = (jsonResponse)=>{
     const billCurrency = _variablesJs.currencyArray[0].value;
     const myCurrency = _variablesJs.currencyArray[1].value;
     const rate = Object.values(jsonResponse.rates)[0].rate;
+    const roundRate = Math.round(rate * 100) / 100;
     const date = jsonResponse.updated_date;
     _variablesJs.inputData.currencyRate = rate;
+    determineCurrencySymbol();
+    _variablesJs.currencyInfo.style.display = "inline-block";
+    _variablesJs.currencyInfo.innerHTML = `1 ${billCurrency} = ${roundRate} ${myCurrency} (${date})`;
+};
+const determineCurrencySymbol = ()=>{
     switch(_variablesJs.currencyUser.value){
         case "EUR":
             _variablesJs.inputData.currencyState = 0;
@@ -735,10 +762,6 @@ const renderCurrency = (jsonResponse)=>{
             _variablesJs.inputData.currencyState = 8;
             break;
     }
-    console.log(_variablesJs.currencyUser);
-    console.log(jsonResponse);
-    _variablesJs.currencyInfo.style.display = "inline-block";
-    _variablesJs.currencyInfo.innerHTML = `1 ${billCurrency} = ${rate} ${myCurrency} (${date})`;
 };
 
 },{"./variables.js":"abb56","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"abb56":[function(require,module,exports) {
@@ -771,6 +794,14 @@ parcelHelpers.export(exports, "currencyModule", ()=>currencyModule
 parcelHelpers.export(exports, "currencyUser", ()=>currencyUser
 );
 parcelHelpers.export(exports, "currencyArray", ()=>currencyArray
+);
+parcelHelpers.export(exports, "extraInfoBillCurrencyIcon", ()=>extraInfoBillCurrencyIcon
+);
+parcelHelpers.export(exports, "extraInfoBillCurrencyText", ()=>extraInfoBillCurrencyText
+);
+parcelHelpers.export(exports, "extraInfoUserCurrencyIcon", ()=>extraInfoUserCurrencyIcon
+);
+parcelHelpers.export(exports, "extraInfoUserCurrencyText", ()=>extraInfoUserCurrencyText
 );
 const inputData = {
     /* tipStateArray can take two values: "0" - button/input is disabled, "1" - button/input is enabled */ tipStateArray: [
@@ -830,6 +861,10 @@ const currencyArray = [
     currencyBill,
     currencyUser
 ];
+const extraInfoBillCurrencyIcon = document.getElementById("extraInfoBillCurrencyIcon");
+const extraInfoBillCurrencyText = document.getElementById("extraInfoBillCurrencyText");
+const extraInfoUserCurrencyIcon = document.getElementById("extraInfoUserCurrencyIcon");
+const extraInfoUserCurrencyText = document.getElementById("extraInfoUserCurrencyText");
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {

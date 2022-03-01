@@ -76,9 +76,18 @@ input::placeholder {
 }
 
 
-.inputArea__currency{
+.inputArea__currency {
 
   height: auto;
   font-size: $text-sm;
+
+}
+
+.fa-circle-question {
+
+  color: $white;
+  opacity: 0.8;
+  position: relative;
+  top: 3px;
 
 }

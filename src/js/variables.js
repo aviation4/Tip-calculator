@@ -42,3 +42,7 @@ export const currencyModule = document.getElementById("currencyModule");
 const currencyBill = document.getElementById("input--currency-bill");
 export const currencyUser = document.getElementById("input--currency-user");
 export const currencyArray = [currencyBill, currencyUser];
+export const extraInfoBillCurrencyIcon = document.getElementById("extraInfoBillCurrencyIcon");
+export const extraInfoBillCurrencyText = document.getElementById("extraInfoBillCurrencyText");
+export const extraInfoUserCurrencyIcon = document.getElementById("extraInfoUserCurrencyIcon");
+export const extraInfoUserCurrencyText = document.getElementById("extraInfoUserCurrencyText");
