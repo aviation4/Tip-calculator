@@ -81,6 +81,10 @@
 
             <article class="userData__article userData__article--currency">
               <label class="header header--currency" for="input--currency-bill">Bill currency</label>
+              <i id="extraInfoBillCurrencyIcon" class="fa-solid fa-circle-question fa-xs"></i>
+              <div id="extraInfoBillCurrencyText" class="header header--extraInfoBillCurrency">
+                Pick the currency in which the bill has been paid
+              </div>
               <div class="userData__inputArea">
                 <select name="pets" id="input--currency-bill" class="inputArea__input inputArea__currency">
                   <option value="EUR">Euro</option>
@@ -97,6 +101,10 @@
 
             <article class="userData__article userData__article--currency">
               <label class="header header--currency" for="input--currency-bill">My currency</label>
+              <i id="extraInfoUserCurrencyIcon" class="fa-solid fa-circle-question fa-xs"></i>
+              <div id="extraInfoUserCurrencyText" class="header header--extraInfoUserCurrency">
+                Pick the currency in which you want to pay your share
+              </div>
               <div class="userData__inputArea">
                 <select name="pets" id="input--currency-user" class="inputArea__input inputArea__currency">
                   <option value="EUR">Euro</option>
@@ -112,7 +120,7 @@
             </article>
 
           </div>
-        <span id="currencyInfo" class="header--results header--subheader header--currencyRate"></span>
+        <span id="currencyInfo" class="header--results header--subheader header--currencyRate">1 EUR = 1.14 USD (23.02.2022)</span>
         </div>
 
         <div class="summary__buttons">
