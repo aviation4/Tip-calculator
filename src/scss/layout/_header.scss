@@ -81,40 +81,37 @@
 }
 
 
-.header--extraInfoBillCurrency {
-  font-size: $text-xxs;
-  opacity: 0;
-  background-color: $light-grayish-cyan-2;
-  text-align: center;
-  color: $very-dark-cyan;
-  border-radius: $space-md $space-md $space-md 0;
-  position: absolute;
-  bottom: 88%;
-  min-width: 135px;
-  margin-left: 5px;
-  padding: $space-xs;
-  z-index: 1;
-  transition: 200ms;
-  box-shadow: 0 0 10px 2px $dark-grayish-cyan-1;
-}
-
-
+.header--extraInfoBillCurrency,
 .header--extraInfoUserCurrency {
-  font-size: $text-xxs;
-  opacity: 0;
+
+  /* Color */
   background-color: $light-grayish-cyan-2;
-  text-align: center;
   color: $very-dark-cyan;
-  border-radius: $space-md $space-md $space-md 0;
+  opacity: 0;
+
+  /* Font */
+  font-size: $text-xxs;
+  text-align: center;
+
+  /* Spacing */
+  padding: $space-xs;
+  margin-left: 5px;
+
+  /* Position */
   position: absolute;
   bottom: 88%;
   min-width: 135px;
-  margin-left: 5px;
-  padding: $space-xs;
   z-index: 1;
+
+  /* Border */
+  border-radius: $space-md $space-md $space-md 0;
+
+  /* Other */
   transition: 200ms;
   box-shadow: 0 0 10px 2px $dark-grayish-cyan-1;
 }
+
+
 
 @media (min-width: 500px){
 

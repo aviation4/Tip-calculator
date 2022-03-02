@@ -33,6 +33,13 @@ body {
   text-align: left;
 }
 
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+
 main {
   padding-bottom: 72px;
 }
@@ -233,8 +240,10 @@ input::placeholder {
 }
 
 .fa-circle-question {
+  /* Color */
   color: white;
   opacity: 0.8;
+  /* Position */
   position: relative;
   top: 3px;
 }
@@ -305,36 +314,26 @@ input::placeholder {
   display: none;
 }
 
-.header--extraInfoBillCurrency {
-  font-size: 0.5787037037em;
-  opacity: 0;
-  background-color: #f4fafa;
-  text-align: center;
-  color: #00494d;
-  border-radius: 24px 24px 24px 0;
-  position: absolute;
-  bottom: 88%;
-  min-width: 135px;
-  margin-left: 5px;
-  padding: 8px;
-  z-index: 1;
-  transition: 200ms;
-  box-shadow: 0 0 10px 2px #5e7a7d;
-}
-
+.header--extraInfoBillCurrency,
 .header--extraInfoUserCurrency {
-  font-size: 0.5787037037em;
-  opacity: 0;
+  /* Color */
   background-color: #f4fafa;
-  text-align: center;
   color: #00494d;
-  border-radius: 24px 24px 24px 0;
+  opacity: 0;
+  /* Font */
+  font-size: 0.5787037037em;
+  text-align: center;
+  /* Spacing */
+  padding: 8px;
+  margin-left: 5px;
+  /* Position */
   position: absolute;
   bottom: 88%;
   min-width: 135px;
-  margin-left: 5px;
-  padding: 8px;
   z-index: 1;
+  /* Border */
+  border-radius: 24px 24px 24px 0;
+  /* Other */
   transition: 200ms;
   box-shadow: 0 0 10px 2px #5e7a7d;
 }

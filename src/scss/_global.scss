@@ -31,6 +31,14 @@ body {
 
 }
 
+a {
+  text-decoration: none;
+
+  &:visited {
+    color: inherit;
+  }
+}
+
 
 main {
   padding-bottom: $space-xl;
@@ -41,6 +49,7 @@ h1 {
 
   /* Color */
   color: $very-dark-cyan;
+//  text-decoration: overline;
 
   /* Font */
   font-size: $text-lg;
