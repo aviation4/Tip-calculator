@@ -557,16 +557,24 @@ _variablesJs.inputsDOMArray.forEach((input, i)=>{
     });
 });
 _variablesJs.extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
+    _variablesJs.extraInfoBillCurrencyText.style.zIndex = "1";
     _variablesJs.extraInfoBillCurrencyText.style.opacity = "0.93";
 });
 _variablesJs.extraInfoBillCurrencyIcon.addEventListener("mouseout", function() {
     _variablesJs.extraInfoBillCurrencyText.style.opacity = "0";
+    setTimeout(()=>{
+        _variablesJs.extraInfoBillCurrencyText.style.zIndex = "-1";
+    }, 200);
 });
 _variablesJs.extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
+    _variablesJs.extraInfoUserCurrencyText.style.zIndex = "1";
     _variablesJs.extraInfoUserCurrencyText.style.opacity = "0.93";
 });
 _variablesJs.extraInfoUserCurrencyIcon.addEventListener("mouseout", function() {
     _variablesJs.extraInfoUserCurrencyText.style.opacity = "0";
+    setTimeout(()=>{
+        _variablesJs.extraInfoUserCurrencyText.style.zIndex = "-1";
+    }, 200);
 });
 
 },{"./functions.js":"bfprH","./variables.js":"abb56"}],"bfprH":[function(require,module,exports) {

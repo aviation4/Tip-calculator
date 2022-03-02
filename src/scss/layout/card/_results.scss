@@ -28,6 +28,13 @@
 
   /* Spacing */
   margin-top: 0;
+
+  &::selection {
+
+    background-color: $strong-cyan;
+    color: $very-dark-cyan;
+
+  }
 }
 
 

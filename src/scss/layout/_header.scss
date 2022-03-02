@@ -16,6 +16,13 @@
   /* Position */
   display: inline-block;
 
+  &::selection {
+
+    background-color: $very-dark-cyan;
+    color: $white;
+
+  }
+
 }
 
 .header--warningInfo {
@@ -37,6 +44,13 @@
   /* Animation */
   transition: all 2000ms;
 
+  &::selection {
+
+    background-color: $orange-warning;
+    color: $white;
+
+  }
+
 }
 
 
@@ -50,6 +64,13 @@
 
   /* Spacing */
   margin-bottom: 0;
+
+  &::selection {
+
+    background-color: $white;
+    color: $very-dark-cyan;
+
+  }
 
 }
 
@@ -101,13 +122,13 @@
   position: absolute;
   bottom: 88%;
   min-width: 135px;
-  z-index: 1;
+  z-index: -1;
 
   /* Border */
   border-radius: $space-md $space-md $space-md 0;
 
   /* Other */
-  transition: 200ms;
+  transition: opacity 200ms;
   box-shadow: 0 0 10px 2px $dark-grayish-cyan-1;
 }
 

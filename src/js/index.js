@@ -105,7 +105,9 @@ inputsDOMArray.forEach((input, i) => {
 
 extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
 
+  extraInfoBillCurrencyText.style.zIndex = "1";
   extraInfoBillCurrencyText.style.opacity = "0.93";
+
 
 })
 
@@ -113,13 +115,16 @@ extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
 extraInfoBillCurrencyIcon.addEventListener("mouseout", function() {
 
   extraInfoBillCurrencyText.style.opacity = "0";
+  setTimeout(() => {extraInfoBillCurrencyText.style.zIndex = "-1"}, 200);
 
 })
 
 
 extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
 
+  extraInfoUserCurrencyText.style.zIndex = "1";
   extraInfoUserCurrencyText.style.opacity = "0.93";
+
 
 })
 
@@ -127,5 +132,5 @@ extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
 extraInfoUserCurrencyIcon.addEventListener("mouseout", function() {
 
   extraInfoUserCurrencyText.style.opacity = "0";
-
+  setTimeout(() => {extraInfoUserCurrencyText.style.zIndex = "-1"}, 200);
 })
