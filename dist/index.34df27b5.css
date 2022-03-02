@@ -177,7 +177,8 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-input:focus {
+input:focus,
+select:focus {
   /* Color */
   background-color: #f4fafa;
   /* Border */
@@ -305,37 +306,44 @@ input::placeholder {
 }
 
 .header--extraInfoBillCurrency {
-  display: none;
+  font-size: 0.5787037037em;
+  opacity: 0;
   background-color: #f4fafa;
   text-align: center;
-  opacity: 1;
   color: #00494d;
   border-radius: 24px 24px 24px 0;
   position: absolute;
-  bottom: 90%;
+  bottom: 88%;
   min-width: 135px;
-  padding: 12px;
+  margin-left: 5px;
+  padding: 8px;
   z-index: 1;
+  transition: 200ms;
+  box-shadow: 0 0 10px 2px #5e7a7d;
 }
 
 .header--extraInfoUserCurrency {
-  display: none;
+  font-size: 0.5787037037em;
+  opacity: 0;
   background-color: #f4fafa;
   text-align: center;
-  opacity: 1;
   color: #00494d;
   border-radius: 24px 24px 24px 0;
   position: absolute;
-  bottom: 90%;
+  bottom: 88%;
   min-width: 135px;
-  padding: 12px;
+  margin-left: 5px;
+  padding: 8px;
   z-index: 1;
+  transition: 200ms;
+  box-shadow: 0 0 10px 2px #5e7a7d;
 }
 
 @media (min-width: 500px) {
   .header--extraInfoUserCurrency {
     transform: translateX(-115%);
     border-radius: 24px 24px 0 24px;
+    margin-right: 5px;
   }
 }
 .article__bill .header--warningInfo,
@@ -447,7 +455,7 @@ input::placeholder {
   /* Flexbox */
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   /* Spacing */
   margin-bottom: 36px;

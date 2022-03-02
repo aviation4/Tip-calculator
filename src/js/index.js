@@ -105,27 +105,27 @@ inputsDOMArray.forEach((input, i) => {
 
 extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
 
-  extraInfoBillCurrencyText.style.display = "inline-block";
+  extraInfoBillCurrencyText.style.opacity = "0.93";
 
 })
 
 
 extraInfoBillCurrencyIcon.addEventListener("mouseout", function() {
 
-  extraInfoBillCurrencyText.style.display = "none";
+  extraInfoBillCurrencyText.style.opacity = "0";
 
 })
 
 
 extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
 
-  extraInfoUserCurrencyText.style.display = "inline-block";
+  extraInfoUserCurrencyText.style.opacity = "0.93";
 
 })
 
 
 extraInfoUserCurrencyIcon.addEventListener("mouseout", function() {
 
-  extraInfoUserCurrencyText.style.display = "none";
+  extraInfoUserCurrencyText.style.opacity = "0";
 
 })

@@ -10,7 +10,8 @@ input[type=number]{
 }
 
 
-input:focus {
+input:focus,
+select:focus {
 
   /* Color */
   background-color: $light-grayish-cyan-2;
@@ -82,6 +83,8 @@ input::placeholder {
   font-size: $text-sm;
 
 }
+
+
 
 .fa-circle-question {
 

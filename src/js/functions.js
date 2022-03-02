@@ -164,8 +164,6 @@ export const calculateResults = () => {
   const resultTipNotRounded = ((billUserCurrency * tipFactor) - billUserCurrency) / inputsDOMArray[2].value;
   resultTip.innerHTML = (Math.round(resultTipNotRounded * 100) / 100);
   resultTotal.innerHTML = (Math.round(billUserCurrency * tipFactor / inputsDOMArray[2].value * 100) / 100);
-  console.log((Math.round(resultTipNotRounded * 100) / 100));
-  console.log(Math.round(billUserCurrency * tipFactor / inputsDOMArray[2].value * 100) / 100);
 
 
   /* When data are wrongly calculated /*/
@@ -206,6 +204,19 @@ export const calculateResults = () => {
 
   /* Add currency sign */
   resultTotal.innerHTML =  inputData.currencySymbols[inputData.currencyState] + resultTotal.innerHTML;
+
+
+  if (resultTip.innerHTML.length > 8  &&  window.screen.width < 430){
+    resultTip.style.fontSize = "1em";
+  } else {
+    resultTip.style.fontSize = "1.2em";
+  }
+
+  if (resultTotal.innerHTML.length > 8  &&  window.screen.width < 430){
+    resultTotal.style.fontSize = "1em";
+  } else {
+    resultTotal.style.fontSize = "1.2em";
+  }
 
 
 }

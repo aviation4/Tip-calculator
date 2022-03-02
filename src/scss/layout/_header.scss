@@ -82,32 +82,38 @@
 
 
 .header--extraInfoBillCurrency {
-  display: none;
+  font-size: $text-xxs;
+  opacity: 0;
   background-color: $light-grayish-cyan-2;
   text-align: center;
-  opacity: 1;
   color: $very-dark-cyan;
   border-radius: $space-md $space-md $space-md 0;
   position: absolute;
-  bottom: 90%;
+  bottom: 88%;
   min-width: 135px;
-  padding: 12px;
+  margin-left: 5px;
+  padding: $space-xs;
   z-index: 1;
+  transition: 200ms;
+  box-shadow: 0 0 10px 2px $dark-grayish-cyan-1;
 }
 
 
 .header--extraInfoUserCurrency {
-  display: none;
+  font-size: $text-xxs;
+  opacity: 0;
   background-color: $light-grayish-cyan-2;
   text-align: center;
-  opacity: 1;
   color: $very-dark-cyan;
   border-radius: $space-md $space-md $space-md 0;
   position: absolute;
-  bottom: 90%;
+  bottom: 88%;
   min-width: 135px;
-  padding: 12px;
+  margin-left: 5px;
+  padding: $space-xs;
   z-index: 1;
+  transition: 200ms;
+  box-shadow: 0 0 10px 2px $dark-grayish-cyan-1;
 }
 
 @media (min-width: 500px){
@@ -115,6 +121,7 @@
   .header--extraInfoUserCurrency {
     transform: translateX(-115%);
     border-radius: $space-md $space-md 0 $space-md;
+    margin-right: 5px;
   }
 
 }

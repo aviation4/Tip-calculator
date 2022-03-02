@@ -557,16 +557,16 @@ _variablesJs.inputsDOMArray.forEach((input, i)=>{
     });
 });
 _variablesJs.extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
-    _variablesJs.extraInfoBillCurrencyText.style.display = "inline-block";
+    _variablesJs.extraInfoBillCurrencyText.style.opacity = "0.93";
 });
 _variablesJs.extraInfoBillCurrencyIcon.addEventListener("mouseout", function() {
-    _variablesJs.extraInfoBillCurrencyText.style.display = "none";
+    _variablesJs.extraInfoBillCurrencyText.style.opacity = "0";
 });
 _variablesJs.extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
-    _variablesJs.extraInfoUserCurrencyText.style.display = "inline-block";
+    _variablesJs.extraInfoUserCurrencyText.style.opacity = "0.93";
 });
 _variablesJs.extraInfoUserCurrencyIcon.addEventListener("mouseout", function() {
-    _variablesJs.extraInfoUserCurrencyText.style.display = "none";
+    _variablesJs.extraInfoUserCurrencyText.style.opacity = "0";
 });
 
 },{"./functions.js":"bfprH","./variables.js":"abb56"}],"bfprH":[function(require,module,exports) {
@@ -683,8 +683,6 @@ const calculateResults = ()=>{
     const resultTipNotRounded = (billUserCurrency * tipFactor - billUserCurrency) / _variablesJs.inputsDOMArray[2].value;
     _variablesJs.resultTip.innerHTML = Math.round(resultTipNotRounded * 100) / 100;
     _variablesJs.resultTotal.innerHTML = Math.round(billUserCurrency * tipFactor / _variablesJs.inputsDOMArray[2].value * 100) / 100;
-    console.log(Math.round(resultTipNotRounded * 100) / 100);
-    console.log(Math.round(billUserCurrency * tipFactor / _variablesJs.inputsDOMArray[2].value * 100) / 100);
     /* When data are wrongly calculated /*/ if (_variablesJs.resultTip.innerHTML == "Infinity" || _variablesJs.resultTotal.innerHTML == "Infinity" || _variablesJs.resultTip.innerHTML == "NaN" || _variablesJs.resultTotal.innerHTML == "NaN") {
         _variablesJs.resultTip.innerHTML = "0";
         _variablesJs.resultTotal.innerHTML = "0";
@@ -697,6 +695,10 @@ const calculateResults = ()=>{
     else if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTotal.innerHTML > 10000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTotal.innerHTML;
+    if (_variablesJs.resultTip.innerHTML.length > 8 && window.screen.width < 430) _variablesJs.resultTip.style.fontSize = "1em";
+    else _variablesJs.resultTip.style.fontSize = "1.2em";
+    if (_variablesJs.resultTotal.innerHTML.length > 8 && window.screen.width < 430) _variablesJs.resultTotal.style.fontSize = "1em";
+    else _variablesJs.resultTotal.style.fontSize = "1.2em";
 };
 const resetResults = ()=>{
     _variablesJs.resultTip.innerHTML = "€0";
@@ -817,13 +819,13 @@ const inputData = {
     currencyState: 0,
     currencySymbols: [
         "€",
-        "zł ",
+        "PLN ",
         "$",
         "£",
         "CHF ",
         "¥",
-        "₴ ",
-        "₽ "
+        "₴",
+        "₽"
     ],
     /* inputValidityArray can take two values: "0" - input datum is invalid, "1" - input datum is valid,
   elements successively refer to: [bill, tip, number of people] */ inputValidityArray: [

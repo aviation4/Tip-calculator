@@ -7,7 +7,7 @@ export const inputData = {
 
   currencyRate: 1,
   currencyState: 0,
-  currencySymbols: ["€", "zł ", "$", "£", "CHF ", "¥", "₴ ", "₽ "],
+  currencySymbols: ["€", "PLN ", "$", "£", "CHF ", "¥", "₴", "₽"],
 
   /* inputValidityArray can take two values: "0" - input datum is invalid, "1" - input datum is valid,
   elements successively refer to: [bill, tip, number of people] */
