@@ -46,7 +46,12 @@ main {
 }
 
 
-h1 {
+img {
+  max-width: 100%;
+}
+
+
+.title {
 
   /* Color */
   color: $very-dark-cyan;
@@ -61,14 +66,15 @@ h1 {
   /* Position */
   text-align: center;
 
+
+&::selection {
+
+  background-color: $very-dark-cyan;
+  color: $strong-cyan;
+
 }
 
-
-
-img {
-  max-width: 100%;
 }
-
 
 
 @media (min-width: 1400px) {

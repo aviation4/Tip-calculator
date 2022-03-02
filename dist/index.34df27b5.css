@@ -44,7 +44,11 @@ main {
   padding-bottom: 72px;
 }
 
-h1 {
+img {
+  max-width: 100%;
+}
+
+.title {
   /* Color */
   color: #00494d;
   /* Font */
@@ -55,9 +59,9 @@ h1 {
   /* Position */
   text-align: center;
 }
-
-img {
-  max-width: 100%;
+.title::selection {
+  background-color: #00494d;
+  color: #26c0ab;
 }
 
 @media (min-width: 1400px) {
