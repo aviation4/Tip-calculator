@@ -206,17 +206,46 @@ export const calculateResults = () => {
   resultTotal.innerHTML =  inputData.currencySymbols[inputData.currencyState] + resultTotal.innerHTML;
 
 
-  if (resultTip.innerHTML.length > 8  &&  window.screen.width < 430){
-    resultTip.style.fontSize = "1em";
-  } else {
-    resultTip.style.fontSize = "1.2em";
+  /* Smaller font size to avoid breaking the layout */
+  while (resultTip.offsetWidth > 135 || resultTotal.offsetWidth > 135){
+
+    const resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
+    console.log(resultTipFontSize);
+    const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+    console.log(resultTipShort);
+    const resultTipFontSizeNew = resultTipShort - 1 + "px";
+    console.log(resultTipFontSizeNew);
+    resultTip.style.fontSize = resultTipFontSizeNew;
+
+
+    const resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
+    console.log(resultTotalFontSize);
+    const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+    console.log(resultTotalShort);
+    const resultTotalFontSizeNew = resultTotalShort - 1 + "px";
+    console.log(resultTotalFontSizeNew);
+    resultTip.style.fontSize = resultTotalFontSizeNew;
+
+    setTimeout(() => calculateResults, 500);
+
+
   }
 
-  if (resultTotal.innerHTML.length > 8  &&  window.screen.width < 430){
+/*
+  if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 400){
+    resultTip.style.fontSize = "0.8em";
+    resultTotal.style.fontSize = "0.8em";
+  } else if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 450) {
+    resultTip.style.fontSize = "1em";
+    resultTotal.style.fontSize = "1em";
+  } else if ((resultTip.innerHTML.length > 8 || resultTotal.innerHTML.length > 8)  &&  window.screen.width < 400){
+    resultTip.style.fontSize = "1em";
     resultTotal.style.fontSize = "1em";
   } else {
+    resultTip.style.fontSize = "1.2em";
     resultTotal.style.fontSize = "1.2em";
-  }
+  }*/
+
 
 
 }
@@ -243,8 +272,6 @@ export const enableCurrencyModule = () => {
 
 export const retrieveAPI = async (currencyBill, currencyUser) => {
 
-console.log(currencyBill);
-console.log(currencyUser);
 
   const apiKey = "8a3dafc6208f3fb608102288354dfcc672db22bf";
   const url = `https://api.getgeoapi.com/v2/currency/convert?api_key=${apiKey}&from=${currencyBill}&to=${currencyUser}&amount=1&format=json`;
@@ -283,19 +310,19 @@ export const renderCurrency = jsonResponse => {
 export const determineCurrencySymbol = () => {
 
   switch(currencyUser.value){
-    case "EUR":
+    case "GBP":
       inputData.currencyState = 0;
       break;
 
-    case "PLN":
+    case "EUR":
       inputData.currencyState = 1;
       break;
 
-    case "USD":
+    case "JPY":
       inputData.currencyState = 2;
       break;
 
-    case "GBP":
+    case "PLN":
       inputData.currencyState = 3;
       break;
 
@@ -303,20 +330,16 @@ export const determineCurrencySymbol = () => {
       inputData.currencyState = 4;
       break;
 
-    case "JPY":
+    case "UAH":
       inputData.currencyState = 5;
       break;
 
-    case "UAH":
+    case "USD":
       inputData.currencyState = 6;
       break;
 
-    case "RUB":
+    case "VUV":
       inputData.currencyState = 7;
-      break;
-
-    case "BTC":
-      inputData.currencyState = 8;
       break;
 
   }

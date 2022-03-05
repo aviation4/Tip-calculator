@@ -35,6 +35,7 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 a:visited {
   color: inherit;
@@ -65,13 +66,13 @@ img {
 }
 
 @media (min-width: 1400px) {
-  h1 {
+  .title {
     padding-top: 72px;
     padding-bottom: 72px;
   }
 }
 @media (min-width: 2000px) {
-  h1 {
+  .title {
     padding-top: 120px;
     padding-bottom: 120px;
   }

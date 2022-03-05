@@ -703,11 +703,38 @@ const calculateResults = ()=>{
     else if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTotal.innerHTML > 10000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTotal.innerHTML;
-    if (_variablesJs.resultTip.innerHTML.length > 8 && window.screen.width < 430) _variablesJs.resultTip.style.fontSize = "1em";
-    else _variablesJs.resultTip.style.fontSize = "1.2em";
-    if (_variablesJs.resultTotal.innerHTML.length > 8 && window.screen.width < 430) _variablesJs.resultTotal.style.fontSize = "1em";
-    else _variablesJs.resultTotal.style.fontSize = "1.2em";
-};
+    /* Smaller font size to avoid breaking the layout */ while(_variablesJs.resultTip.offsetWidth > 135 || _variablesJs.resultTotal.offsetWidth > 135){
+        const resultTipFontSize = window.getComputedStyle(_variablesJs.resultTip).getPropertyValue("font-size");
+        console.log(resultTipFontSize);
+        const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+        console.log(resultTipShort);
+        const resultTipFontSizeNew = resultTipShort - 1 + "px";
+        console.log(resultTipFontSizeNew);
+        _variablesJs.resultTip.style.fontSize = resultTipFontSizeNew;
+        const resultTotalFontSize = window.getComputedStyle(_variablesJs.resultTotal).getPropertyValue("font-size");
+        console.log(resultTotalFontSize);
+        const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+        console.log(resultTotalShort);
+        const resultTotalFontSizeNew = resultTotalShort - 1 + "px";
+        console.log(resultTotalFontSizeNew);
+        _variablesJs.resultTip.style.fontSize = resultTotalFontSizeNew;
+        setTimeout(()=>calculateResults
+        , 500);
+    }
+/*
+  if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 400){
+    resultTip.style.fontSize = "0.8em";
+    resultTotal.style.fontSize = "0.8em";
+  } else if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 450) {
+    resultTip.style.fontSize = "1em";
+    resultTotal.style.fontSize = "1em";
+  } else if ((resultTip.innerHTML.length > 8 || resultTotal.innerHTML.length > 8)  &&  window.screen.width < 400){
+    resultTip.style.fontSize = "1em";
+    resultTotal.style.fontSize = "1em";
+  } else {
+    resultTip.style.fontSize = "1.2em";
+    resultTotal.style.fontSize = "1.2em";
+  }*/ };
 const resetResults = ()=>{
     _variablesJs.resultTip.innerHTML = "€0";
     _variablesJs.resultTotal.innerHTML = "€0";
@@ -717,8 +744,6 @@ const enableCurrencyModule = ()=>{
     _variablesJs.currencyModule.style.display = "flex";
 };
 const retrieveAPI = async (currencyBill, currencyUser)=>{
-    console.log(currencyBill);
-    console.log(currencyUser);
     const apiKey = "8a3dafc6208f3fb608102288354dfcc672db22bf";
     const url = `https://api.getgeoapi.com/v2/currency/convert?api_key=${apiKey}&from=${currencyBill}&to=${currencyUser}&amount=1&format=json`;
     try {
@@ -744,32 +769,29 @@ const renderCurrency = (jsonResponse)=>{
 };
 const determineCurrencySymbol = ()=>{
     switch(_variablesJs.currencyUser.value){
-        case "EUR":
+        case "GBP":
             _variablesJs.inputData.currencyState = 0;
             break;
-        case "PLN":
+        case "EUR":
             _variablesJs.inputData.currencyState = 1;
             break;
-        case "USD":
+        case "JPY":
             _variablesJs.inputData.currencyState = 2;
             break;
-        case "GBP":
+        case "PLN":
             _variablesJs.inputData.currencyState = 3;
             break;
         case "CHF":
             _variablesJs.inputData.currencyState = 4;
             break;
-        case "JPY":
+        case "UAH":
             _variablesJs.inputData.currencyState = 5;
             break;
-        case "UAH":
+        case "USD":
             _variablesJs.inputData.currencyState = 6;
             break;
-        case "RUB":
+        case "VUV":
             _variablesJs.inputData.currencyState = 7;
-            break;
-        case "BTC":
-            _variablesJs.inputData.currencyState = 8;
             break;
     }
 };
@@ -826,14 +848,14 @@ const inputData = {
     currencyRate: 1,
     currencyState: 0,
     currencySymbols: [
-        "€",
-        "PLN ",
-        "$",
         "£",
-        "CHF ",
+        "€",
         "¥",
+        "PLN ",
+        "CHF ",
         "₴",
-        "₽"
+        "$",
+        "VT "
     ],
     /* inputValidityArray can take two values: "0" - input datum is invalid, "1" - input datum is valid,
   elements successively refer to: [bill, tip, number of people] */ inputValidityArray: [
