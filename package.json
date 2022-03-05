@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "- [Summary](#summary)\r - [Usage](#usage)\r - [Built with](#built-with)\r - [Live website](#live-website)\r - [More insights](#more-insights)",
   "source": "index.html",
-    "directories": {
+  "directories": {
     "doc": "docs"
   },
   "scripts": {
@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/aviation4/Tip-calculator/index.html",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.3.1",
     "parcel": "^2.3.1",
-    "sass": "^1.49.0"
+    "sass": "^1.49.9"
   }
 }

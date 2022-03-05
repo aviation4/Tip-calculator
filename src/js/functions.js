@@ -1,4 +1,4 @@
-import {inputData, inputWarningOutline, buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray, currencyInfo, currencyButton, currencyModule, currencyArray, currencyUser} from "./variables.js";
+import {inputData, inputWarningOutline, buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray, currencyInfo, currencyButton, currencyModule, currencyArray, currencyBill, currencyUser} from "./variables.js";
 
 
 export const tipButtonToggler = (button, i) => {
@@ -9,8 +9,7 @@ export const tipButtonToggler = (button, i) => {
 
     /* disable it */
     button.classList.remove(buttonEnabled);
-    inputData.tipStateArray[i] = 0;
-  //  inputData.inputValidityArray[1] = 0;
+    inputData.tipStateArray[i] = 0
     inputData.tipValue = 0;
 
   }
@@ -24,8 +23,7 @@ export const tipButtonToggler = (button, i) => {
     if (i != 5){
       inputsDOMArray[1].value = "";
     }
-    inputData.tipValue = 0;
-  //  inputData.inputValidityArray[1] = 0;
+    inputData.tipValue = 0
     inputData.tipStateArray.forEach((element, index, array) => array[index] = 0);
 
 
@@ -33,7 +31,6 @@ export const tipButtonToggler = (button, i) => {
     if (i != 5){
       button.classList.add(buttonEnabled);
       inputData.tipStateArray[i] = 1;
-  //    inputData.inputValidityArray[1] = 1;
       inputData.tipValue = tipDOMArray[i].value;
     }
 
@@ -46,8 +43,7 @@ export const tipButtonToggler = (button, i) => {
     /* and enable pressed button */
     if (i != 5){
       button.classList.add(buttonEnabled);
-      inputData.tipStateArray[i] = 1;
-    //  inputData.inputValidityArray[1] = 1;
+      inputData.tipStateArray[i] = 1
       inputData.tipValue = tipDOMArray[i].value;
     }
 
@@ -83,6 +79,8 @@ export const resetAll = () => {
   inputData.tipValue = 0;
   inputData.currencyState = 1;
   inputData.currencyRate = 1;
+  currencyBill.value = "EUR";
+  currencyUser.value = "EUR";
 
 
 
@@ -207,49 +205,48 @@ export const calculateResults = () => {
   /* Add currency sign */
   resultTotal.innerHTML =  inputData.currencySymbols[inputData.currencyState] + resultTotal.innerHTML;
 
-
-  /* Smaller font size to avoid breaking the layout */
-
-  /*
-  while (resultTip.offsetWidth > 135 || resultTotal.offsetWidth > 135){
-
-    const resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
-    console.log(resultTipFontSize);
-    const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
-    console.log(resultTipShort);
-    const resultTipFontSizeNew = resultTipShort - 1 + "px";
-    console.log(resultTipFontSizeNew);
-    resultTip.style.fontSize = resultTipFontSizeNew;
+  console.log("control aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  checkResultsLayout();
+  console.log("control bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
 
-    const resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
-    console.log(resultTotalFontSize);
-    const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
-    console.log(resultTotalShort);
-    const resultTotalFontSizeNew = resultTotalShort - 1 + "px";
-    console.log(resultTotalFontSizeNew);
-    resultTip.style.fontSize = resultTotalFontSizeNew;
-
-    setTimeout(() => calculateResults, 500);
+}
 
 
-  }*/
+export const checkResultsLayout = () => {
 
-/*
-  if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 400){
-    resultTip.style.fontSize = "0.8em";
-    resultTotal.style.fontSize = "0.8em";
-  } else if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 450) {
-    resultTip.style.fontSize = "1em";
-    resultTotal.style.fontSize = "1em";
-  } else if ((resultTip.innerHTML.length > 8 || resultTotal.innerHTML.length > 8)  &&  window.screen.width < 400){
-    resultTip.style.fontSize = "1em";
-    resultTotal.style.fontSize = "1em";
-  } else {
-    resultTip.style.fontSize = "1.2em";
-    resultTotal.style.fontSize = "1.2em";
-  }*/
+  const myObserverTip = new ResizeObserver(entries => {
 
+    entries.forEach(entry => {
+
+      if (entry.contentRect.height > 45){
+        const resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
+        const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+        const resultTipFontSizeNew = (resultTipShort - 0.5) + "px";
+        resultTip.style.fontSize = resultTipFontSizeNew;
+      }
+
+    });
+
+  });
+
+  const myObserverTotal = new ResizeObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.contentRect.height > 45){
+        const resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
+        const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+        const resultTotalFontSizeNew = (resultTotalShort - 0.5) + "px";
+        resultTotal.style.fontSize = resultTotalFontSizeNew;
+      }
+
+    });
+
+  });
+
+  myObserverTip.observe(resultTip);
+  myObserverTotal.observe(resultTotal);
 
 
 }

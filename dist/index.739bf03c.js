@@ -594,6 +594,8 @@ parcelHelpers.export(exports, "updateResults", ()=>updateResults
 );
 parcelHelpers.export(exports, "calculateResults", ()=>calculateResults
 );
+parcelHelpers.export(exports, "checkResultsLayout", ()=>checkResultsLayout
+);
 parcelHelpers.export(exports, "enableCurrencyModule", ()=>enableCurrencyModule
 );
 parcelHelpers.export(exports, "retrieveAPI", ()=>retrieveAPI
@@ -607,7 +609,6 @@ const tipButtonToggler = (button1, i)=>{
     /* If the pressed button is already enabled  (except from "Custom" input) */ if (_variablesJs.inputData.tipStateArray[i] == 1 && i != 5) {
         /* disable it */ button1.classList.remove(_variablesJs.buttonEnabled);
         _variablesJs.inputData.tipStateArray[i] = 0;
-        //  inputData.inputValidityArray[1] = 0;
         _variablesJs.inputData.tipValue = 0;
     } else if (_variablesJs.inputData.tipStateArray.some((value)=>value == 1
     ) && !(_variablesJs.inputData.tipStateArray[5] == 1 && i == 5)) {
@@ -615,13 +616,11 @@ const tipButtonToggler = (button1, i)=>{
         );
         /* Clean custom input, but only when button is pressed */ if (i != 5) _variablesJs.inputsDOMArray[1].value = "";
         _variablesJs.inputData.tipValue = 0;
-        //  inputData.inputValidityArray[1] = 0;
         _variablesJs.inputData.tipStateArray.forEach((element, index, array)=>array[index] = 0
         );
         /* and enable pressed button */ if (i != 5) {
             button1.classList.add(_variablesJs.buttonEnabled);
             _variablesJs.inputData.tipStateArray[i] = 1;
-            //    inputData.inputValidityArray[1] = 1;
             _variablesJs.inputData.tipValue = _variablesJs.tipDOMArray[i].value;
         }
     } else if (_variablesJs.inputData.tipStateArray.every((value)=>value == 0
@@ -629,7 +628,6 @@ const tipButtonToggler = (button1, i)=>{
         if (i != 5) {
             button1.classList.add(_variablesJs.buttonEnabled);
             _variablesJs.inputData.tipStateArray[i] = 1;
-            //  inputData.inputValidityArray[1] = 1;
             _variablesJs.inputData.tipValue = _variablesJs.tipDOMArray[i].value;
         }
     }
@@ -655,6 +653,8 @@ const resetAll = ()=>{
     _variablesJs.inputData.tipValue = 0;
     _variablesJs.inputData.currencyState = 1;
     _variablesJs.inputData.currencyRate = 1;
+    _variablesJs.currencyBill.value = "EUR";
+    _variablesJs.currencyUser.value = "EUR";
     _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + 0;
     _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + 0;
     _variablesJs.warningInfoDOMArray.forEach((el)=>el.textContent = ""
@@ -704,43 +704,34 @@ const calculateResults = ()=>{
     else if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTotal.innerHTML > 10000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTotal.innerHTML;
-/* Smaller font size to avoid breaking the layout */ /*
-  while (resultTip.offsetWidth > 135 || resultTotal.offsetWidth > 135){
-
-    const resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
-    console.log(resultTipFontSize);
-    const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
-    console.log(resultTipShort);
-    const resultTipFontSizeNew = resultTipShort - 1 + "px";
-    console.log(resultTipFontSizeNew);
-    resultTip.style.fontSize = resultTipFontSizeNew;
-
-
-    const resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
-    console.log(resultTotalFontSize);
-    const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
-    console.log(resultTotalShort);
-    const resultTotalFontSizeNew = resultTotalShort - 1 + "px";
-    console.log(resultTotalFontSizeNew);
-    resultTip.style.fontSize = resultTotalFontSizeNew;
-
-    setTimeout(() => calculateResults, 500);
-
-
-  }*/ /*
-  if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 400){
-    resultTip.style.fontSize = "0.8em";
-    resultTotal.style.fontSize = "0.8em";
-  } else if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 450) {
-    resultTip.style.fontSize = "1em";
-    resultTotal.style.fontSize = "1em";
-  } else if ((resultTip.innerHTML.length > 8 || resultTotal.innerHTML.length > 8)  &&  window.screen.width < 400){
-    resultTip.style.fontSize = "1em";
-    resultTotal.style.fontSize = "1em";
-  } else {
-    resultTip.style.fontSize = "1.2em";
-    resultTotal.style.fontSize = "1.2em";
-  }*/ };
+    console.log("control aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    checkResultsLayout();
+    console.log("control bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+};
+const checkResultsLayout = ()=>{
+    const myObserverTip = new ResizeObserver((entries)=>{
+        entries.forEach((entry)=>{
+            if (entry.contentRect.height > 45) {
+                const resultTipFontSize = window.getComputedStyle(_variablesJs.resultTip).getPropertyValue("font-size");
+                const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+                const resultTipFontSizeNew = resultTipShort - 0.5 + "px";
+                _variablesJs.resultTip.style.fontSize = resultTipFontSizeNew;
+            }
+        });
+    });
+    const myObserverTotal = new ResizeObserver((entries)=>{
+        entries.forEach((entry)=>{
+            if (entry.contentRect.height > 45) {
+                const resultTotalFontSize = window.getComputedStyle(_variablesJs.resultTotal).getPropertyValue("font-size");
+                const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+                const resultTotalFontSizeNew = resultTotalShort - 0.5 + "px";
+                _variablesJs.resultTotal.style.fontSize = resultTotalFontSizeNew;
+            }
+        });
+    });
+    myObserverTip.observe(_variablesJs.resultTip);
+    myObserverTotal.observe(_variablesJs.resultTotal);
+};
 const resetResults = ()=>{
     _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + "0";
     _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + "0";
@@ -828,6 +819,8 @@ parcelHelpers.export(exports, "currencyInfo", ()=>currencyInfo
 parcelHelpers.export(exports, "currencyButton", ()=>currencyButton
 );
 parcelHelpers.export(exports, "currencyModule", ()=>currencyModule
+);
+parcelHelpers.export(exports, "currencyBill", ()=>currencyBill
 );
 parcelHelpers.export(exports, "currencyUser", ()=>currencyUser
 );
