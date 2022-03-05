@@ -607,7 +607,7 @@ const tipButtonToggler = (button1, i)=>{
     /* If the pressed button is already enabled  (except from "Custom" input) */ if (_variablesJs.inputData.tipStateArray[i] == 1 && i != 5) {
         /* disable it */ button1.classList.remove(_variablesJs.buttonEnabled);
         _variablesJs.inputData.tipStateArray[i] = 0;
-        _variablesJs.inputData.inputValidityArray[1] = 0;
+        //  inputData.inputValidityArray[1] = 0;
         _variablesJs.inputData.tipValue = 0;
     } else if (_variablesJs.inputData.tipStateArray.some((value)=>value == 1
     ) && !(_variablesJs.inputData.tipStateArray[5] == 1 && i == 5)) {
@@ -615,13 +615,13 @@ const tipButtonToggler = (button1, i)=>{
         );
         /* Clean custom input, but only when button is pressed */ if (i != 5) _variablesJs.inputsDOMArray[1].value = "";
         _variablesJs.inputData.tipValue = 0;
-        _variablesJs.inputData.inputValidityArray[1] = 0;
+        //  inputData.inputValidityArray[1] = 0;
         _variablesJs.inputData.tipStateArray.forEach((element, index, array)=>array[index] = 0
         );
         /* and enable pressed button */ if (i != 5) {
             button1.classList.add(_variablesJs.buttonEnabled);
             _variablesJs.inputData.tipStateArray[i] = 1;
-            _variablesJs.inputData.inputValidityArray[1] = 1;
+            //    inputData.inputValidityArray[1] = 1;
             _variablesJs.inputData.tipValue = _variablesJs.tipDOMArray[i].value;
         }
     } else if (_variablesJs.inputData.tipStateArray.every((value)=>value == 0
@@ -629,7 +629,7 @@ const tipButtonToggler = (button1, i)=>{
         if (i != 5) {
             button1.classList.add(_variablesJs.buttonEnabled);
             _variablesJs.inputData.tipStateArray[i] = 1;
-            _variablesJs.inputData.inputValidityArray[1] = 1;
+            //  inputData.inputValidityArray[1] = 1;
             _variablesJs.inputData.tipValue = _variablesJs.tipDOMArray[i].value;
         }
     }
@@ -651,11 +651,12 @@ const resetAll = ()=>{
     );
     _variablesJs.inputData.inputValidityArray.forEach((el)=>el = 0
     );
+    _variablesJs.inputData.inputValidityArray[1] = 1;
     _variablesJs.inputData.tipValue = 0;
-    _variablesJs.inputData.currencyState = 0;
+    _variablesJs.inputData.currencyState = 1;
     _variablesJs.inputData.currencyRate = 1;
-    _variablesJs.resultTip.innerHTML = "€0";
-    _variablesJs.resultTotal.innerHTML = "€0";
+    _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + 0;
+    _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + 0;
     _variablesJs.warningInfoDOMArray.forEach((el)=>el.textContent = ""
     );
     _variablesJs.currencyButton.style.display = "inline-block";
@@ -703,25 +704,30 @@ const calculateResults = ()=>{
     else if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTotal.innerHTML > 10000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTotal.innerHTML;
-    /* Smaller font size to avoid breaking the layout */ while(_variablesJs.resultTip.offsetWidth > 135 || _variablesJs.resultTotal.offsetWidth > 135){
-        const resultTipFontSize = window.getComputedStyle(_variablesJs.resultTip).getPropertyValue("font-size");
-        console.log(resultTipFontSize);
-        const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
-        console.log(resultTipShort);
-        const resultTipFontSizeNew = resultTipShort - 1 + "px";
-        console.log(resultTipFontSizeNew);
-        _variablesJs.resultTip.style.fontSize = resultTipFontSizeNew;
-        const resultTotalFontSize = window.getComputedStyle(_variablesJs.resultTotal).getPropertyValue("font-size");
-        console.log(resultTotalFontSize);
-        const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
-        console.log(resultTotalShort);
-        const resultTotalFontSizeNew = resultTotalShort - 1 + "px";
-        console.log(resultTotalFontSizeNew);
-        _variablesJs.resultTip.style.fontSize = resultTotalFontSizeNew;
-        setTimeout(()=>calculateResults
-        , 500);
-    }
-/*
+/* Smaller font size to avoid breaking the layout */ /*
+  while (resultTip.offsetWidth > 135 || resultTotal.offsetWidth > 135){
+
+    const resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
+    console.log(resultTipFontSize);
+    const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+    console.log(resultTipShort);
+    const resultTipFontSizeNew = resultTipShort - 1 + "px";
+    console.log(resultTipFontSizeNew);
+    resultTip.style.fontSize = resultTipFontSizeNew;
+
+
+    const resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
+    console.log(resultTotalFontSize);
+    const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+    console.log(resultTotalShort);
+    const resultTotalFontSizeNew = resultTotalShort - 1 + "px";
+    console.log(resultTotalFontSizeNew);
+    resultTip.style.fontSize = resultTotalFontSizeNew;
+
+    setTimeout(() => calculateResults, 500);
+
+
+  }*/ /*
   if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 400){
     resultTip.style.fontSize = "0.8em";
     resultTotal.style.fontSize = "0.8em";
@@ -736,8 +742,8 @@ const calculateResults = ()=>{
     resultTotal.style.fontSize = "1.2em";
   }*/ };
 const resetResults = ()=>{
-    _variablesJs.resultTip.innerHTML = "€0";
-    _variablesJs.resultTotal.innerHTML = "€0";
+    _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + "0";
+    _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + "0";
 };
 const enableCurrencyModule = ()=>{
     _variablesJs.currencyButton.style.display = "none";
@@ -860,7 +866,7 @@ const inputData = {
     /* inputValidityArray can take two values: "0" - input datum is invalid, "1" - input datum is valid,
   elements successively refer to: [bill, tip, number of people] */ inputValidityArray: [
         0,
-        0,
+        1,
         0
     ],
     areAllValid () {

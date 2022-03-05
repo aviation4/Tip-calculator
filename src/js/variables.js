@@ -11,7 +11,7 @@ export const inputData = {
 
   /* inputValidityArray can take two values: "0" - input datum is invalid, "1" - input datum is valid,
   elements successively refer to: [bill, tip, number of people] */
-  inputValidityArray: [0, 0, 0],
+  inputValidityArray: [0, 1, 0],
 
 
   areAllValid(){

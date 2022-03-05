@@ -10,7 +10,7 @@ export const tipButtonToggler = (button, i) => {
     /* disable it */
     button.classList.remove(buttonEnabled);
     inputData.tipStateArray[i] = 0;
-    inputData.inputValidityArray[1] = 0;
+  //  inputData.inputValidityArray[1] = 0;
     inputData.tipValue = 0;
 
   }
@@ -25,7 +25,7 @@ export const tipButtonToggler = (button, i) => {
       inputsDOMArray[1].value = "";
     }
     inputData.tipValue = 0;
-    inputData.inputValidityArray[1] = 0;
+  //  inputData.inputValidityArray[1] = 0;
     inputData.tipStateArray.forEach((element, index, array) => array[index] = 0);
 
 
@@ -33,7 +33,7 @@ export const tipButtonToggler = (button, i) => {
     if (i != 5){
       button.classList.add(buttonEnabled);
       inputData.tipStateArray[i] = 1;
-      inputData.inputValidityArray[1] = 1;
+  //    inputData.inputValidityArray[1] = 1;
       inputData.tipValue = tipDOMArray[i].value;
     }
 
@@ -47,7 +47,7 @@ export const tipButtonToggler = (button, i) => {
     if (i != 5){
       button.classList.add(buttonEnabled);
       inputData.tipStateArray[i] = 1;
-      inputData.inputValidityArray[1] = 1;
+    //  inputData.inputValidityArray[1] = 1;
       inputData.tipValue = tipDOMArray[i].value;
     }
 
@@ -79,13 +79,15 @@ export const resetAll = () => {
 
   inputData.tipStateArray.forEach(el => el = 0);
   inputData.inputValidityArray.forEach(el => el = 0);
+  inputData.inputValidityArray[1] = 1;
   inputData.tipValue = 0;
-  inputData.currencyState = 0;
+  inputData.currencyState = 1;
   inputData.currencyRate = 1;
 
 
-  resultTip.innerHTML = "€" + 0;
-  resultTotal.innerHTML = "€" + 0;
+
+  resultTip.innerHTML = inputData.currencySymbols[inputData.currencyState] + 0;
+  resultTotal.innerHTML = inputData.currencySymbols[inputData.currencyState] + 0;
   warningInfoDOMArray.forEach(el => el.textContent = "");
 
   currencyButton.style.display = "inline-block";
@@ -207,6 +209,8 @@ export const calculateResults = () => {
 
 
   /* Smaller font size to avoid breaking the layout */
+
+  /*
   while (resultTip.offsetWidth > 135 || resultTotal.offsetWidth > 135){
 
     const resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
@@ -229,7 +233,7 @@ export const calculateResults = () => {
     setTimeout(() => calculateResults, 500);
 
 
-  }
+  }*/
 
 /*
   if ((resultTip.innerHTML.length > 10 || resultTotal.innerHTML.length > 10)  &&  window.screen.width < 400){
@@ -254,8 +258,8 @@ export const calculateResults = () => {
 
 const resetResults = () => {
 
-  resultTip.innerHTML = "€" + "0";
-  resultTotal.innerHTML = "€" + "0";
+  resultTip.innerHTML = inputData.currencySymbols[inputData.currencyState] + "0";
+  resultTotal.innerHTML = inputData.currencySymbols[inputData.currencyState] + "0";
 
 }
 
