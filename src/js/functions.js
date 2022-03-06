@@ -1,11 +1,31 @@
-import {inputData, inputWarningOutline, buttonEnabled, resetButton, resultTip, resultTotal, tipDOMArray, inputsDOMArray, warningInfoDOMArray, currencyInfo, currencyButton, currencyModule, currencyArray, currencyBill, currencyUser} from "./variables.js";
+import {
+  inputData,
+  inputWarningOutline,
+  buttonEnabled,
+  resetButton,
+  resultTip,
+  resultTotal,
+  tipDOMArray,
+  inputsDOMArray,
+  warningInfoDOMArray,
+  currencyInfo,
+  currencyButton,
+  currencyModule,
+  currencyArray,
+  currencyBill,
+  currencyUser,
+  resultTipHeader,
+  resultTipHeaderPerPerson,
+  resultTotalHeader,
+  resultTotalHeaderPerPerson
+} from "./variables.js";
 
 
 export const tipButtonToggler = (button, i) => {
 
 
   /* If the pressed button is already enabled  (except from "Custom" input) */
-  if (inputData.tipStateArray[i] == 1 && i != 5){
+  if (inputData.tipStateArray[i] == 1 && i != 5) {
 
     /* disable it */
     button.classList.remove(buttonEnabled);
@@ -15,12 +35,12 @@ export const tipButtonToggler = (button, i) => {
   }
 
   /* If any other button is enabled AND it isn't pressed custom input with already provided value */
-  else if (inputData.tipStateArray.some(value => value == 1) && !(inputData.tipStateArray[5] == 1 && i == 5)){
+  else if (inputData.tipStateArray.some(value => value == 1) && !(inputData.tipStateArray[5] == 1 && i == 5)) {
 
     /* disable it */
     tipDOMArray.forEach(button => button.classList.remove(buttonEnabled));
     /* Clean custom input, but only when button is pressed */
-    if (i != 5){
+    if (i != 5) {
       inputsDOMArray[1].value = "";
     }
     inputData.tipValue = 0
@@ -28,7 +48,7 @@ export const tipButtonToggler = (button, i) => {
 
 
     /* and enable pressed button */
-    if (i != 5){
+    if (i != 5) {
       button.classList.add(buttonEnabled);
       inputData.tipStateArray[i] = 1;
       inputData.tipValue = tipDOMArray[i].value;
@@ -41,7 +61,7 @@ export const tipButtonToggler = (button, i) => {
   else if (inputData.tipStateArray.every(value => value == 0)) {
 
     /* and enable pressed button */
-    if (i != 5){
+    if (i != 5) {
       button.classList.add(buttonEnabled);
       inputData.tipStateArray[i] = 1
       inputData.tipValue = tipDOMArray[i].value;
@@ -55,18 +75,16 @@ export const tipButtonToggler = (button, i) => {
 
 export const enableResetButton = () => {
 
-    resetButton.classList.add(buttonEnabled);
+  resetButton.classList.add(buttonEnabled);
 
 }
 
 
-export const determineCustomTipValue = () => {
-  inputData.tipValue = inputsDOMArray[1].value;
-}
 
 
 export const resetAll = () => {
 
+  resetFontSizes();
 
   inputsDOMArray.forEach(el => el.value = "");
   inputsDOMArray.forEach(el => el.classList.remove(inputWarningOutline));
@@ -101,11 +119,11 @@ export const resetAll = () => {
 export const inputValidation = (input, i) => {
 
 
-  if (input.validity.valid){
+  if (input.validity.valid) {
     warningInfoDOMArray[i].style.display = "none";
     input.classList.remove(inputWarningOutline);
     inputData.inputValidityArray[i] = 1;
-    if (i == 1){
+    if (i == 1) {
       inputData.tipStateArray[5] = 1;
     }
   } else {
@@ -120,14 +138,14 @@ const showError = (input, i) => {
   inputData.inputValidityArray[i] = 0;
   warningInfoDOMArray[i].style.display = "inline-block";
 
-  if (input.validity.rangeOverflow){
+  if (input.validity.rangeOverflow) {
     warningInfoDOMArray[i].textContent = "Too big numbo bro";
-  } else if (input.validity.rangeUnderflow){
+  } else if (input.validity.rangeUnderflow) {
     warningInfoDOMArray[i].style.display = "inline-block";
     warningInfoDOMArray[i].textContent = "No negative numbos bro";
-  } else if (input.validity.badInput){
+  } else if (input.validity.badInput) {
     warningInfoDOMArray[i].textContent = "Please only numbos bro";
-  } else if (input.validity.stepMismatch){
+  } else if (input.validity.stepMismatch) {
     warningInfoDOMArray[i].textContent = "Please type a whole number";
   }
 
@@ -136,13 +154,14 @@ const showError = (input, i) => {
 
 export const updateResults = () => {
 
+  resetFontSizes();
 
   /* If all data are complete, calcualate results */
-  if (inputData.areAllValid()){
+  if (inputData.areAllValid()) {
 
     calculateResults();
 
-  /* If any data are incomplete, set results to €0 */
+    /* If any data are incomplete, set results to €0 */
   } else {
 
     resetResults();
@@ -154,6 +173,7 @@ export const updateResults = () => {
 
 
 export const calculateResults = () => {
+
 
   /* Calculating to user currency */
   const billUserCurrency = inputsDOMArray[0].value * inputData.currencyRate;
@@ -168,22 +188,22 @@ export const calculateResults = () => {
 
   /* When data are wrongly calculated /*/
   if (resultTip.innerHTML == "Infinity" ||
-      resultTotal.innerHTML == "Infinity" ||
-      resultTip.innerHTML == "NaN" ||
-      resultTotal.innerHTML == "NaN"
-    ) {
+    resultTotal.innerHTML == "Infinity" ||
+    resultTip.innerHTML == "NaN" ||
+    resultTotal.innerHTML == "NaN"
+  ) {
     resultTip.innerHTML = "0";
     resultTotal.innerHTML = "0";
-   }
+  }
 
 
 
   /* When tip result is too long - compress to thousands (k) millions (M) */
-  if (resultTip.innerHTML > 100000000){
+  if (resultTip.innerHTML > 100000000) {
     resultTip.innerHTML = "mного";
-  } else if (resultTip.innerHTML > 1000000){
-    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100 ) / 100  + "M";
-  } else if (resultTip.innerHTML > 10000){
+  } else if (resultTip.innerHTML > 1000000) {
+    resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000000 * 100) / 100 + "M";
+  } else if (resultTip.innerHTML > 10000) {
     resultTip.innerHTML = Math.round(resultTip.innerHTML / 1000 * 100) / 100 + "k";
   }
 
@@ -193,60 +213,143 @@ export const calculateResults = () => {
 
 
   /* When total result is too long - compress to thousands (k) millions (M) */
-  if (resultTotal.innerHTML > 100000000){
+  if (resultTotal.innerHTML > 100000000) {
     resultTotal.innerHTML = "mного";
-  } else if (resultTotal.innerHTML > 1000000){
+  } else if (resultTotal.innerHTML > 1000000) {
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
-  } else if (resultTotal.innerHTML > 10000){
+  } else if (resultTotal.innerHTML > 10000) {
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000 * 100) / 100 + "k";
   }
 
 
   /* Add currency sign */
-  resultTotal.innerHTML =  inputData.currencySymbols[inputData.currencyState] + resultTotal.innerHTML;
+  resultTotal.innerHTML = inputData.currencySymbols[inputData.currencyState] + resultTotal.innerHTML;
 
-  console.log("control aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-  checkResultsLayout();
-  console.log("control bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
+  fixResultsLayout();
 
 }
 
 
-export const checkResultsLayout = () => {
 
-  const myObserverTip = new ResizeObserver(entries => {
+const resetFontSizes = () => {
 
-    entries.forEach(entry => {
+  if (window.screen.width > 500) {
 
-      if (entry.contentRect.height > 45){
-        const resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
-        const resultTipShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
-        const resultTipFontSizeNew = (resultTipShort - 0.5) + "px";
-        resultTip.style.fontSize = resultTipFontSizeNew;
-      }
+    resultTip.style.fontSize = "34.5px";
+    resultTotal.style.fontSize = "34.5px";
 
-    });
+  } else {
 
-  });
+    resultTip.style.fontSize = "28.8px";
+    resultTotal.style.fontSize = "28.8px";
 
-  const myObserverTotal = new ResizeObserver(entries => {
+  }
 
-    entries.forEach(entry => {
+  resultTipHeader.style.fontSize = "16.7px";
+  resultTipHeaderPerPerson.style.fontSize = "13.9px";
+  resultTotalHeader.style.fontSize = "16.7px";
+  resultTotalHeaderPerPerson.style.fontSize = "13.9px";
 
-      if (entry.contentRect.height > 45){
-        const resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
-        const resultTotalShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
-        const resultTotalFontSizeNew = (resultTotalShort - 0.5) + "px";
-        resultTotal.style.fontSize = resultTotalFontSizeNew;
-      }
+}
 
-    });
 
-  });
+export const fixResultsLayout = () => {
 
-  myObserverTip.observe(resultTip);
-  myObserverTotal.observe(resultTotal);
+  /* Defining font sizes */
+  let resultTipFontSize;
+  let resultTipHeaderFontSize;
+  let resultTipHeaderPerPersonFontSize;
+
+  /* Coverting to number */
+  let resultTipFontSizeShort;
+  let resultTipHeaderFontSizeShort;
+  let resultTipHeaderPerPersonFontSizeShort;
+
+  /* Decreasing font size value */
+  let resultTipFontSizeNew;
+  let resultTipHeaderFontSizeNew;
+  let resultTipHeaderPerPersonFontSizeNew;
+
+
+
+  while (resultTip.offsetHeight > 45 || resultTipHeader.offsetHeight > 30) {
+
+    /* Defining font sizes */
+    resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
+    resultTipHeaderFontSize = window.getComputedStyle(resultTipHeader).getPropertyValue("font-size");
+    resultTipHeaderPerPersonFontSize = window.getComputedStyle(resultTipHeaderPerPerson).getPropertyValue("font-size");
+
+    /* Coverting to number */
+    resultTipFontSizeShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+    resultTipHeaderFontSizeShort = resultTipHeaderFontSize.slice(0, resultTipHeaderFontSize.length - 2);
+    resultTipHeaderPerPersonFontSizeShort = resultTipHeaderPerPersonFontSize.slice(0, resultTipHeaderPerPersonFontSize.length - 2);
+
+    /* Decreasing font size value */
+    resultTipFontSizeNew = (resultTipFontSizeShort - 0.5) + "px";
+    resultTipHeaderFontSizeNew = (resultTipHeaderFontSizeShort - 0.5) + "px";
+    resultTipHeaderPerPersonFontSizeNew = (resultTipHeaderPerPersonFontSizeShort - 0.5) + "px";
+
+    /* Assigning new font size values */
+    resultTip.style.fontSize = resultTipFontSizeNew;
+    resultTipHeader.style.fontSize = resultTipHeaderFontSizeNew;
+    resultTipHeaderPerPerson.style.fontSize = resultTipHeaderFontSizeNew;
+  }
+
+
+
+  /* Defining font sizes */
+  let resultTotalFontSize;
+  let resultTotalHeaderFontSize;
+  let resultTotalHeaderPerPersonFontSize);
+
+  /* Coverting to number */
+  let resultTotalFontSizeShort;
+  let resultTotalHeaderFontSizeShort;
+  let resultTotalHeaderPerPersonFontSizeShort;
+
+  /* Decreasing font size value */
+  let resultTotalFontSizeNew;
+  let resultTotalHeaderFontSizeNew;
+  let resultTotalHeaderPerPersonFontSizeNew;
+
+
+
+  while (resultTotal.offsetHeight > 45 || resultTotalHeader.offsetHeight > 30) {
+
+    /* Defining font sizes */
+    resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
+    resultTotalHeaderFontSize = window.getComputedStyle(resultTotalHeader).getPropertyValue("font-size");
+    resultTotalHeaderPerPersonFontSize = window.getComputedStyle(resultTotalHeaderPerPerson).getPropertyValue("font-size");
+
+    /* Coverting to number */
+    resultTotalFontSizeShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+    resultTotalHeaderFontSizeShort = resultTotalHeaderFontSize.slice(0, resultTotalHeaderFontSize.length - 2);
+    resultTotalHeaderPerPersonFontSizeShort = resultTotalHeaderPerPersonFontSize.slice(0, resultTotalHeaderPerPersonFontSize.length - 2);
+
+    /* Decreasing font size value */
+    resultTotalFontSizeNew = (resultTotalFontSizeShort - 0.5) + "px";
+    resultTotalHeaderFontSizeNew = (resultTotalHeaderFontSizeShort - 0.5) + "px";
+    resultTotalHeaderPerPersonFontSizeNew = (resultTotalHeaderPerPersonFontSizeShort - 0.5) + "px";
+
+    /* Assigning new font size values */
+    resultTotal.style.fontSize = resultTotalFontSizeNew;
+    resultTotalHeader.style.fontSize = resultTotalHeaderFontSizeNew;
+    resultTotalHeaderPerPerson.style.fontSize = resultTotalHeaderPerPersonFontSizeNew;
+
+}
+
+
+  const lowerFontSizeValue = Math.min(resultTipFontSizeShort, resultTotalFontSizeShort);
+  const lowerHeaderFontSizeValue = Math.min(resultTipHeaderFontSizeShort, resultTotalHeaderFontSizeShort);
+  const lowerHeaderPerPersonFontSizeValue = Math.min(resultTipHeaderPerPersonFontSizeShort, resultTotalHeaderPerPersonFontSizeShort);
+
+  resultTip.style.fontSize = lowerFontSizeValue - 0.5 + "px";
+  resultTotal.style.fontSize = lowerFontSizeValue - 0.5 + "px";
+  resultTipHeader.style.fontSize = lowerHeaderFontSizeValue - 0.5 + "px";
+  resultTotalHeader.style.fontSize = lowerHeaderFontSizeValue - 0.5 + "px";
+  resultTipHeaderPerPerson.style.fontSize = lowerHeaderPerPersonFontSizeValue - 0.5 + "px";
+  resultTotalHeaderPerPerson.style.fontSize = lowerHeaderPerPersonFontSizeValue - 0.5 + "px";
 
 
 }
@@ -266,7 +369,6 @@ export const enableCurrencyModule = () => {
   currencyButton.style.display = "none";
   currencyModule.style.display = "flex";
 
-
 }
 
 
@@ -279,12 +381,12 @@ export const retrieveAPI = async (currencyBill, currencyUser) => {
 
   try {
     const response = await fetch(url);
-    if (response.ok){
+    if (response.ok) {
 
       const jsonResponse = await response.json();
       return jsonResponse;
     }
-  } catch (error){
+  } catch (error) {
     console.log(error);
   }
 
@@ -296,7 +398,7 @@ export const renderCurrency = jsonResponse => {
   const billCurrency = currencyArray[0].value;
   const myCurrency = currencyArray[1].value;
   const rate = Object.values(jsonResponse.rates)[0].rate;
-  const roundRate = Math.round(rate * 100)/100;
+  const roundRate = Math.round(rate * 100) / 100;
   const date = jsonResponse.updated_date;
   inputData.currencyRate = rate;
 
@@ -310,7 +412,7 @@ export const renderCurrency = jsonResponse => {
 
 export const determineCurrencySymbol = () => {
 
-  switch(currencyUser.value){
+  switch (currencyUser.value) {
     case "GBP":
       inputData.currencyState = 0;
       break;

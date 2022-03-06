@@ -6,7 +6,7 @@ export const inputData = {
   tipValue: 0,
 
   currencyRate: 1,
-  currencyState: 0,
+  currencyState: 1,
   currencySymbols: ["£", "€", "¥", "PLN ", "CHF ", "₴", "$", "VT "],
 
   /* inputValidityArray can take two values: "0" - input datum is invalid, "1" - input datum is valid,
@@ -14,7 +14,7 @@ export const inputData = {
   inputValidityArray: [0, 1, 0],
 
 
-  areAllValid(){
+  areAllValid() {
 
     return ((this.inputValidityArray.every((el) => el == 1)) ? true : false)
 
@@ -34,8 +34,15 @@ export const tipDOMArray = document.querySelectorAll(".button--tipButton");
 export const inputsDOMArray = [document.getElementById("input--bill"), document.getElementById("input--tip"), document.getElementById("input--people")];
 export const warningInfoDOMArray = [document.getElementById("warningInfo--bill"), document.getElementById("warningInfo--tip"), document.getElementById("warningInfo--people")];
 export const resetButton = document.getElementById("button--reset");
+
 export const resultTip = document.getElementById("results--tip");
+export const resultTipHeader = document.getElementById("results__tipHeader");
+export const resultTipHeaderPerPerson = document.getElementById("results__tipHeader--person");
+
 export const resultTotal = document.getElementById("results--total");
+export const resultTotalHeader = document.getElementById("results__totalHeader");
+export const resultTotalHeaderPerPerson = document.getElementById("results__totalHeader--person");
+
 export const currencyInfo = document.getElementById("currencyInfo");
 export const currencyButton = document.getElementById("button--currency");
 export const currencyModule = document.getElementById("currencyModule");

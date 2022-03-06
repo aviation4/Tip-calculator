@@ -1,5 +1,29 @@
-import {tipButtonToggler, enableResetButton, resetAll, updateResults, inputValidation, determineCustomTipValue, enableCurrencyModule, retrieveAPI, renderCurrency, calculateResults, determineCurrencySymbol, checkResultsLayout} from "./functions.js";
-import {inputData, resetButton, inputsDOMArray, tipDOMArray, currencyButton, currencyArray, extraInfoBillCurrencyIcon, extraInfoBillCurrencyText, extraInfoUserCurrencyIcon, extraInfoUserCurrencyText, resultTip} from "./variables.js";
+import {
+  tipButtonToggler,
+  enableResetButton,
+  resetAll,
+  updateResults,
+  inputValidation,
+  enableCurrencyModule,
+  retrieveAPI,
+  renderCurrency,
+  calculateResults,
+  determineCurrencySymbol,
+  checkResultsLayout
+} from "./functions.js";
+import {
+  inputData,
+  resetButton,
+  inputsDOMArray,
+  tipDOMArray,
+  currencyButton,
+  currencyArray,
+  extraInfoBillCurrencyIcon,
+  extraInfoBillCurrencyText,
+  extraInfoUserCurrencyIcon,
+  extraInfoUserCurrencyText,
+  resultTip
+} from "./variables.js";
 
 
 tipDOMArray.forEach((button, i) => {
@@ -12,7 +36,7 @@ tipDOMArray.forEach((button, i) => {
 
 
     /* Enable reset button */
-    if (inputData.tipStateArray.some(el => el == 1)){
+    if (inputData.tipStateArray.some(el => el == 1)) {
       enableResetButton();
     }
 
@@ -41,26 +65,26 @@ currencyButton.addEventListener("click", function() {
 currencyArray.forEach((currency, i, array) => {
 
 
-  currency.addEventListener("input", function () {
+  currency.addEventListener("input", function() {
 
 
 
-      if (array[0].value != array[1].value){
-        retrieveAPI(array[0].value, array[1].value)
-          .then(jsonResponse => renderCurrency(jsonResponse))
-          .then(calculateResults);
-      } else {
-        determineCurrencySymbol();
-        currencyInfo.style.display = "none";
-        inputData.currencyRate = 1;
-        calculateResults();
-      }
+    if (array[0].value != array[1].value) {
+      retrieveAPI(array[0].value, array[1].value)
+        .then(jsonResponse => renderCurrency(jsonResponse))
+        .then(updateResults);
+    } else {
+      determineCurrencySymbol();
+      currencyInfo.style.display = "none";
+      inputData.currencyRate = 1;
+      updateResults();
+    }
 
 
 
 
 
-  } )
+  })
 
 })
 
@@ -79,7 +103,7 @@ inputsDOMArray.forEach((input, i) => {
   /***** Assign Event Listener *****/
   input.addEventListener("input", function() {
 
-    if (i == 1){
+    if (i == 1) {
       determineCustomTipValue();
     }
 
@@ -112,7 +136,9 @@ extraInfoBillCurrencyIcon.addEventListener("mouseover", function() {
 extraInfoBillCurrencyIcon.addEventListener("mouseout", function() {
 
   extraInfoBillCurrencyText.style.opacity = "0";
-  setTimeout(() => {extraInfoBillCurrencyText.style.zIndex = "-1"}, 200);
+  setTimeout(() => {
+    extraInfoBillCurrencyText.style.zIndex = "-1"
+  }, 200);
 
 })
 
@@ -129,5 +155,7 @@ extraInfoUserCurrencyIcon.addEventListener("mouseover", function() {
 extraInfoUserCurrencyIcon.addEventListener("mouseout", function() {
 
   extraInfoUserCurrencyText.style.opacity = "0";
-  setTimeout(() => {extraInfoUserCurrencyText.style.zIndex = "-1"}, 200);
+  setTimeout(() => {
+    extraInfoUserCurrencyText.style.zIndex = "-1"
+  }, 200);
 })

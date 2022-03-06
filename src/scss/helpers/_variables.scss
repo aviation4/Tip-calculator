@@ -36,15 +36,16 @@ $text-xxxl: 1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio * $t
 
 /*** Sizings ***/
 $baseline: 24px;
-$space-xxs:   math.div($baseline, 4);
-$space-xs:   math.div($baseline, 3);
-$space-sm:   math.div($baseline, 2);
-$space-md:   $baseline;
+$space-xxs:      math.div($baseline, 4);
+$space-xs:       math.div($baseline, 3);
+$space-sm:       math.div($baseline, 2);
+$space-sm-plus:  math.div($baseline, 1.5);
+$space-md:       $baseline;
 $space-md-plus:  ($baseline*1.5);
-$space-lg:   ($baseline*2);
-$space-xl:   ($baseline*3);
-$space-xxl:  ($baseline*4);
-$space-xxxl: ($baseline*5);
+$space-lg:       ($baseline*2);
+$space-xl:       ($baseline*3);
+$space-xxl:      ($baseline*4);
+$space-xxxl:     ($baseline*5);
 
 
 /*** Sizing limits ***/
