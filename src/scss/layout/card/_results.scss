@@ -11,6 +11,27 @@
   /* Spacing */
   margin-bottom: $space-md-plus;
 
+  /* Animation */
+  animation-duration: 4s;
+  animation-name: fadein1;
+
+}
+
+
+@keyframes fadein1 {
+
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
 }
 
 

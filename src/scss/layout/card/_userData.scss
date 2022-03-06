@@ -3,13 +3,63 @@
 .userData__article {
   position: relative;
   margin-bottom: $space-xl;
-  animation-duration: 1s;
-  animation-name: fadein;
+
+  &:nth-of-type(1){
+    animation-duration: 1s;
+    animation-name: fadein1;
+  }
+
+  &:nth-of-type(2){
+    animation-duration: 2s;
+    animation-name: fadein2;
+
+  }
+
+  &:nth-of-type(3){
+    animation-duration: 3s;
+    animation-name: fadein3;
+  }
+
 }
 
-@keyframes fadein {
+
+@keyframes fadein1 {
 
   from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+
+@keyframes fadein2 {
+
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+@keyframes fadein3 {
+
+  from {
+    opacity: 0;
+  }
+
+  50% {
     opacity: 0;
   }
 
