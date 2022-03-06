@@ -104,7 +104,7 @@ inputsDOMArray.forEach((input, i) => {
   input.addEventListener("input", function() {
 
     if (i == 1) {
-      determineCustomTipValue();
+       inputData.tipValue = inputsDOMArray[1].value;
     }
 
     /* Check if provided data are correct */

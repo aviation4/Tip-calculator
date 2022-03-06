@@ -3,6 +3,20 @@
 .userData__article {
   position: relative;
   margin-bottom: $space-xl;
+  animation-duration: 1s;
+  animation-name: fadein;
+}
+
+@keyframes fadein {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
 }
 
 
