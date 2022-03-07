@@ -53,3 +53,4 @@ export const extraInfoBillCurrencyIcon = document.getElementById("extraInfoBillC
 export const extraInfoBillCurrencyText = document.getElementById("extraInfoBillCurrencyText");
 export const extraInfoUserCurrencyIcon = document.getElementById("extraInfoUserCurrencyIcon");
 export const extraInfoUserCurrencyText = document.getElementById("extraInfoUserCurrencyText");
+export const animatedModules = document.querySelectorAll(".button--reset");

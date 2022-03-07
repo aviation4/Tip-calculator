@@ -17,7 +17,8 @@ import {
   resultTipHeader,
   resultTipHeaderPerPerson,
   resultTotalHeader,
-  resultTotalHeaderPerPerson
+  resultTotalHeaderPerPerson,
+  animatedModules
 } from "./variables.js";
 
 
@@ -76,6 +77,12 @@ export const tipButtonToggler = (button, i) => {
 export const enableResetButton = () => {
 
   resetButton.classList.add(buttonEnabled);
+
+  /* Disable animations */
+
+  animatedModules.forEach(el => {
+    el.style.animationDuration = "2s";
+  })
 
 }
 
