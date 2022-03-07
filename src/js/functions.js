@@ -221,7 +221,7 @@ export const calculateResults = () => {
 
   /* When total result is too long - compress to thousands (k) millions (M) */
   if (resultTotal.innerHTML > 100000000) {
-    resultTotal.innerHTML = "mного";
+    resultTotal.innerHTML = " mного";
   } else if (resultTotal.innerHTML > 1000000) {
     resultTotal.innerHTML = Math.round(resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
   } else if (resultTotal.innerHTML > 10000) {
@@ -264,14 +264,14 @@ const resetFontSizes = () => {
 export const fixResultsLayout = () => {
 
   /* Defining font sizes */
-  let resultTipFontSize;
-  let resultTipHeaderFontSize;
-  let resultTipHeaderPerPersonFontSize;
+  let resultTipFontSize = window.getComputedStyle(resultTip).getPropertyValue("font-size");
+  let resultTipHeaderFontSize = window.getComputedStyle(resultTipHeader).getPropertyValue("font-size");
+  let resultTipHeaderPerPersonFontSize = window.getComputedStyle(resultTipHeaderPerPerson).getPropertyValue("font-size");
 
   /* Coverting to number */
-  let resultTipFontSizeShort;
-  let resultTipHeaderFontSizeShort;
-  let resultTipHeaderPerPersonFontSizeShort;
+  let resultTipFontSizeShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+  let resultTipHeaderFontSizeShort = resultTipHeaderFontSize.slice(0, resultTipHeaderFontSize.length - 2);
+  let resultTipHeaderPerPersonFontSizeShort = resultTipHeaderPerPersonFontSize.slice(0, resultTipHeaderPerPersonFontSize.length - 2);
 
   /* Decreasing font size value */
   let resultTipFontSizeNew;
@@ -306,14 +306,14 @@ export const fixResultsLayout = () => {
 
 
   /* Defining font sizes */
-  let resultTotalFontSize;
-  let resultTotalHeaderFontSize;
-  let resultTotalHeaderPerPersonFontSize);
+  let resultTotalFontSize = window.getComputedStyle(resultTotal).getPropertyValue("font-size");
+  let resultTotalHeaderFontSize = window.getComputedStyle(resultTotalHeader).getPropertyValue("font-size");
+  let resultTotalHeaderPerPersonFontSize = window.getComputedStyle(resultTotalHeaderPerPerson).getPropertyValue("font-size");
 
   /* Coverting to number */
-  let resultTotalFontSizeShort;
-  let resultTotalHeaderFontSizeShort;
-  let resultTotalHeaderPerPersonFontSizeShort;
+  let resultTotalFontSizeShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+  let resultTotalHeaderFontSizeShort = resultTotalHeaderFontSize.slice(0, resultTotalHeaderFontSize.length - 2);
+  let resultTotalHeaderPerPersonFontSizeShort = resultTotalHeaderPerPersonFontSize.slice(0, resultTotalHeaderPerPersonFontSize.length - 2);
 
   /* Decreasing font size value */
   let resultTotalFontSizeNew;

@@ -849,7 +849,7 @@ const calculateResults = ()=>{
     else if (_variablesJs.resultTip.innerHTML > 1000000) _variablesJs.resultTip.innerHTML = Math.round(_variablesJs.resultTip.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTip.innerHTML > 10000) _variablesJs.resultTip.innerHTML = Math.round(_variablesJs.resultTip.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTip.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTip.innerHTML;
-    /* When total result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTotal.innerHTML > 100000000) _variablesJs.resultTotal.innerHTML = "mного";
+    /* When total result is too long - compress to thousands (k) millions (M) */ if (_variablesJs.resultTotal.innerHTML > 100000000) _variablesJs.resultTotal.innerHTML = " mного";
     else if (_variablesJs.resultTotal.innerHTML > 1000000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000000 * 100) / 100 + "M";
     else if (_variablesJs.resultTotal.innerHTML > 10000) _variablesJs.resultTotal.innerHTML = Math.round(_variablesJs.resultTotal.innerHTML / 1000 * 100) / 100 + "k";
     /* Add currency sign */ _variablesJs.resultTotal.innerHTML = _variablesJs.inputData.currencySymbols[_variablesJs.inputData.currencyState] + _variablesJs.resultTotal.innerHTML;
@@ -869,12 +869,12 @@ const resetFontSizes = ()=>{
     _variablesJs.resultTotalHeaderPerPerson.style.fontSize = "13.9px";
 };
 const fixResultsLayout = ()=>{
-    /* Defining font sizes */ let resultTipFontSize;
-    let resultTipHeaderFontSize;
-    let resultTipHeaderPerPersonFontSize;
-    /* Coverting to number */ let resultTipFontSizeShort;
-    let resultTipHeaderFontSizeShort;
-    let resultTipHeaderPerPersonFontSizeShort;
+    /* Defining font sizes */ let resultTipFontSize = window.getComputedStyle(_variablesJs.resultTip).getPropertyValue("font-size");
+    let resultTipHeaderFontSize = window.getComputedStyle(_variablesJs.resultTipHeader).getPropertyValue("font-size");
+    let resultTipHeaderPerPersonFontSize = window.getComputedStyle(_variablesJs.resultTipHeaderPerPerson).getPropertyValue("font-size");
+    /* Coverting to number */ let resultTipFontSizeShort = resultTipFontSize.slice(0, resultTipFontSize.length - 2);
+    let resultTipHeaderFontSizeShort = resultTipHeaderFontSize.slice(0, resultTipHeaderFontSize.length - 2);
+    let resultTipHeaderPerPersonFontSizeShort = resultTipHeaderPerPersonFontSize.slice(0, resultTipHeaderPerPersonFontSize.length - 2);
     /* Decreasing font size value */ let resultTipFontSizeNew;
     let resultTipHeaderFontSizeNew;
     let resultTipHeaderPerPersonFontSizeNew;
@@ -892,12 +892,12 @@ const fixResultsLayout = ()=>{
         _variablesJs.resultTipHeader.style.fontSize = resultTipHeaderFontSizeNew;
         _variablesJs.resultTipHeaderPerPerson.style.fontSize = resultTipHeaderFontSizeNew;
     }
-    /* Defining font sizes */ let resultTotalFontSize;
-    let resultTotalHeaderFontSize;
-    let resultTotalHeaderPerPersonFontSize;
-    /* Coverting to number */ let resultTotalFontSizeShort;
-    let resultTotalHeaderFontSizeShort;
-    let resultTotalHeaderPerPersonFontSizeShort;
+    /* Defining font sizes */ let resultTotalFontSize = window.getComputedStyle(_variablesJs.resultTotal).getPropertyValue("font-size");
+    let resultTotalHeaderFontSize = window.getComputedStyle(_variablesJs.resultTotalHeader).getPropertyValue("font-size");
+    let resultTotalHeaderPerPersonFontSize = window.getComputedStyle(_variablesJs.resultTotalHeaderPerPerson).getPropertyValue("font-size");
+    /* Coverting to number */ let resultTotalFontSizeShort = resultTotalFontSize.slice(0, resultTotalFontSize.length - 2);
+    let resultTotalHeaderFontSizeShort = resultTotalHeaderFontSize.slice(0, resultTotalHeaderFontSize.length - 2);
+    let resultTotalHeaderPerPersonFontSizeShort = resultTotalHeaderPerPersonFontSize.slice(0, resultTotalHeaderPerPersonFontSize.length - 2);
     /* Decreasing font size value */ let resultTotalFontSizeNew;
     let resultTotalHeaderFontSizeNew;
     let resultTotalHeaderPerPersonFontSizeNew;
