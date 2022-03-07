@@ -22,6 +22,11 @@ based on three values:
 + tip percentage
 + number of people
 
+Optionally, the user can change the currency:
+
++ in which the bill was paid
++ in which the user wants to settle
+
 **Mobile view:**
 
 ![mobile view](/docs/general-view-mobile.png)
@@ -62,7 +67,18 @@ If entered data are correct, **Tip amount/person** and **Total/person** values a
 
 ![results calculated](docs/results/results.png)
 
-![results calculated zoomed out](docs/general-view-mobile-calculated.png)
+By enabling **Change Currency** button, you can change the currency in which the bill was paid, as well as the currency in which you want to settle:
+
+![currency module enabled](docs/currencies/currencies-module-enabled.png)
+
+You can select from the several predefined currencies:
+
+![currencies list](docs/currencies/currencies-list.png)
+
+After selecting the appropriate currencies, the app calculate results in the currency of your chosen. Under the Select-type fields, the applied currency conversion is displayed:
+
+![currencies dollar to british pound](docs/currencies/currencies-usd-gbp.png)
+
 
 By pressing **Reset** button, you can restore the app to the initial state.
 
@@ -74,6 +90,7 @@ By pressing **Reset** button, you can restore the app to the initial state.
 - BEM naming convention
 - RWD
 - Vanilla JS with ES modules
+- REST API (Currency API)
 - Parcel
 
 ## Live website
