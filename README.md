@@ -95,7 +95,7 @@ By pressing **Reset** button, you can restore the app to the initial state.
 
 ## Live website
 
-[Here you can test live website](https://aviation4.github.io/Tip-calculator/)
+[Here you can test live website](https://przem-przem.github.io/Tip-calculator/)
 
 ## Installation
 
